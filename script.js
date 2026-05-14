@@ -38,6 +38,8 @@ const dangerDescription = document.querySelector('.danger-description');
 const tipsMainTitle = document.querySelector('.tips-main-title');
 const tipsList = document.querySelector('.tips-list');
 
+let currentActiveTab = 'current';
+
 // =========================
 // API KEYS
 // =========================
@@ -83,13 +85,14 @@ const shelterData = {
 
 function handleSearch(){
 
-    const city =
+    const location =
     countryInput.value.trim() ||
     cityInput.value.trim();
 
-    if(!city) return;
+    if(!location) return;
 
-    updateWeatherInfo(city);
+    updateWeatherInfo(location);
+    fetchClimateNews(location);
 
     cityInput.value = '';
     countryInput.value = '';
@@ -604,23 +607,19 @@ async function updateForecastsInfo(city) {
 function hideAllSections(){
 
     [
-
         weatherWelcome,
         weatherInput,
         weatherText,
         errorMsg,
         weatherError
-
     ].forEach(section => {
 
         if(section){
-
             section.style.display = 'none';
         }
     });
 
     tipsSection.classList.remove('show');
-
     newsSection.classList.remove('show');
 }
 
@@ -765,33 +764,45 @@ const historicalDatabase = {
 
 async function fetchClimateNews(city = 'Philippines') {
 
-    const query =
-    `${city} disaster OR evacuation OR severe weather`;
+    const query = `(${city} AND (disaster OR flood OR weather)) OR (Philippines AND disaster)`;
 
-    const url =
-    `https://newsdata.io/api/1/news?apikey=${newsDataKey}&language=en&q=${encodeURIComponent(query)}`;
+    const url = `https://newsdata.io/api/1/news?apikey=${newsDataKey}&language=en&q=${encodeURIComponent(query)}`;
 
     try {
 
         const response = await fetch(url);
-
         const data = await response.json();
 
-        if(!data.results){
-
+        if(!data.results || data.results.length === 0){
             renderFallback();
             return;
         }
 
-        currentNews =
-        data.results.slice(0, 3);
+        const uniqueArticles = new Map();
 
-        document.querySelector('.news-location').textContent =
-        `Showing climate news for ${city}`;
+        data.results.forEach(article => {
+            const titleKey = article.title.trim().toLowerCase();
+            if (!uniqueArticles.has(titleKey)) {
+                uniqueArticles.set(titleKey, article);
+            }
+        });
+
+        currentNews = 
+        Array.from(uniqueArticles.values()).slice(0, 3);
+
+        const locationLabel = document.querySelector('.news-location');
+
+        if (locationLabel) {
+            locationLabel.textContent = `Showing climate news for ${city}`;
+        }
 
         generateHistoricalNews(currentNews);
 
-        renderNews(currentNews);
+        if (currentActiveTab === 'current') {
+            renderNews(currentNews);
+        } else {
+            renderNews(historicalNews);
+        }
 
     } catch(error){
 
@@ -805,55 +816,44 @@ async function fetchClimateNews(city = 'Philippines') {
 // GENERATE RELATED HISTORY
 // =========================
 
-function generateHistoricalNews(news){
-
+function generateHistoricalNews(news) {
     historicalNews = [];
+    const seenTitles = new Set(); // PREVENTS DUPLICATES
+    const articles = news.length > 0 ? news : [{title: "General Weather", description: "monitoring"}];
 
     news.forEach(article => {
-
-        const type =
-        detectDisasterType(article);
-
-        if(!type) return;
+        const type = detectDisasterType(article) || 'typhoon';
+        if (!type) return;
 
         // PICK ONLY ONE RELATED HISTORY
 
-        const related =
-        historicalDatabase[type];
+        const related = historicalDatabase[type];
 
-        if(related && related.length){
-
-            historicalNews.push(
-                related[0]
-            );
+        // CHECKS FOR DUPLICATES
+        if (related) {
+            const uniqueItem = related.find(item => !seenTitles.has(item.title));
+            
+            if (uniqueItem) {
+                historicalNews.push(uniqueItem);
+                seenTitles.add(uniqueItem.title);
+            }
         }
     });
 
-    // REMOVE DUPLICATES
+    renderNews(currentActiveTab === 'current' ? currentNews : historicalNews);
 
-    historicalNews =
-    historicalNews.filter(
-        (item,index,self)=>
-
-            index === self.findIndex(
-                t => t.title === item.title
-            )
-    );
-
-    // LIMIT SAME LENGTH AS CURRENT NEWS
-
-    historicalNews =
-    historicalNews.slice(
-        0,
-        currentNews.length
-    );
+    // LIMIT: Keep historical news length same as current news length
+    historicalNews = historicalNews.slice(0, currentNews.length);
 
     // FALLBACK
-
-    if(historicalNews.length === 0){
-
-        historicalNews =
-        historicalDatabase.typhoon.slice(0,3);
+    if (historicalNews.length === 0) {
+        historicalDatabase.typhoon.forEach(item => {
+            // Fill up to 3 or the currentNews length, whichever is smaller
+            if (historicalNews.length < Math.max(1, currentNews.length) && !seenTitles.has(item.title)) {
+                historicalNews.push(item);
+                seenTitles.add(item.title);
+            }
+        });
     }
 }
 
@@ -861,117 +861,76 @@ function generateHistoricalNews(news){
 // RENDER NEWS
 // =========================
 
-function renderNews(newsArray){
-
+function renderNews(newsArray) {
     newsGrid.innerHTML = '';
 
-    newsArray.forEach((article,index)=>{
-
+    newsArray.forEach((article, index) => {
         let position = '';
 
-if(newsArray.length === 1){
-
-    position = 'center';
-
-}else if(newsArray.length === 2){
-
-    position =
-    index === 0
-    ? 'left'
-    : 'right';
-
-}else{
-
-    if(index === 0) position = 'left';
-    if(index === 1) position = 'center';
-    if(index === 2) position = 'right';
-}
-    
-    newsGrid.classList.remove(
-    'two-cards',
-    'one-card'
-);
-
-if(newsArray.length === 1){
-
-    newsGrid.classList.add('one-card');
-
-}else if(newsArray.length === 2){
-
-    newsGrid.classList.add('two-cards');
-}
+        if (newsArray.length === 1) {
+            position = 'center';
+        } else if (newsArray.length === 2) {
+            position = index === 0 ? 'left' : 'right';
+        } else {
+            if (index === 0) position = 'left';
+            if (index === 1) position = 'center';
+            if (index === 2) position = 'right';
+        }
 
         newsGrid.innerHTML += `
-
-            <a
-                href="${article.link || '#'}"
-                target="_blank"
-                class="news-card ${position}"
-            >
-
+            <a href="${article.link || '#'}" target="_blank" class="news-card ${position}">
                 <div class="news-image-wrapper">
-
-${
-(article.image_url || article.image)
-? `
-<img
-    src="${article.image_url || article.image}"
-    alt="${article.title}"
-    onerror="
-        this.style.display='none';
-        this.parentElement.querySelector('.no-image-box').style.display='flex';
-    "
->
-`
-: ''
-}
-
-<div
-    class="no-image-box"
-    style="display:${
-        (article.image_url || article.image)
-        ? 'none'
-        : 'flex'
-    };"
->
-
-    <img
-        src="assets/icons/no-image.png"
-        class="no-image"
-    >
-
-    <span>
-        No Image Available
-    </span>
-
-</div>
-
-</div>
-                <div class="news-content">
-
-                    <h2>
-                        ${article.title}
-                    </h2>
-
-                    <p>
-                        ${
-                            article.description
-                            ? article.description.substring(0,120)
-                            : 'Climate-related disaster.'
-                        }
-                    </p>
-
-                    <div class="news-read">
-                        READ FULL STORY
+                    ${
+                        (article.image_url || article.image)
+                            ? `
+                    <img src="${article.image_url || article.image}" alt="${article.title}" 
+                         onerror="this.style.display='none'; this.parentElement.querySelector('.no-image-box').style.display='flex';">
+                    `
+                            : ''
+                    }
+                    <div class="no-image-box" style="display:${
+                        (article.image_url || article.image) ? 'none' : 'flex'
+                    };">
+                        <img src="assets/icons/no-image.png" class="no-image">
+                        <span>No Image Available</span>
                     </div>
-
                 </div>
-
+                <div class="news-content">
+                    <h2>${article.title}</h2>
+                    <p>${
+                        article.description
+                            ? article.description.substring(0, 120)
+                            : 'Climate-related disaster.'
+                    }</p>
+                    <div class="news-read">READ FULL STORY</div>
+                </div>
             </a>
         `;
     });
 
+    updateNewsGridClasses();
     setupCarousel();
+}
+
+
+// =========================
+// NEWS GRID CLASS HANDLING
+// =========================
+
+function updateNewsGridClasses() {
+    const activeButton = document.querySelector('.climate-btn.active');
+    if (!activeButton) return;
+
+    const newsCards = document.querySelectorAll('.news-card');
+    const newsArrayLength = newsCards.length;
+
+    newsGrid.classList.remove('two-cards', 'one-card');
+
+    if (newsArrayLength === 1) {
+        newsGrid.classList.add('one-card');
+    } else if (newsArrayLength === 2) {
+        newsGrid.classList.add('two-cards');
+    }
 }
 
 // =========================
@@ -1195,8 +1154,8 @@ climateButtons.forEach(button=>{
 
         button.classList.add('active');
 
-        const type =
-        button.dataset.type;
+        const type = button.dataset.type;
+        currentActiveTab = type;
 
         if(type === 'current'){
 
