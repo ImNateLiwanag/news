@@ -39,6 +39,8 @@ const tipsMainTitle = document.querySelector('.tips-main-title');
 const tipsList = document.querySelector('.tips-list');
 
 let currentActiveTab = 'current';
+let map;
+let shelterMarkers = [];
 
 // =========================
 // API KEYS
@@ -59,25 +61,115 @@ const shelterData = {
 
         {
             name: 'Manila Science High School',
-            image: 'assets/shelters/manila.jpg'
+            image: 'assets/shelters/manila.jpg',
+            lat: 14.6091,
+            lng: 120.9873
         },
 
         {
             name: 'Rizal Park Evacuation Center',
-            image: 'assets/shelters/rizal.jpg'
+            image: 'assets/shelters/rizal.jpg',
+            lat: 14.5826,
+            lng: 120.9790
         },
 
         {
             name: 'Delpan Evacuation Center',
-            image: 'assets/shelters/delp.jpg'
+            image: 'assets/shelters/delp.jpg',
+            lat: 14.6008,
+            lng: 120.9684
         },
 
         {
             name: 'Baseco Evacuation Center',
-            image: 'assets/shelters/baseco.jpg'
+            image: 'assets/shelters/baseco.jpg',
+            lat: 14.5981,
+            lng: 120.9652
         }
     ]
 };
+
+function initializeMap(){
+
+    if(map) return;
+
+    map = L.map('map').setView(
+        [14.5995, 120.9842],
+        12
+    );
+
+    L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+            attribution:
+            '&copy; OpenStreetMap contributors'
+        }
+    ).addTo(map);
+}
+
+function updateShelterMap(city){
+
+    if(!map){
+        initializeMap();
+    }
+
+    // REMOVE OLD MARKERS
+
+    shelterMarkers.forEach(marker => {
+        map.removeLayer(marker);
+    });
+
+    shelterMarkers = [];
+
+    const cityShelters =
+    shelterData[city.toLowerCase()];
+
+    if(!cityShelters){
+
+        map.setView(
+            [14.5995,120.9842],
+            12
+        );
+
+        return;
+    }
+
+    const bounds = [];
+
+    cityShelters.forEach(shelter => {
+
+        const marker = L.marker([
+            shelter.lat,
+            shelter.lng
+        ]).addTo(map);
+
+        marker.bindPopup(`
+            <b>${shelter.name}</b>
+        `);
+
+        shelterMarkers.push(marker);
+
+        bounds.push([
+            shelter.lat,
+            shelter.lng
+        ]);
+    });
+
+    // VERY IMPORTANT
+
+    setTimeout(() => {
+
+        map.invalidateSize();
+
+        if(bounds.length > 0){
+
+            map.fitBounds(bounds,{
+                padding:[50,50]
+            });
+        }
+
+    }, 300);
+}
 
 // =========================
 // SEARCH EVENTS
@@ -299,6 +391,15 @@ async function updateWeatherInfo(city){
         tipsSection.classList.add(
             'show'
         );
+        setTimeout(() => {
+
+    initializeMap();
+
+    updateShelterMap(name);
+
+    map.invalidateSize();
+
+}, 400);
 
         newsSection.classList.add(
             'show'
@@ -527,6 +628,8 @@ if (cityShelters) {
 
         `;
     });
+
+    updateShelterMap(city);
 
 } else {
 
@@ -1180,5 +1283,7 @@ document.addEventListener(
 
         weatherWelcome.style.display =
         'flex';
+
+        initializeMap();
     }
 );

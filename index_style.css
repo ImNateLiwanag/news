@@ -913,6 +913,28 @@ ul a:hover {
     font-family:"Inter",sans-serif;
 }
 
+.shelter-map-wrapper{
+    display:block;
+}
+
+#map{
+    width:100%;
+    min-height:500px;
+    border-radius:25px;
+}
+
+.shelter-card img{
+
+    width:100%;
+    height:150px;
+    object-fit:cover;
+}
+
+.shelter-info{
+
+    padding:15px;
+}
+
 /* =========================
    RESPONSIVE
 ========================= */
@@ -946,6 +968,7 @@ ul a:hover {
         font-size:2rem;
     }
 }
+
 
 /* =========================
    NEWS SECTION
