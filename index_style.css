@@ -810,129 +810,216 @@ ul a:hover {
 }
 
 /* =========================
-   SHELTER SECTION
+   SHELTER / MAP SECTION
 ========================= */
 
 .shelter-wrapper{
-    margin-top:35px;
 
-    background:#ffffff;
-    border-radius:30px;
-    padding:35px;
+    margin-top:50px;
 
-    box-shadow:0 10px 30px rgba(15,23,42,0.08);
+    background:#FFFFFF;
+
+    border-radius:32px;
+
+    padding:28px;
+
+    box-shadow:
+    0 10px 40px rgba(15,23,42,0.08);
+
+    border:
+    1px solid rgba(226,232,240,0.7);
+}
+
+/* MAP CONTAINER */
+
+.shelter-map-wrapper{
+
+    margin-top:30px;
+
+    padding:18px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #F8FAFC 0%,
+        #EEF4FF 100%
+    );
+
+    border-radius:28px;
+
+    border:
+    1px solid #E2E8F0;
+}
+
+/* MAP */
+
+#map{
+
+    width:100%;
+
+    height:560px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    z-index:1;
+
+    box-shadow:
+    0 15px 35px rgba(15,23,42,0.10);
+
+    border:
+    1px solid rgba(255,255,255,0.6);
+}
+
+/* HEADER */
+
+.shelter-header{
+
+    margin-bottom:10px;
 }
 
 .shelter-header h1{
+
     margin:0;
-    font-size:2.4rem;
-    color:#0F172A;
+
+    font-size:2.3rem;
+
     font-family:"Outfit",sans-serif;
+
+    color:#0F172A;
+
+    letter-spacing:-1px;
 }
 
 .shelter-header p{
+
     margin-top:10px;
+
+    font-size:1rem;
+
+    line-height:1.6;
+
     color:#64748B;
+
     font-family:"Inter",sans-serif;
 }
 
-/* GRID */
+/* LEAFLET FIXES */
 
-.shelter-grid{
-    margin-top:30px;
+.leaflet-container{
 
-    display:grid;
-
-    grid-template-columns:
-    repeat(4, minmax(220px, 1fr));
-
-    gap:24px;
-}
-
-@media(max-width:1200px){
-
-    .shelter-grid{
-        grid-template-columns:
-        repeat(2,1fr);
-    }
-}
-
-@media(max-width:700px){
-
-    .shelter-grid{
-        grid-template-columns:1fr;
-    }
-}
-
-/* CARD */
-
-.shelter-card{
-    background:#F8FAFC;
-    border:1px solid #E2E8F0;
-    min-height:320px;
     border-radius:24px;
+}
+
+/* ZOOM BUTTONS */
+
+.leaflet-control-zoom{
+
+    border:none !important;
+
+    box-shadow:
+    0 8px 20px rgba(15,23,42,0.12) !important;
+
     overflow:hidden;
-
-    transition:0.3s ease;
-
-    display:flex;
-    flex-direction:column;
 }
 
-.shelter-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 10px 25px rgba(15,23,42,0.08);
+.leaflet-control-zoom a{
+
+    width:38px !important;
+
+    height:38px !important;
+
+    line-height:38px !important;
+
+    font-size:1.2rem !important;
+
+    background:#FFFFFF !important;
+
+    color:#0F172A !important;
+
+    transition:0.25s ease;
 }
 
-/* IMAGE */
+.leaflet-control-zoom a:hover{
 
-.shelter-card img{
-    display:block;
-    width:100%;
-    height:220px;
-    object-fit:cover;
+    background:#2563EB !important;
+
+    color:#FFFFFF !important;
 }
 
-/* TEXT */
+/* POPUP DESIGN */
 
-.shelter-info{
-    padding:20px;
+.leaflet-popup-content-wrapper{
+
+    border-radius:18px;
+
+    padding:8px;
+
+    box-shadow:
+    0 15px 35px rgba(15,23,42,0.15);
 }
 
-.shelter-info h3{
-    margin:0 0 10px;
+.map-popup h3{
+
+    margin:0 0 8px;
+
     font-family:"Outfit",sans-serif;
+
     color:#0F172A;
-    font-size:1.2rem;
+
+    font-size:1.1rem;
 }
 
-.shelter-info p{
+.map-popup p{
+
     margin:0;
+
     color:#64748B;
+
+    font-size:0.95rem;
+
     line-height:1.5;
-    font-family:"Inter",sans-serif;
 }
 
-.shelter-map-wrapper{
-    display:block;
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+    .shelter-wrapper{
+
+        padding:20px;
+    }
+
+    .shelter-map-wrapper{
+
+        padding:12px;
+    }
+
+    #map{
+
+        height:420px;
+    }
 }
 
-#map{
-    width:100%;
-    min-height:500px;
-    border-radius:25px;
-}
+@media(max-width:600px){
 
-.shelter-card img{
+    .shelter-header h1{
 
-    width:100%;
-    height:150px;
-    object-fit:cover;
-}
+        font-size:1.8rem;
+    }
 
-.shelter-info{
+    #map{
 
-    padding:15px;
+        height:340px;
+
+        border-radius:18px;
+    }
+
+    .shelter-map-wrapper{
+
+        border-radius:20px;
+    }
 }
 
 /* =========================

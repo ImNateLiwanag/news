@@ -39,8 +39,6 @@ const tipsMainTitle = document.querySelector('.tips-main-title');
 const tipsList = document.querySelector('.tips-list');
 
 let currentActiveTab = 'current';
-let map;
-let shelterMarkers = [];
 
 // =========================
 // API KEYS
@@ -51,52 +49,187 @@ const apiKey = '5fd9094f4742b02276d974ee0f156d43';
 const newsDataKey =
 'pub_df285ec6a85c42d4a489460e4c019f87';
 
+let shelterData = {};
+
+async function loadShelterData(){
+
+    try{
+
+        const response =
+        await fetch(
+            'assets/shelters/shelters.json'
+        );
+
+        shelterData =
+        await response.json();
+
+        console.log(
+            'Shelter data loaded'
+        );
+
+    }catch(error){
+
+        console.log(
+            'Shelter JSON failed to load',
+            error
+        );
+    }
+}
+
+
 // =========================
-// SHELTERS
+// REGION DETECTION
 // =========================
 
-const shelterData = {
+function detectRegion(city){
 
-    manila: [
+    city = city.toLowerCase();
 
-        {
-            name: 'Manila Science High School',
-            image: 'assets/shelters/manila.jpg',
-            lat: 14.6091,
-            lng: 120.9873
-        },
+    // =========================
+    // LUZON
+    // =========================
 
-        {
-            name: 'Rizal Park Evacuation Center',
-            image: 'assets/shelters/rizal.jpg',
-            lat: 14.5826,
-            lng: 120.9790
-        },
+    const luzonKeywords = [
 
-        {
-            name: 'Delpan Evacuation Center',
-            image: 'assets/shelters/delp.jpg',
-            lat: 14.6008,
-            lng: 120.9684
-        },
+        'manila',
+        'quezon',
+        'makati',
+        'pasig',
+        'taguig',
+        'baguio',
+        'vigan',
+        'legazpi',
+        'batangas',
+        'olongapo',
+        'cabanatuan',
+        'lucena',
+        'naga',
+        'tuguegarao',
+        'laoag',
+        'baler',
+        'puerto princesa',
+        'palawan',
+        'bulacan',
+        'pampanga',
+        'ilocos',
+        'cavite',
+        'laguna',
+        'rizal',
+        'bicol'
+    ];
 
-        {
-            name: 'Baseco Evacuation Center',
-            image: 'assets/shelters/baseco.jpg',
-            lat: 14.5981,
-            lng: 120.9652
-        }
-    ]
-};
+    // =========================
+    // VISAYAS
+    // =========================
+
+    const visayasKeywords = [
+
+        'cebu',
+        'iloilo',
+        'bacolod',
+        'dumaguete',
+        'tagbilaran',
+        'ormoc',
+        'tacloban',
+        'roxas',
+        'kalibo',
+        'bohol',
+        'leyte',
+        'samar',
+        'negros',
+        'aklan'
+    ];
+
+    // =========================
+    // MINDANAO
+    // =========================
+
+    const mindanaoKeywords = [
+
+        'davao',
+        'cagayan de oro',
+        'zamboanga',
+        'butuan',
+        'general santos',
+        'gensan',
+        'surigao',
+        'cotabato',
+        'dipolog',
+        'pagadian',
+        'mati',
+        'bukidnon',
+        'misamis',
+        'lanao',
+        'mati'
+    ];
+
+    // =========================
+    // CHECK MATCHES
+    // =========================
+
+    if(
+        luzonKeywords.some(keyword =>
+            city.includes(keyword)
+        )
+    ){
+        return 'luzon';
+    }
+
+    if(
+        visayasKeywords.some(keyword =>
+            city.includes(keyword)
+        )
+    ){
+        return 'visayas';
+    }
+
+    if(
+        mindanaoKeywords.some(keyword =>
+            city.includes(keyword)
+        )
+    ){
+        return 'mindanao';
+    }
+
+    // DEFAULT
+
+    return 'luzon';
+}
+
+// =========================
+// MAP SYSTEM
+// =========================
+
+let map = null;
+let shelterMarkers = [];
+let mapInitialized = false;
+
+// =========================
+// INITIALIZE MAP
+// =========================
 
 function initializeMap(){
 
-    if(map) return;
+    // PREVENT DUPLICATE MAPS
 
-    map = L.map('map').setView(
-        [14.5995, 120.9842],
-        12
+    if(mapInitialized) return;
+
+    const mapContainer =
+    document.getElementById('map');
+
+    if(!mapContainer) return;
+
+    map = L.map('map', {
+
+        preferCanvas:true,
+        zoomControl:true
+
+    }).setView(
+        [12.8797, 121.7740],
+        5
     );
+
+    // TILE LAYER
 
     L.tileLayer(
         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -105,70 +238,189 @@ function initializeMap(){
             '&copy; OpenStreetMap contributors'
         }
     ).addTo(map);
+
+    mapInitialized = true;
+
+    console.log('Map initialized');
 }
 
-function updateShelterMap(city){
+// =========================
+// CLEAR ALL MARKERS
+// =========================
 
-    if(!map){
-        initializeMap();
-    }
-
-    // REMOVE OLD MARKERS
+function clearShelterMarkers(){
 
     shelterMarkers.forEach(marker => {
-        map.removeLayer(marker);
+
+        if(map){
+            map.removeLayer(marker);
+        }
+
     });
 
     shelterMarkers = [];
+}
+
+// =========================
+// FORCE MAP REFRESH
+// =========================
+
+function refreshMap(){
+
+    if(!map) return;
+
+    setTimeout(() => {
+
+        map.invalidateSize(true);
+
+    }, 400);
+}
+
+// =========================
+// UPDATE SHELTER MAP
+// =========================
+
+async function updateShelterMap(city){
+
+    // ENSURE MAP EXISTS
+
+    if(!mapInitialized){
+
+        initializeMap();
+    }
+
+    if(!map) return;
+
+    // CLEAR OLD MARKERS
+
+    clearShelterMarkers();
+
+    // =========================
+    // GET CITY COORDINATES
+    // =========================
+
+    let cityLat = 12.8797;
+    let cityLng = 121.7740;
+
+    try{
+
+        const geoResponse = await fetch(
+            `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
+        );
+
+        const geoData = await geoResponse.json();
+
+        if(geoData.length > 0){
+
+            cityLat = geoData[0].lat;
+            cityLng = geoData[0].lon;
+        }
+
+    }catch(error){
+
+        console.log('Geocoding failed', error);
+    }
+
+    // =========================
+    // DETECT REGION
+    // =========================
+
+    const region =
+    detectRegion(city);
 
     const cityShelters =
-    shelterData[city.toLowerCase()];
+    shelterData[region];
 
-    if(!cityShelters){
+    // =========================
+    // NO DATA
+    // =========================
+
+    if(
+        !cityShelters ||
+        cityShelters.length === 0
+    ){
 
         map.setView(
-            [14.5995,120.9842],
-            12
+            [cityLat, cityLng],
+            10
         );
+
+        refreshMap();
 
         return;
     }
 
-    const bounds = [];
+    // =========================
+    // CREATE MARKERS
+    // =========================
 
     cityShelters.forEach(shelter => {
 
-        const marker = L.marker([
-            shelter.lat,
-            shelter.lng
-        ]).addTo(map);
+        if(
+            shelter.lat == null ||
+            shelter.lng == null
+        ){
+            return;
+        }
+
+        const coords = [
+            parseFloat(shelter.lat),
+            parseFloat(shelter.lng)
+        ];
+
+        const marker =
+        L.marker(coords).addTo(map);
+
+        // POPUP
 
         marker.bindPopup(`
-            <b>${shelter.name}</b>
+            <div class="map-popup">
+
+                <h3>${shelter.name}</h3>
+
+                <p>
+                    Emergency Shelter Area
+                </p>
+
+            </div>
         `);
 
-        shelterMarkers.push(marker);
+        // =========================
+        // CLICK TO ZOOM
+        // =========================
 
-        bounds.push([
-            shelter.lat,
-            shelter.lng
-        ]);
+        marker.on('click', () => {
+
+            map.setView(coords, 16, {
+
+                animate:true,
+                duration:1.5
+            });
+
+            marker.openPopup();
+        });
+
+        shelterMarkers.push(marker);
     });
 
-    // VERY IMPORTANT
+    // =========================
+    // FOCUS ON SEARCHED CITY
+    // =========================
 
     setTimeout(() => {
 
-        map.invalidateSize();
+        map.invalidateSize(true);
 
-        if(bounds.length > 0){
+        map.setView(
+            [cityLat, cityLng],
+            11,
+            {
+                animate:true,
+                duration:1.5
+            }
+        );
 
-            map.fitBounds(bounds,{
-                padding:[50,50]
-            });
-        }
-
-    }, 300);
+    }, 500);
 }
 
 // =========================
@@ -391,15 +643,14 @@ async function updateWeatherInfo(city){
         tipsSection.classList.add(
             'show'
         );
+
         setTimeout(() => {
 
-    initializeMap();
+    if(map){
+        map.invalidateSize(true);
+    }
 
-    updateShelterMap(name);
-
-    map.invalidateSize();
-
-}, 400);
+}, 300);
 
         newsSection.classList.add(
             'show'
@@ -589,71 +840,9 @@ function updateTipsSection(id, temp, city, condition) {
 
     `).join('');
 
-    // =========================
-    // SHELTERS
-    // =========================
-
-    const shelterGrid =
-document.querySelector('.shelter-grid');
-
-if (!shelterGrid) return;
-
-shelterGrid.innerHTML = '';
-
-const cityShelters =
-shelterData[city.toLowerCase()];
-
-if (cityShelters) {
-
-    cityShelters.forEach(shelter => {
-
-        shelterGrid.innerHTML += `
-
-            <div class="shelter-card">
-
-                <img
-                    src="${shelter.image}"
-                    alt="${shelter.name}"
-                >
-
-                <div class="shelter-info">
-
-                    <h3>
-                        ${shelter.name}
-                    </h3>
-
-                </div>
-
-            </div>
-
-        `;
-    });
-
     updateShelterMap(city);
-
-} else {
-
-    shelterGrid.innerHTML = `
-
-        <div class="shelter-card">
-
-            <div class="shelter-info">
-
-                <h3>
-                    No Shelter Data
-                </h3>
-
-                <p>
-                    No shelters available
-                    for this location.
-                </p>
-
-            </div>
-
-        </div>
-    `;
+    
     }
-}
 
 // =========================
 // FORECAST
@@ -1277,12 +1466,14 @@ climateButtons.forEach(button=>{
 
 document.addEventListener(
     'DOMContentLoaded',
-    () => {
+    async () => {
 
         hideAllSections();
 
         weatherWelcome.style.display =
         'flex';
+
+        await loadShelterData();
 
         initializeMap();
     }
