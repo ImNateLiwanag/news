@@ -305,7 +305,7 @@ async function updateShelterMap(city){
     try{
 
         const geoResponse = await fetch(
-            `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`
+             `https://api.openweathermap.org/geo/1.0/direct?q=${city},PH&limit=1&appid=${apiKey}`
         );
 
         const geoData = await geoResponse.json();
@@ -681,6 +681,10 @@ function updateTipsSection(id, temp, city, condition) {
     let alertColor;
     let tips;
 
+    // =========================
+    // EXTREME HEAT
+    // =========================
+
     if (temp >= 32) {
 
         title = 'Extreme Heat Advisory';
@@ -713,12 +717,18 @@ function updateTipsSection(id, temp, city, condition) {
             }
         ];
 
-    } else if (id <= 232) {
+    }
+
+    // =========================
+    // THUNDERSTORM
+    // =========================
+
+    else if (id <= 232) {
 
         title = 'Thunderstorm Warning';
 
         description =
-        'Thunderstorms may include lightning and strong winds.';
+        'Thunderstorms may include lightning, heavy rain, and strong winds.';
 
         alertColor = '#7C3AED';
 
@@ -741,16 +751,60 @@ function updateTipsSection(id, temp, city, condition) {
 
             {
                 icon:'assets/tips/electric.png',
-                title:'Unplug Items'
+                title:'Unplug Appliances'
             }
         ];
 
-    } else if (id <= 531) {
+    }
+
+    // =========================
+    // DRIZZLE
+    // =========================
+
+    else if (id <= 321) {
+
+        title = 'Light Rain Advisory';
+
+        description =
+        'Drizzle and light rain may cause slippery roads and reduced visibility.';
+
+        alertColor = '#38BDF8';
+
+        tips = [
+
+            {
+                icon:'assets/tips/umbrella.png',
+                title:'Bring Umbrella'
+            },
+
+            {
+                icon:'assets/tips/shoes.png',
+                title:'Wear Non-Slip Shoes'
+            },
+
+            {
+                icon:'assets/tips/car.png',
+                title:'Drive Carefully'
+            },
+
+            {
+                icon:'assets/tips/raincoat.png',
+                title:'Use Rain Protection'
+            }
+        ];
+
+    }
+
+    // =========================
+    // RAIN
+    // =========================
+
+    else if (id <= 531) {
 
         title = 'Rainfall Advisory';
 
         description =
-        'Rain may cause slippery roads and flooding.';
+        'Heavy rain may cause flooding and dangerous road conditions.';
 
         alertColor = '#2563EB';
 
@@ -763,28 +817,148 @@ function updateTipsSection(id, temp, city, condition) {
 
             {
                 icon:'assets/tips/flood.png',
-                title:'Avoid Floods'
-            },
-
-            {
-                icon:'assets/tips/car.png',
-                title:'Drive Carefully'
+                title:'Avoid Flood Areas'
             },
 
             {
                 icon:'assets/tips/emergency-kit.png',
-                title:'Emergency Supplies'
+                title:'Prepare Emergency Kit'
+            },
+
+            {
+                icon:'assets/tips/car.png',
+                title:'Drive Slowly'
             }
         ];
 
-    } else {
+    }
 
-        title = 'Normal Weather Advisory';
+    // =========================
+    // SNOW
+    // =========================
+
+    else if (id <= 622) {
+
+        title = 'Snow Advisory';
 
         description =
-        'Weather conditions are generally stable today.';
+        'Cold weather and snowfall may reduce visibility and mobility.';
+
+        alertColor = '#94A3B8';
+
+        tips = [
+
+            {
+                icon:'assets/tips/jacket.png',
+                title:'Wear Thick Clothing'
+            },
+
+            {
+                icon:'assets/tips/home.png',
+                title:'Stay Warm Indoors'
+            },
+
+            {
+                icon:'assets/tips/road.png',
+                title:'Avoid Slippery Roads'
+            },
+
+            {
+                icon:'assets/tips/flashlight.png',
+                title:'Carry Emergency Light'
+            }
+        ];
+
+    }
+
+    // =========================
+    // FOG / ATMOSPHERE
+    // =========================
+
+    else if (id <= 781) {
+
+        title = 'Fog Advisory';
+
+        description =
+        'Low visibility may affect travel and outdoor activities.';
+
+        alertColor = '#64748B';
+
+        tips = [
+
+            {
+                icon:'assets/tips/car-light.png',
+                title:'Use Headlights'
+            },
+
+            {
+                icon:'assets/tips/car.png',
+                title:'Drive Slowly'
+            },
+
+            {
+                icon:'assets/tips/map.png',
+                title:'Monitor Navigation'
+            },
+
+            {
+                icon:'assets/tips/home.png',
+                title:'Avoid Long Travel'
+            }
+        ];
+
+    }
+
+    // =========================
+    // CLEAR SKY
+    // =========================
+
+    else if (id == 800) {
+
+        title = 'Clear Sky Advisory';
+
+        description =
+        'Weather conditions are stable with clear skies today.';
 
         alertColor = '#0EA5E9';
+
+        tips = [
+
+            {
+                icon:'assets/tips/weather.png',
+                title:'Enjoy Outdoor Activities'
+            },
+
+            {
+                icon:'assets/tips/water.png',
+                title:'Stay Hydrated'
+            },
+
+            {
+                icon:'assets/tips/sun.png',
+                title:'Use Sun Protection'
+            },
+
+            {
+                icon:'assets/tips/smile.png',
+                title:'Travel Safely'
+            }
+        ];
+
+    }
+
+    // =========================
+    // CLOUDY
+    // =========================
+
+    else {
+
+        title = 'Cloudy Weather Advisory';
+
+        description =
+        'Cloudy skies may bring sudden weather changes later in the day.';
+
+        alertColor = '#64748B';
 
         tips = [
 
@@ -794,16 +968,25 @@ function updateTipsSection(id, temp, city, condition) {
             },
 
             {
-                icon:'assets/tips/water.png',
-                title:'Stay Hydrated'
+                icon:'assets/tips/jacket.png',
+                title:'Bring Light Jacket'
+            },
+
+            {
+                icon:'assets/tips/umbrella.png',
+                title:'Carry Umbrella'
             },
 
             {
                 icon:'assets/tips/smile.png',
-                title:'Enjoy Safely'
+                title:'Stay Prepared'
             }
         ];
     }
+
+    // =========================
+    // UPDATE UI
+    // =========================
 
     dangerTitle.textContent = title;
 
@@ -822,10 +1005,14 @@ function updateTipsSection(id, temp, city, condition) {
         `6px solid ${alertColor}`;
     }
 
+    // =========================
+    // RENDER TIPS
+    // =========================
+
     tipsList.innerHTML =
     tips.map(tip => `
 
-        <li>
+        <li class="tip-card">
 
             <img
                 src="${tip.icon}"
@@ -840,9 +1027,12 @@ function updateTipsSection(id, temp, city, condition) {
 
     `).join('');
 
+    // =========================
+    // UPDATE MAP
+    // =========================
+
     updateShelterMap(city);
-    
-    }
+}
 
 // =========================
 // FORECAST
@@ -1337,12 +1527,12 @@ async function getFetchData(type, city){
     if(type === 'weather'){
 
         url =
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        `https://api.openweathermap.org/data/2.5/weather?q=${city},PH&appid=${apiKey}&units=metric`;
 
     }else if(type === 'forecast'){
 
         url =
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city},PH&appid=${apiKey}&units=metric`;
     }
 
     const response = await fetch(url);
