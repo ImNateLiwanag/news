@@ -156,7 +156,6 @@ function detectRegion(city){
         'cotabato',
         'dipolog',
         'pagadian',
-        'mati',
         'bukidnon',
         'misamis',
         'lanao',
@@ -302,24 +301,41 @@ async function updateShelterMap(city){
     let cityLat = 12.8797;
     let cityLng = 121.7740;
 
-    try{
+    try {
 
-        const geoResponse = await fetch(
-             `https://api.openweathermap.org/geo/1.0/direct?q=${city},PH&limit=1&appid=${apiKey}`
+    const geoResponse = await fetch(
+        `https://api.openweathermap.org/geo/1.0/direct?q=${city},PH&limit=5&appid=${apiKey}`
+    );
+
+    const geoData =
+        await geoResponse.json();
+
+    // FIND PHILIPPINE MATCH
+
+    const phLocation =
+        geoData.find(
+            location =>
+                location.country === 'PH'
         );
 
-        const geoData = await geoResponse.json();
+    if (phLocation) {
 
-        if(geoData.length > 0){
+        cityLat = phLocation.lat;
+        cityLng = phLocation.lon;
 
-            cityLat = geoData[0].lat;
-            cityLng = geoData[0].lon;
-        }
+    } else {
 
-    }catch(error){
-
-        console.log('Geocoding failed', error);
+        showErrorState();
+        return;
     }
+
+} catch (error) {
+
+    console.log(
+        'Geocoding failed',
+        error
+    );
+}
 
     // =========================
     // DETECT REGION
@@ -342,7 +358,7 @@ async function updateShelterMap(city){
 
         map.setView(
             [cityLat, cityLng],
-            10
+            9
         );
 
         refreshMap();
@@ -371,19 +387,41 @@ async function updateShelterMap(city){
         const marker =
         L.marker(coords).addTo(map);
 
+        const distance =
+Math.sqrt(
+    Math.pow(coords[0] - cityLat, 2) +
+    Math.pow(coords[1] - cityLng, 2)
+);
+
+if(distance < 1){
+
+    marker.setIcon(
+        L.icon({
+            iconUrl:
+            'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+
+            shadowUrl:
+            'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+
+            iconSize:[25,41],
+            iconAnchor:[12,41],
+            popupAnchor:[1,-34],
+            shadowSize:[41,41]
+        })
+    );
+}
+
         // POPUP
 
         marker.bindPopup(`
-            <div class="map-popup">
+ <div class="map-popup">
+   <h3 class="highlight-location">
+      ${city.toUpperCase()}
+   </h3>
 
-                <h3>${shelter.name}</h3>
-
-                <p>
-                    Emergency Shelter Area
-                </p>
-
-            </div>
-        `);
+   <p>${shelter.name || 'Evacuation Center'}</p>
+ </div>
+`);
 
         // =========================
         // CLICK TO ZOOM
@@ -530,21 +568,26 @@ function getTodayLabel(id) {
 // UPDATE WEATHER
 // =========================
 
-async function updateWeatherInfo(city){
+async function updateWeatherInfo(city) {
 
-    try{
+    try {
 
         const weatherData =
-        await getFetchData('weather', city);
+            await getFetchData('weather', city);
 
-        if(Number(weatherData.cod) !== 200){
+        // INVALID RESPONSE
+
+        if (
+            Number(weatherData.cod) !== 200 ||
+            !weatherData.sys ||
+            weatherData.sys.country !== 'PH'
+        ) {
 
             showErrorState();
             return;
         }
 
         const {
-
             name,
 
             main: {
@@ -563,47 +606,53 @@ async function updateWeatherInfo(city){
 
         } = weatherData;
 
-        // WEATHER INFO
+        // =========================
+        // UPDATE WEATHER INFO
+        // =========================
 
         cityTxt.textContent = name;
 
         tempTxt.textContent =
-        `${Math.round(temp)} °C`;
+            `${Math.round(temp)} °C`;
 
         conditionTxt.textContent =
-        main;
+            main;
 
         humidityTxt.textContent =
-        `${humidity}%`;
+            `${humidity}%`;
 
         windTxt.textContent =
-        `${speed} M/s`;
+            `${speed} M/s`;
 
         weatherDay.textContent =
-        new Date().toLocaleDateString(
-            'en-GB',
-            {
-                weekday:'short',
-                day:'2-digit',
-                month:'short'
-            }
-        );
+            new Date().toLocaleDateString(
+                'en-GB',
+                {
+                    weekday: 'short',
+                    day: '2-digit',
+                    month: 'short'
+                }
+            );
 
-        // ICONS
+        // =========================
+        // WEATHER ICONS
+        // =========================
 
         const icon =
-        getWeatherIcon(id);
+            getWeatherIcon(id);
 
         weatherImg.src =
-        `assets/weather/${icon}`;
+            `assets/weather/${icon}`;
 
         lottieWeather.src =
-        `assets/weather/${icon}`;
+            `assets/weather/${icon}`;
 
         todayTxt.textContent =
-        getTodayLabel(id);
+            getTodayLabel(id);
 
+        // =========================
         // UPDATE UI
+        // =========================
 
         updateTipsSection(
             id,
@@ -612,33 +661,31 @@ async function updateWeatherInfo(city){
             main
         );
 
-        try{
+        try {
 
             fetchClimateNews(city);
 
-        }catch(err){
+        } catch (err) {
 
             console.log(err);
         }
 
-        try{
+        try {
 
             await updateForecastsInfo(city);
 
-        }catch(err){
+        } catch (err) {
 
             console.log(err);
         }
-
-        // SHOW SECTIONS
 
         hideAllSections();
 
         weatherInput.style.display =
-        'flex';
+            'flex';
 
         weatherText.style.display =
-        'flex';
+            'flex';
 
         tipsSection.classList.add(
             'show'
@@ -646,17 +693,18 @@ async function updateWeatherInfo(city){
 
         setTimeout(() => {
 
-    if(map){
-        map.invalidateSize(true);
-    }
+            if (map) {
 
-}, 300);
+                map.invalidateSize(true);
+            }
+
+        }, 300);
 
         newsSection.classList.add(
             'show'
         );
 
-    }catch(error){
+    } catch (error) {
 
         console.log(error);
 
@@ -1041,6 +1089,10 @@ function updateTipsSection(id, temp, city, condition) {
 async function updateForecastsInfo(city) {
 
     const forecastData = await getFetchData('forecast', city);
+
+    if(forecastData.city.country !== 'PH'){
+    return;
+}
 
     const targetTime = '12:00:00';
     const today = new Date().toISOString().split("T")[0];
@@ -1520,19 +1572,19 @@ function renderFallback(){
     `;
 }
 
-async function getFetchData(type, city){
+async function getFetchData(type, city) {
 
     let url = '';
 
-    if(type === 'weather'){
+    if (type === 'weather') {
 
         url =
-        `https://api.openweathermap.org/data/2.5/weather?q=${city},PH&appid=${apiKey}&units=metric`;
+            `https://api.openweathermap.org/data/2.5/weather?q=${city},PH&appid=${apiKey}&units=metric`;
 
-    }else if(type === 'forecast'){
+    } else if (type === 'forecast') {
 
         url =
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city},PH&appid=${apiKey}&units=metric`;
+            `https://api.openweathermap.org/data/2.5/forecast?q=${city},PH&appid=${apiKey}&units=metric`;
     }
 
     const response = await fetch(url);
