@@ -8,10 +8,21 @@ body{
     padding:0;
 
     background:#f4f7fb;
-
     font-family:"Inter",sans-serif;
 
     overflow-x:hidden;
+
+    display:grid;
+
+    grid-template-columns:80px 1fr;
+    grid-template-rows:auto 1fr auto;
+
+    grid-template-areas:
+    "navbar navbar"
+    "sidebar main"
+    "footer footer";
+
+    min-height:100vh;
 }
 
 @keyframes bgMove{
@@ -38,17 +49,29 @@ nav {
 
     border-bottom: 3px solid #B3E1FF;
 }
-aside {
-    grid-area: sidebar;
-    display: flex;
+aside{
+    grid-area:sidebar;
 
-    background-color: #E0F2FE;
+    position:sticky;
+    top:70px;
+
+    height:calc(100vh - 70px);
+
+    background:#E0F2FE;
+
+    border-right:1px solid #0077ff30;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
     border-right: 1px solid #0077ff65;
 }
-main {
-    grid-area: main;
 
-    border: 1px solid black; /* temporary border */
+main{
+    grid-area:main;
+
+    width:100%;
+    overflow:hidden;
 }
 .footer {
     grid-area: footer;
@@ -88,11 +111,16 @@ main {
 }
 
 /* Navigation bar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 30px;
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:14px 40px;
+
+    height:70px;
+
+    box-sizing:border-box;
 }
 .logo {
     display: block;
@@ -132,42 +160,51 @@ main {
 }
 
 /* Sidebar */
-aside ul {
+aside ul{
+    display:flex;
+    flex-direction:column;
+
+    gap:40px;
+
+    list-style:none;
+
+    padding:0;
+    margin:0;
+}
+aside a{
+    text-decoration:none;
+    color:#2D4A6B;
+    font-weight:600;
+
+    transition:0.3s ease;
+
     writing-mode: vertical-rl;
-    text-orientation: sideways;
-    gap: 40px;
-    list-style: none;
-    margin: 0;
-    display: flex;
+    text-orientation: mixed;
 
-    position: sticky;
-    top: 40px;
-    height: max-content;
+    transform: rotate(180deg);
+
+    letter-spacing:2px;
 }
-ul a {
-    text-decoration: none;
-    font-size: 15px;
-    font-family: "Inter", sans-serif;
-    color: #2D4A6B;
 
-    position: relative;
-
-    transition: color 0.3s ease;
-}
-ul a:hover {
-    color: #E39800;
+aside a:hover{
+    color:#0075FF;
 }
 
 /* Main Content */
-.container {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    padding: 10px; /* Temporary padding */
-    gap: 20px;
+.container{
+    width:100%;
+    max-width:1600px;
 
-    max-width: 1800px;
-    margin-inline: auto;
+    margin-inline:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:40px;
+
+    padding:30px;
+
+    box-sizing:border-box;
 }
 
 .card {
@@ -177,22 +214,28 @@ ul a:hover {
     border: 1px solid black; /* temporary border */
 }
 /* Weather */ /* TEMPORARY STYLES, NEED FIXING!! LAYOUT MIGHT BE MESSY */
-#home {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-.weather-welcome {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 10px;
-    width: 1000px;
-    height: 600px;
+#home{
+    display:flex;
+    flex-wrap:wrap;
 
-    border: 1px solid black; /* temporary border */
+    align-items:center;
+    justify-content:center;
+
+    gap:40px;
+
+    padding:40px;
+}
+.weather-welcome{
+    width:100%;
+    min-height:500px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:60px 40px;
+
+    box-sizing:border-box;
 }
 .welcome-container {
     display: flex;
