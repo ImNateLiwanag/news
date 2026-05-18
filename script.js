@@ -83,19 +83,19 @@ async function loadShelterData(){
 
 function detectRegion(city){
 
-    city = city.toLowerCase();
-
-    // =========================
-    // LUZON
-    // =========================
+    city = city
+        .toLowerCase()
+        .trim();
 
     const luzonKeywords = [
 
         'manila',
-        'quezon',
+        'quezon city',
         'makati',
         'pasig',
         'taguig',
+        'marikina',
+        'marikina city',
         'baguio',
         'vigan',
         'legazpi',
@@ -110,6 +110,9 @@ function detectRegion(city){
         'puerto princesa',
         'palawan',
         'bulacan',
+        'malolos',
+        'meycauayan',
+        'san jose del monte',
         'pampanga',
         'ilocos',
         'cavite',
@@ -117,10 +120,6 @@ function detectRegion(city){
         'rizal',
         'bicol'
     ];
-
-    // =========================
-    // VISAYAS
-    // =========================
 
     const visayasKeywords = [
 
@@ -140,10 +139,6 @@ function detectRegion(city){
         'aklan'
     ];
 
-    // =========================
-    // MINDANAO
-    // =========================
-
     const mindanaoKeywords = [
 
         'davao',
@@ -162,35 +157,21 @@ function detectRegion(city){
         'mati'
     ];
 
-    // =========================
-    // CHECK MATCHES
-    // =========================
+    function matchesRegion(keywords){
 
-    if(
-        luzonKeywords.some(keyword =>
+        return keywords.some(keyword =>
             city.includes(keyword)
-        )
-    ){
+        );
+    }
+
+    if(matchesRegion(luzonKeywords))
         return 'luzon';
-    }
 
-    if(
-        visayasKeywords.some(keyword =>
-            city.includes(keyword)
-        )
-    ){
+    if(matchesRegion(visayasKeywords))
         return 'visayas';
-    }
 
-    if(
-        mindanaoKeywords.some(keyword =>
-            city.includes(keyword)
-        )
-    ){
+    if(matchesRegion(mindanaoKeywords))
         return 'mindanao';
-    }
-
-    // DEFAULT
 
     return 'luzon';
 }
@@ -313,10 +294,14 @@ async function updateShelterMap(city){
     // FIND PHILIPPINE MATCH
 
     const phLocation =
-        geoData.find(
-            location =>
-                location.country === 'PH'
-        );
+    geoData.find(location =>
+        location.country === 'PH' &&
+        (
+            location.name
+                .toLowerCase()
+                .includes(city.toLowerCase())
+        )
+    ) || geoData[0];
 
     if (phLocation) {
 
@@ -452,13 +437,17 @@ cityShelters.forEach(shelter => {
         // POPUP
 
         marker.bindPopup(`
- <div class="map-popup">
-   <h3 class="highlight-location">
-      ${city.toUpperCase()}
-   </h3>
+    <div class="map-popup">
 
-   <p>${shelter.name || 'Evacuation Center'}</p>
- </div>
+        <h3 class="highlight-location">
+            ${shelter.city || city}
+        </h3>
+
+        <p>
+            ${shelter.name || 'Evacuation Center'}
+        </p>
+
+    </div>
 `);
 
         // =========================
