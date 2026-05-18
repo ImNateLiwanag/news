@@ -1298,19 +1298,54 @@ const historicalDatabase = {
 
 async function fetchClimateNews(city = 'Philippines') {
 
-    const query = `(${city} AND (disaster OR flood OR weather)) OR (Philippines AND disaster)`;
+    const sdg13Keywords = "climate OR disaster OR weather OR flood OR typhoon";
 
-    const url = `https://newsdata.io/api/1/news?apikey=${newsDataKey}&language=en&q=${encodeURIComponent(query)}`;
+    let query = "";
+    if (city.toLowerCase() === 'philippines') {
+        query = sdg13Keywords;
+    } else {
+        query = `${city} AND ${sdg13Keywords}`;
+    }
+
+    let url = `https://newsdata.io/api/1/news?apikey=${newsDataKey}&language=en&country=ph&q=${encodeURIComponent(query)}`;
 
     try {
+        let response = await fetch(url);
+        let data = await response.json();
 
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if(!data.results || data.results.length === 0){
-            renderFallback();
-            return;
+        if (!data.results || data.results.length === 0) {
+            console.warn(`No specific matches for "${city}". Fetching broader national dataset...`);
+            
+            const fallbackUrl = `https://newsdata.io/api/1/news?apikey=${newsDataKey}&language=en&country=ph&q=${encodeURIComponent(sdg13Keywords)}`;
+            response = await fetch(fallbackUrl);
+            data = await response.json();
+            
+            if (!data.results || data.results.length === 0) {
+                renderFallback();
+                return;
+            }
         }
+
+        // FILTERS WORDS NEWS
+        const blockedWords = [ 
+            'election',
+            'senate',
+            'president',
+            'congress',
+            'partylist',
+            'vice president',
+            'governor',
+            'mayor'
+        ];
+
+        data.results = data.results.filter(article => {
+            const text = `
+                ${article.title || ''}
+                ${article.description || ''}
+            `.toLowerCase();
+
+            return !blockedWords.some(word => text.includes(word));
+        });
 
         const uniqueArticles = new Map();
 
@@ -1355,8 +1390,10 @@ function generateHistoricalNews(news) {
     const seenTitles = new Set(); // PREVENTS DUPLICATES
     const articles = news.length > 0 ? news : [{title: "General Weather", description: "monitoring"}];
 
+    let firstDetectedType = null;
+
     news.forEach(article => {
-        const type = detectDisasterType(article) || 'typhoon';
+        const type = detectDisasterType(article);
         if (!type) return;
 
         // PICK ONLY ONE RELATED HISTORY
@@ -1374,21 +1411,33 @@ function generateHistoricalNews(news) {
         }
     });
 
-    renderNews(currentActiveTab === 'current' ? currentNews : historicalNews);
-
-    // LIMIT: Keep historical news length same as current news length
-    historicalNews = historicalNews.slice(0, currentNews.length);
+    if (firstDetectedType && historicalNews.length > 0 && historicalNews.length < 3) {
+        const primaryRelated = historicalDatabase[firstDetectedType];
+        
+        if (primaryRelated) {
+            primaryRelated.forEach(item => {
+                if (historicalNews.length < 3 && !seenTitles.has(item.title)) {
+                    historicalNews.push(item);
+                    seenTitles.add(item.title);
+                }
+            });
+        }
+    }
 
     // FALLBACK
     if (historicalNews.length === 0) {
         historicalDatabase.typhoon.forEach(item => {
             // Fill up to 3 or the currentNews length, whichever is smaller
-            if (historicalNews.length < Math.max(1, currentNews.length) && !seenTitles.has(item.title)) {
+            if (historicalNews.length < 3 && !seenTitles.has(item.title)) {
                 historicalNews.push(item);
                 seenTitles.add(item.title);
             }
         });
     }
+
+    historicalNews = historicalNews.slice(0, 3);
+
+    renderNews(currentActiveTab === 'current' ? currentNews : historicalNews);
 }
 
 // =========================
