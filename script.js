@@ -370,46 +370,84 @@ async function updateShelterMap(city){
     // CREATE MARKERS
     // =========================
 
-    cityShelters.forEach(shelter => {
+ // =========================
+// FIND NEAREST SHELTER
+// =========================
 
-        if(
-            shelter.lat == null ||
-            shelter.lng == null
-        ){
-            return;
-        }
+let nearestShelter = null;
+let nearestDistance = Infinity;
 
-        const coords = [
-            parseFloat(shelter.lat),
-            parseFloat(shelter.lng)
-        ];
+cityShelters.forEach(shelter => {
 
-        const marker =
-        L.marker(coords).addTo(map);
+    if(
+        shelter.lat == null ||
+        shelter.lng == null
+    ){
+        return;
+    }
 
-        const distance =
-Math.sqrt(
-    Math.pow(coords[0] - cityLat, 2) +
-    Math.pow(coords[1] - cityLng, 2)
-);
-
-if(distance < 1){
-
-    marker.setIcon(
-        L.icon({
-            iconUrl:
-            'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-
-            shadowUrl:
-            'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-
-            iconSize:[25,41],
-            iconAnchor:[12,41],
-            popupAnchor:[1,-34],
-            shadowSize:[41,41]
-        })
+    const distance =
+    Math.sqrt(
+        Math.pow(
+            parseFloat(shelter.lat) - cityLat,
+            2
+        ) +
+        Math.pow(
+            parseFloat(shelter.lng) - cityLng,
+            2
+        )
     );
-}
+
+    if(distance < nearestDistance){
+
+        nearestDistance = distance;
+        nearestShelter = shelter;
+    }
+});
+
+// =========================
+// CREATE MARKERS
+// =========================
+
+cityShelters.forEach(shelter => {
+
+    if(
+        shelter.lat == null ||
+        shelter.lng == null
+    ){
+        return;
+    }
+
+    const coords = [
+        parseFloat(shelter.lat),
+        parseFloat(shelter.lng)
+    ];
+
+    const marker =
+    L.marker(coords).addTo(map);
+
+    // =========================
+    // HIGHLIGHT ONLY NEAREST
+    // =========================
+
+    if(shelter === nearestShelter){
+
+        marker.setIcon(
+            L.icon({
+
+                iconUrl:
+                'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+
+                shadowUrl:
+                'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+
+                iconSize:[25,41],
+                iconAnchor:[12,41],
+                popupAnchor:[1,-34],
+                shadowSize:[41,41]
+            })
+        );
+    }
 
         // POPUP
 
@@ -1385,59 +1423,78 @@ async function fetchClimateNews(city = 'Philippines') {
 // GENERATE RELATED HISTORY
 // =========================
 
-function generateHistoricalNews(news) {
-    historicalNews = [];
-    const seenTitles = new Set(); // PREVENTS DUPLICATES
-    const articles = news.length > 0 ? news : [{title: "General Weather", description: "monitoring"}];
+// =========================
+// GENERATE RELATED HISTORY
+// STRICT 1:1 MATCHING
+// =========================
 
-    let firstDetectedType = null;
+function generateHistoricalNews(news) {
+
+    historicalNews = [];
 
     news.forEach(article => {
-        const type = detectDisasterType(article);
-        if (!type) return;
 
-        // PICK ONLY ONE RELATED HISTORY
+        const type =
+        detectDisasterType(article);
 
-        const related = historicalDatabase[type];
+        // SKIP ARTICLES WITH NO MATCH
+        if(!type){
+            return;
+        }
 
-        // CHECKS FOR DUPLICATES
-        if (related) {
-            const uniqueItem = related.find(item => !seenTitles.has(item.title));
-            
-            if (uniqueItem) {
-                historicalNews.push(uniqueItem);
-                seenTitles.add(uniqueItem.title);
-            }
+        const relatedHistory =
+        historicalDatabase[type];
+
+        if(
+            relatedHistory &&
+            relatedHistory.length > 0
+        ){
+
+            const randomItem =
+            relatedHistory[
+                Math.floor(
+                    Math.random() *
+                    relatedHistory.length
+                )
+            ];
+
+            historicalNews.push(randomItem);
         }
     });
 
-    if (firstDetectedType && historicalNews.length > 0 && historicalNews.length < 3) {
-        const primaryRelated = historicalDatabase[firstDetectedType];
-        
-        if (primaryRelated) {
-            primaryRelated.forEach(item => {
-                if (historicalNews.length < 3 && !seenTitles.has(item.title)) {
-                    historicalNews.push(item);
-                    seenTitles.add(item.title);
-                }
-            });
-        }
-    }
+    // REMOVE DUPLICATES
+    historicalNews = historicalNews.filter(
+        (item, index, self) =>
+            index === self.findIndex(
+                t => t.title === item.title
+            )
+    );
 
-    // FALLBACK
-    if (historicalNews.length === 0) {
-        historicalDatabase.typhoon.forEach(item => {
-            // Fill up to 3 or the currentNews length, whichever is smaller
-            if (historicalNews.length < 3 && !seenTitles.has(item.title)) {
-                historicalNews.push(item);
-                seenTitles.add(item.title);
-            }
+    // IF NO HISTORY EXISTS
+    if(historicalNews.length === 0){
+
+        historicalNews.push({
+
+            title:
+            'No Related Historical News',
+
+            description:
+            'There is currently no historical disaster match for this article.',
+
+            image:
+            'assets/news/noimage.jpg',
+
+            link:'#'
         });
     }
 
-    historicalNews = historicalNews.slice(0, 3);
+    renderNews(
 
-    renderNews(currentActiveTab === 'current' ? currentNews : historicalNews);
+        currentActiveTab === 'current'
+            ? currentNews
+            : historicalNews
+
+    );
 }
 
 // =========================
@@ -1445,49 +1502,217 @@ function generateHistoricalNews(news) {
 // =========================
 
 function renderNews(newsArray) {
+
     newsGrid.innerHTML = '';
 
+    // =========================
+    // REMOVE DUPLICATES
+    // =========================
+
+    const uniqueNews = [];
+    const usedTitles = new Set();
+    const usedImages = new Set();
+
+    newsArray.forEach(article => {
+
+        const title =
+        (article.title || '')
+        .trim()
+        .toLowerCase();
+
+        const image =
+        (
+            article.image_url ||
+            article.image ||
+            ''
+        )
+        .trim()
+        .toLowerCase();
+
+        // SKIP DUPLICATES
+
+        if(
+            usedTitles.has(title) ||
+            (
+                image &&
+                usedImages.has(image)
+            )
+        ){
+            return;
+        }
+
+        usedTitles.add(title);
+
+        if(image){
+            usedImages.add(image);
+        }
+
+        uniqueNews.push(article);
+    });
+
+    // LIMIT TO 3
+
+    newsArray = uniqueNews.slice(0,3);
+
+    // =========================
+    // NO HISTORICAL NEWS
+    // =========================
+
+    if (
+        currentActiveTab === 'historical' &&
+        (
+            newsArray.length === 0 ||
+            newsArray.every(
+                article =>
+                    article.title ===
+                    'No Related Historical News'
+            )
+        )
+    ) {
+
+        newsGrid.innerHTML = `
+
+            <div class="news-card center no-history-card">
+
+                <div class="news-image-wrapper">
+
+                    <img
+                        src="assets/news/noimage.jpg"
+                        class="news-image"
+                    >
+
+                </div>
+
+                <div class="news-content">
+
+                    <h2>
+                        No Related Historical News
+                    </h2>
+
+                    <p>
+                        There is currently no historical disaster match for this article.
+                    </p>
+
+                </div>
+
+            </div>
+        `;
+
+        updateNewsGridClasses();
+        return;
+    }
+
+    // =========================
+    // NORMAL NEWS
+    // =========================
+
     newsArray.forEach((article, index) => {
+
         let position = '';
 
         if (newsArray.length === 1) {
+
             position = 'center';
+
         } else if (newsArray.length === 2) {
-            position = index === 0 ? 'left' : 'right';
+
+            position =
+            index === 0
+                ? 'center'
+                : 'side';
+
         } else {
-            if (index === 0) position = 'left';
-            if (index === 1) position = 'center';
-            if (index === 2) position = 'right';
+
+            if (index === 0)
+                position = 'left';
+
+            if (index === 1)
+                position = 'center';
+
+            if (index === 2)
+                position = 'right';
         }
 
+        // =========================
+        // DISABLE CLICK
+        // =========================
+
+        const isDisabled =
+            !article.link ||
+            article.link === '#';
+
+        // =========================
+        // IMAGE
+        // =========================
+
+        const imageSrc =
+            article.image_url ||
+            article.image ||
+            'assets/news/noimage.jpg';
+
         newsGrid.innerHTML += `
-            <a href="${article.link || '#'}" target="_blank" class="news-card ${position}">
+
+            <${isDisabled ? 'div' : 'a'}
+                ${
+                    !isDisabled
+                        ? `href="${article.link}" target="_blank"`
+                        : ''
+                }
+
+                class="news-card ${position} ${
+                    isDisabled ? 'disabled-card' : ''
+                }"
+            >
+
                 <div class="news-image-wrapper">
-                    ${
-                        (article.image_url || article.image)
-                            ? `
-                    <img src="${article.image_url || article.image}" alt="${article.title}" 
-                         onerror="this.style.display='none'; this.parentElement.querySelector('.no-image-box').style.display='flex';">
-                    `
-                            : ''
-                    }
-                    <div class="no-image-box" style="display:${
-                        (article.image_url || article.image) ? 'none' : 'flex'
-                    };">
-                        <img src="assets/icons/no-image.png" class="no-image">
-                        <span>No Image Available</span>
-                    </div>
+
+                    <img
+                        src="${imageSrc}"
+                        alt="${article.title}"
+
+                        onerror="
+                            this.onerror=null;
+                            this.src='assets/news/noimage.jpg';
+                        "
+                    >
+
                 </div>
+
                 <div class="news-content">
-                    <h2>${article.title}</h2>
-                    <p>${
-                        article.description
+
+                    <h2>
+                        ${article.title}
+                    </h2>
+
+                    <p>
+
+                        ${
+                            article.description
+
                             ? article.description.substring(0, 120)
+
                             : 'Climate-related disaster.'
-                    }</p>
-                    <div class="news-read">READ FULL STORY</div>
+                        }
+
+                    </p>
+
+                    ${
+                        !isDisabled
+
+                        ? `
+
+                        <div class="news-read">
+                            READ FULL STORY
+                        </div>
+
+                        `
+
+                        : ''
+                    }
+
                 </div>
-            </a>
+
+            </${isDisabled ? 'div' : 'a'}>
         `;
     });
 
@@ -1529,6 +1754,55 @@ function setupCarousel(){
 
         card.addEventListener('click',e=>{
 
+            // =========================
+            // SINGLE CARD
+            // =========================
+
+            if(cards.length === 1){
+
+                return;
+            }
+
+            // =========================
+            // TWO CARDS
+            // =========================
+
+            if(cards.length === 2){
+
+                e.preventDefault();
+
+                const center =
+                document.querySelector('.news-card.center');
+
+                const side =
+                document.querySelector('.news-card.side');
+
+                if(
+                    card.classList.contains('side')
+                ){
+
+                    center.className =
+                    'news-card side';
+
+                    side.className =
+                    'news-card center';
+                }
+
+                else{
+
+                    window.open(
+                        card.href,
+                        '_blank'
+                    );
+                }
+
+                return;
+            }
+
+            // =========================
+            // THREE CARDS
+            // =========================
+
             e.preventDefault();
 
             if(card.classList.contains('right')){
@@ -1541,7 +1815,10 @@ function setupCarousel(){
 
             }else{
 
-                window.open(card.href,'_blank');
+                window.open(
+                    card.href,
+                    '_blank'
+                );
             }
         });
     });
