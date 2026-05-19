@@ -1136,9 +1136,12 @@ main {
     padding: 10px 30px;
     min-width: 450px;
     border-radius: 30px;
-    background-color: #FFD275;
-    border: 3px solid #E39800;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    background-color: #F9FAFB;
+    border: 3px solid transparent;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .hotline-card h2 {
@@ -1148,7 +1151,8 @@ main {
 }
 
 .hotline-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
+    border-color: #DC2626;
     box-shadow: 0 10px 20px rgba(255, 0, 0, 0.5);
 }
 

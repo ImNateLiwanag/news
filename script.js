@@ -7,6 +7,7 @@ const welcomeSearchBtn = document.querySelector('.welcome-search-btn');
 const searchBtn = document.querySelector('.search-btn');
 const countryInput = document.querySelector('.country-input');
 
+const sideBar = document.querySelector('.sidebar');
 const weatherWelcome = document.querySelector('.weather-welcome');
 const weatherInput = document.querySelector('.weather-input');
 const weatherText = document.querySelector('.weather-text');
@@ -675,6 +676,9 @@ async function updateWeatherInfo(city) {
         weatherText.style.display =
             'flex';
 
+        sideBar.style.display =
+            'flex';
+
         tipsSection.classList.add(
             'show'
         );
@@ -733,22 +737,22 @@ function updateTipsSection(id, temp, city, condition) {
         tips = [
 
             {
-                icon:'assets/tips/wt.jpg',
+                icon:'assets/tips/sun-wr.png',
                 title:'Drink Water'
             },
 
             {
-                icon:'assets/tips/sc.jpg',
+                icon:'assets/tips/sun-sn.png',
                 title:'Wear Sunscreen'
             },
 
             {
-                icon:'assets/tips/ben.jpg',
+                icon:'assets/tips/sun-ch.png',
                 title:'Light Clothing'
             },
 
             {
-                icon:'assets/tips/um.jpg',
+                icon:'assets/tips/sun-ua.png',
                 title:'Avoid Noon Heat'
             }
         ];
@@ -771,22 +775,22 @@ function updateTipsSection(id, temp, city, condition) {
         tips = [
 
             {
-                icon:'assets/tips/home.png',
+                icon:'assets/tips/thunder-ir.png',
                 title:'Stay Indoors'
             },
 
             {
-                icon:'assets/tips/warning.png',
+                icon:'assets/tips/thunder-wg.png',
                 title:'Avoid Open Areas'
             },
 
             {
-                icon:'assets/tips/battery.png',
+                icon:'assets/tips/thunder-ce.png',
                 title:'Charge Devices'
             },
 
             {
-                icon:'assets/tips/electric.png',
+                icon:'assets/tips/thunder-ey.png',
                 title:'Unplug Appliances'
             }
         ];
@@ -809,22 +813,22 @@ function updateTipsSection(id, temp, city, condition) {
         tips = [
 
             {
-                icon:'assets/tips/umbrella.png',
+                icon:'assets/tips/light-ua.png',
                 title:'Bring Umbrella'
             },
 
             {
-                icon:'assets/tips/shoes.png',
+                icon:'assets/tips/light-ss.png',
                 title:'Wear Non-Slip Shoes'
             },
 
             {
-                icon:'assets/tips/car.png',
+                icon:'assets/tips/light-de.png',
                 title:'Drive Carefully'
             },
 
             {
-                icon:'assets/tips/raincoat.png',
+                icon:'assets/tips/light-rt.png',
                 title:'Use Rain Protection'
             }
         ];
@@ -847,22 +851,22 @@ function updateTipsSection(id, temp, city, condition) {
         tips = [
 
             {
-                icon:'assets/tips/umbrella.png',
+                icon:'assets/tips/rain-ua.png',
                 title:'Bring Umbrella'
             },
 
             {
-                icon:'assets/tips/flood.png',
+                icon:'assets/tips/rain-fd.png',
                 title:'Avoid Flood Areas'
             },
 
             {
-                icon:'assets/tips/emergency-kit.png',
+                icon:'assets/tips/rain-et.png',
                 title:'Prepare Emergency Kit'
             },
 
             {
-                icon:'assets/tips/car.png',
+                icon:'assets/tips/rain-sw.png',
                 title:'Drive Slowly'
             }
         ];
@@ -885,22 +889,22 @@ function updateTipsSection(id, temp, city, condition) {
         tips = [
 
             {
-                icon:'assets/tips/jacket.png',
+                icon:'assets/tips/snow-jt.png',
                 title:'Wear Thick Clothing'
             },
 
             {
-                icon:'assets/tips/home.png',
+                icon:'assets/tips/snow-ir.png',
                 title:'Stay Warm Indoors'
             },
 
             {
-                icon:'assets/tips/road.png',
+                icon:'assets/tips/snow-sy.png',
                 title:'Avoid Slippery Roads'
             },
 
             {
-                icon:'assets/tips/flashlight.png',
+                icon:'assets/tips/snow-ft.png',
                 title:'Carry Emergency Light'
             }
         ];
@@ -923,22 +927,22 @@ function updateTipsSection(id, temp, city, condition) {
         tips = [
 
             {
-                icon:'assets/tips/car-light.png',
+                icon:'assets/tips/fog-ht.png',
                 title:'Use Headlights'
             },
 
             {
-                icon:'assets/tips/car.png',
+                icon:'assets/tips/fog-sw.png',
                 title:'Drive Slowly'
             },
 
             {
-                icon:'assets/tips/map.png',
+                icon:'assets/tips/fog-mp.png',
                 title:'Monitor Navigation'
             },
 
             {
-                icon:'assets/tips/home.png',
+                icon:'assets/tips/fog-he.png',
                 title:'Avoid Long Travel'
             }
         ];
@@ -961,22 +965,22 @@ function updateTipsSection(id, temp, city, condition) {
         tips = [
 
             {
-                icon:'assets/tips/weather.png',
+                icon:'assets/tips/clear-or.png',
                 title:'Enjoy Outdoor Activities'
             },
 
             {
-                icon:'assets/tips/water.png',
+                icon:'assets/tips/clear-wr.png',
                 title:'Stay Hydrated'
             },
 
             {
-                icon:'assets/tips/sun.png',
+                icon:'assets/tips/clear-sn.png',
                 title:'Use Sun Protection'
             },
 
             {
-                icon:'assets/tips/smile.png',
+                icon:'assets/tips/clear-se.png',
                 title:'Travel Safely'
             }
         ];
@@ -999,22 +1003,22 @@ function updateTipsSection(id, temp, city, condition) {
         tips = [
 
             {
-                icon:'assets/tips/weather.png',
+                icon:'assets/tips/cloudy-ns.png',
                 title:'Monitor Forecast'
             },
 
             {
-                icon:'assets/tips/jacket.png',
+                icon:'assets/tips/cloudy-jt.png',
                 title:'Bring Light Jacket'
             },
 
             {
-                icon:'assets/tips/umbrella.png',
+                icon:'assets/tips/cloudy-ua.png',
                 title:'Carry Umbrella'
             },
 
             {
-                icon:'assets/tips/smile.png',
+                icon:'assets/tips/cloudy-pd.png',
                 title:'Stay Prepared'
             }
         ];

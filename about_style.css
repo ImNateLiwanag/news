@@ -76,44 +76,60 @@ main {
 }
 
 /* Navigation Panel */
-.navbar {
+nav, .navbar {
+    grid-area: navbar;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(224, 242, 254, 0.7);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid #B3E1FF;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 30px;
+    padding: 14px 40px;
+    height: 70px;
+    box-sizing: border-box;
 }
-ul {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    gap: 40px;
-    list-style: none;
-    margin: 0;
 
-    display: flex;
-}
-.logo {
+nav .logo, .logo {
     display: block;
-    width: 100px;
+    height: 32px;
+    width: auto;
     filter: drop-shadow(2px 2px 2px rgba(128, 128, 128, 0.475));
 }
+
 .nav-links {
     display: flex;
-    gap: 20px;
-
-    padding: 5px;
+    align-items: center;
+    gap: 35px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
-.nav-links a{
-    text-decoration: none;
-    font-size: 15px;
-    font-family: sans-serif;
-    color: #2D4A6B;
 
+.nav-links a {
     position: relative;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #475569;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: color 0.25s ease, background-color 0.25s ease;
 }
+
 .nav-links a.active {
     color: #0075FF;
     font-weight: bold;
 }
+
+.nav-links a:hover {
+    color: #2563EB;
+    background-color: rgba(37, 99, 235, 0.05);
+}
+
 .nav-links a::before {
     content: "";
     position: absolute;
@@ -122,10 +138,11 @@ ul {
     width: 0;
     height: 2px;
     background-color: #0075FF;
-    transition: all .5s;
+    transition: all 0.5s;
 }
+
 .nav-links a:hover::before {
-    width:100%
+    width: 100%;
 }
 
 /* Main Content */
@@ -302,14 +319,16 @@ ul {
     padding: 20px;
     border-radius: 35px;
 
-    background-color: #FFD275; /* temporary color */
-    border: 3px solid #E39800; /* temporary color */
+    background-color: #F9FAFB; /* temporary color */
+    border: 3px solid transparent; /* temporary color */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .member-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(15, 91, 255, 0.5); /* temporary color */
+    border-color: #E39800;
+    box-shadow: 0 10px 20px rgba(253, 174, 37, 0.5); /* temporary color */
 }
 .our-picture {
     width: 200px;
