@@ -8,11 +8,41 @@
       "lng": 120.9798
     },
     {
+  "name": "Quezon City Memorial Circle Shelter",
+  "city": "Quezon City",
+  "lat": 14.6507,
+  "lng": 121.0494
+},
+{
+  "name": "Makati Coliseum Evacuation Center",
+  "city": "Makati",
+  "lat": 14.5547,
+  "lng": 121.0244
+},
+{
+  "name": "Taguig Lakeshore Hall Shelter",
+  "city": "Taguig",
+  "lat": 14.5176,
+  "lng": 121.0509
+},
+{
+  "name": "Pasay City Sports Complex",
+  "city": "Pasay",
+  "lat": 14.5378,
+  "lng": 120.9989
+},
+{
+  "name": "Mandaluyong Mega Hall Shelter",
+  "city": "Mandaluyong",
+  "lat": 14.5794,
+  "lng": 121.0359
+},
+    {
       "name": "Marikina Sports Center",
       "city": "Marikina",
       "image": "assets/shelters/marikina-sports-center.jpg",
-      "lat": 14.6507,
-      "lng": 121.1029
+      "lat": 14.6500,
+      "lng": 121.1020
     },
     {
       "name": "Pasig Mega Market Evacuation Area",
