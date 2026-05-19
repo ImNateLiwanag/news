@@ -260,208 +260,174 @@ function refreshMap(){
 // UPDATE SHELTER MAP
 // =========================
 
-async function updateShelterMap(city){
+async function updateShelterMap(city) {
 
     // ENSURE MAP EXISTS
-
-    if(!mapInitialized){
-
+    if (!mapInitialized) {
         initializeMap();
     }
 
-    if(!map) return;
+    if (!map) return;
 
     // CLEAR OLD MARKERS
-
     clearShelterMarkers();
 
     // =========================
     // GET CITY COORDINATES
     // =========================
-
     let cityLat = 12.8797;
     let cityLng = 121.7740;
 
     try {
+        const geoResponse = await fetch(
+            `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)},PH&limit=5&appid=${apiKey}`
+        );
 
-    const geoResponse = await fetch(
-        `https://api.openweathermap.org/geo/1.0/direct?q=${city},PH&limit=5&appid=${apiKey}`
-    );
+        const geoData = await geoResponse.json();
 
-    const geoData =
-        await geoResponse.json();
+        // CLEAN SEARCH TERM FOR BETTER MATCHING
+        const searchClean = city.toLowerCase().replace(' city', '').replace('city of ', '').trim();
 
-    // FIND PHILIPPINE MATCH
+        // FIND PHILIPPINE MATCH
+        const phLocation = geoData.find(location => {
+            if (location.country !== 'PH') return false;
+            const locName = location.name.toLowerCase();
+            return locName.includes(searchClean) || searchClean.includes(locName);
+        }) || geoData[0];
 
-    const phLocation =
-    geoData.find(location =>
-        location.country === 'PH' &&
-        (
-            location.name
-                .toLowerCase()
-                .includes(city.toLowerCase())
-        )
-    ) || geoData[0];
+        if (phLocation) {
+            cityLat = phLocation.lat;
+            cityLng = phLocation.lon;
+        } else {
+            showErrorState();
+            return;
+        }
 
-    if (phLocation) {
-
-        cityLat = phLocation.lat;
-        cityLng = phLocation.lon;
-
-    } else {
-
-        showErrorState();
-        return;
+    } catch (error) {
+        console.log('Geocoding failed', error);
     }
-
-} catch (error) {
-
-    console.log(
-        'Geocoding failed',
-        error
-    );
-}
 
     // =========================
     // DETECT REGION
     // =========================
+    const region = detectRegion(city);
 
-    const region =
-    detectRegion(city);
+    if(region === 'luzon'){
+    query = 'Luzon weather';
+}
+    console.log('Detected region:', region);
 
-    const cityShelters =
-    shelterData[region];
+    const normalizedCity = city
+        .toLowerCase()
+        .replace(' city', '')
+        .replace('city of ', '')
+        .replace(' municipality', '')
+        .trim();
 
-    // =========================
-    // NO DATA
-    // =========================
-
-    if(
-        !cityShelters ||
-        cityShelters.length === 0
-    ){
-
-        map.setView(
-            [cityLat, cityLng],
-            9
-        );
-
-        refreshMap();
-
+    if (!shelterData[region]) {
+        console.log(`No shelter data found for region: ${region}`);
         return;
     }
+
+    const cityShelters = shelterData[region].filter(shelter => {
+
+    if (shelter.lat == null || shelter.lng == null) {
+        return false;
+    }
+
+    const shelterCity = shelter.city
+        .toLowerCase()
+        .replace(' city', '')
+        .replace('city of ', '')
+        .trim();
+
+    // TEXT MATCH
+    const isCityMatch =
+        shelterCity === normalizedCity ||
+        shelterCity.includes(normalizedCity) ||
+        normalizedCity.includes(shelterCity);
+
+    // DISTANCE MATCH
+    const sLat = parseFloat(shelter.lat);
+    const sLng = parseFloat(shelter.lng);
+
+    if (isNaN(sLat) || isNaN(sLng)) {
+        return false;
+    }
+
+    const distance = Math.sqrt(
+        Math.pow(sLat - cityLat, 2) +
+        Math.pow(sLng - cityLng, 2)
+    );
+
+    // INCREASED RADIUS
+    const isNearby = distance < 0.5;
+
+    return isCityMatch || isNearby;
+});
+
+
+
+    // =========================
+    // FIND NEAREST SHELTER
+    // =========================
+    let nearestShelter = null;
+    let nearestDistance = Infinity;
+
+    cityShelters.forEach(shelter => {
+        const sLat = parseFloat(shelter.lat);
+        const sLng = parseFloat(shelter.lng);
+        
+        const distance = Math.sqrt(
+            Math.pow(sLat - cityLat, 2) +
+            Math.pow(sLng - cityLng, 2)
+        );
+
+        if (distance < nearestDistance) {
+            nearestDistance = distance;
+            nearestShelter = shelter;
+        }
+    });
 
     // =========================
     // CREATE MARKERS
     // =========================
+    cityShelters.forEach(shelter => {
+        const coords = [
+            parseFloat(shelter.lat),
+            parseFloat(shelter.lng)
+        ];
 
- // =========================
-// FIND NEAREST SHELTER
-// =========================
+        const marker = L.marker(coords).addTo(map);
 
-let nearestShelter = null;
-let nearestDistance = Infinity;
-
-cityShelters.forEach(shelter => {
-
-    if(
-        shelter.lat == null ||
-        shelter.lng == null
-    ){
-        return;
-    }
-
-    const distance =
-    Math.sqrt(
-        Math.pow(
-            parseFloat(shelter.lat) - cityLat,
-            2
-        ) +
-        Math.pow(
-            parseFloat(shelter.lng) - cityLng,
-            2
-        )
-    );
-
-    if(distance < nearestDistance){
-
-        nearestDistance = distance;
-        nearestShelter = shelter;
-    }
-});
-
-// =========================
-// CREATE MARKERS
-// =========================
-
-cityShelters.forEach(shelter => {
-
-    if(
-        shelter.lat == null ||
-        shelter.lng == null
-    ){
-        return;
-    }
-
-    const coords = [
-        parseFloat(shelter.lat),
-        parseFloat(shelter.lng)
-    ];
-
-    const marker =
-    L.marker(coords).addTo(map);
-
-    // =========================
-    // HIGHLIGHT ONLY NEAREST
-    // =========================
-
-    if(shelter === nearestShelter){
-
-        marker.setIcon(
-            L.icon({
-
-                iconUrl:
-                'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-
-                shadowUrl:
-                'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-
-                iconSize:[25,41],
-                iconAnchor:[12,41],
-                popupAnchor:[1,-34],
-                shadowSize:[41,41]
-            })
-        );
-    }
+        // HIGHLIGHT ONLY NEAREST
+        if (shelter === nearestShelter) {
+            marker.setIcon(
+                L.icon({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                })
+            );
+        }
 
         // POPUP
-
         marker.bindPopup(`
-    <div class="map-popup">
+            <div class="map-popup">
+                <h3 class="highlight-location">${shelter.city || city}</h3>
+                <p>${shelter.name || 'Evacuation Center'}</p>
+            </div>
+        `);
 
-        <h3 class="highlight-location">
-            ${shelter.city || city}
-        </h3>
-
-        <p>
-            ${shelter.name || 'Evacuation Center'}
-        </p>
-
-    </div>
-`);
-
-        // =========================
         // CLICK TO ZOOM
-        // =========================
-
         marker.on('click', () => {
-
             map.setView(coords, 16, {
-
-                animate:true,
-                duration:1.5
+                animate: true,
+                duration: 1.5
             });
-
             marker.openPopup();
         });
 
@@ -471,20 +437,16 @@ cityShelters.forEach(shelter => {
     // =========================
     // FOCUS ON SEARCHED CITY
     // =========================
-
     setTimeout(() => {
-
         map.invalidateSize(true);
-
         map.setView(
             [cityLat, cityLng],
-            11,
+            13, // Increased zoom level from 11 to 13 to focus closer on the target city
             {
-                animate:true,
-                duration:1.5
+                animate: true,
+                duration: 1.5
             }
         );
-
     }, 500);
 }
 
@@ -501,7 +463,6 @@ function handleSearch(){
     if(!location) return;
 
     updateWeatherInfo(location);
-    fetchClimateNews(location);
 
     cityInput.value = '';
     countryInput.value = '';
@@ -1331,7 +1292,7 @@ async function fetchClimateNews(city = 'Philippines') {
     if (city.toLowerCase() === 'philippines') {
         query = sdg13Keywords;
     } else {
-        query = `${city} AND ${sdg13Keywords}`;
+        query = `${city} weather`;
     }
 
     let url = `https://newsdata.io/api/1/news?apikey=${newsDataKey}&language=en&country=ph&q=${encodeURIComponent(query)}`;
@@ -1357,12 +1318,11 @@ async function fetchClimateNews(city = 'Philippines') {
         const blockedWords = [ 
             'election',
             'senate',
-            'president',
             'congress',
             'partylist',
-            'vice president',
-            'governor',
-            'mayor'
+            
+            
+            
         ];
 
         data.results = data.results.filter(article => {
@@ -1377,7 +1337,9 @@ async function fetchClimateNews(city = 'Philippines') {
         const uniqueArticles = new Map();
 
         data.results.forEach(article => {
-            const titleKey = article.title.trim().toLowerCase();
+            const titleKey =
+(article.title || '').trim()
+.toLowerCase();
             if (!uniqueArticles.has(titleKey)) {
                 uniqueArticles.set(titleKey, article);
             }
