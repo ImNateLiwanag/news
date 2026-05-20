@@ -683,6 +683,9 @@ async function updateWeatherInfo(city) {
         tipsSection.classList.add(
             'show'
         );
+        
+        weatherWelcome.style.display = 'none'; 
+
 
         setTimeout(() => {
 
