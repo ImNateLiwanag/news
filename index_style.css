@@ -322,21 +322,38 @@ main {
 .weather-input {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 500px;
+    gap: 25px;
+    width: 100%;
+    max-width: 1100px; /* Expands layout to a dramatic, wide dashboard scale */
     align-items: center;
-    padding: 10px;
+    padding: 0;
+    margin-inline: auto;
 }
 
 .weather-result {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    width: 400px;
-    border-radius: 20px;
-    background-color: #B3E1FF;
+    gap: 35px;
+    padding: 45px 55px;
+    width: 100%; /* Spans full width of the wrapper canvas */
+    box-sizing: border-box;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* Intimidating deep sky aesthetic */
+    color: #ffffff;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.weather-result::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 85% 20%, rgba(37, 99, 235, 0.15) 0%, transparent 55%);
+    pointer-events: none;
 }
 
 .city-day {
@@ -344,11 +361,15 @@ main {
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 18px;
+    z-index: 2;
 }
 
 .location {
     display: flex;
     align-items: center;
+    gap: 12px;
 }
 
 .location h2 {
@@ -357,8 +378,20 @@ main {
     margin: 0;
 }
 
+.location h2.city-txt {
+    font-family: "Outfit", sans-serif;
+    color: #ffffff;
+    margin: 0;
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
 .location img {
-    width: 40px;
+    width: 34px;
+    height: auto;
+    filter: brightness(0) invert(1); /* Forces your location icon asset crisp white */
 }
 
 .city-day h3 {
@@ -368,30 +401,47 @@ main {
     font-size: 1rem;
 }
 
+.city-day h3.weather-day {
+    font-family: "Inter", sans-serif;
+    color: #94a3b8;
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
 .weather-summary {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
+    z-index: 2;
 }
 
 .weather-summary-img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
 }
 
 .weather-info {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    text-align: end;
+    gap: 4px;
+    text-align: right;
 }
 
-.weather-info h1 {
+.weather-info h1.temp-txt {
     font-family: "Outfit", sans-serif;
-    color: #0F172A;
+    color: transparent; /* Modern, standard way to make text transparent for gradients */
     margin: 0;
-    font-size: 3rem;
+    font-size: 5.5rem; 
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(to bottom, #ffffff, #e2e8f0);
+    -webkit-background-clip: text; /* For older Safari support */
+    background-clip: text;         /* The standard property that clears the warning */
 }
 
 .weather-info h3 {
@@ -401,33 +451,89 @@ main {
     font-size: 1.5rem;
 }
 
+.weather-info h3.condition-txt {
+    font-family: "Inter", sans-serif;
+    color: #38bdf8; /* Sharp neon-blue status descriptor accent */
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
 .weather-condition {
-    display: flex;
+    display: grid;
+    /* Two fixed width spaces for metrics, remaining space allocated to the quote */
+    grid-template-columns: auto auto 1fr; 
     align-items: center;
-    justify-content: space-between;
     width: 100%;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 25px;
+    gap: 24px;
 }
 
 .condition-item {
     display: flex;
     align-items: center;
-    padding: 10px;
-    gap: 10px;
+    padding: 16px 22px;
+    gap: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-sizing: border-box;
+    min-width: 200px;
+}
+
+.weather-quote-box {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.weather-quote-txt {
+    font-family: "Inter", sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #cbd5e1; /* Premium muted slate-silver color */
+    line-height: 1.4;
+    margin: 0;
+    max-width: 380px; /* Keeps sentence structures compact and beautiful */
+    opacity: 0.9;
+    letter-spacing: 0.01em;
 }
 
 .condition-info h5 {
     margin: 0;
     font-family: "Inter", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .condition-info h4 {
-    margin: 0;
+    margin: 4px 0 0 0;
     font-family: "Outfit", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
 }
 
 .condition-item img {
     width: 50px;
+}
+
+.condition-item img.condition-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Forces data indicators (humidity/wind) clean white */
 }
 
 
@@ -437,57 +543,104 @@ main {
 .weather-text {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 10px;
+    gap: 15px;
+    padding: 0;
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+    margin-top: 20px;
 }
 
 .weather-text #welcome {
     font-family: "Inter", sans-serif;
-    color: #0F172A;
+    color: #64748b;
     margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .today-txt {
     font-family: "Outfit", sans-serif;
-    color: #0F172A;
+    color: #0f172a;
     margin: 0;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
 .future-weather {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    width: 500px;
-    padding: 10px;
-    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    width: 100%; /* Spans out to match the width of your main panel layout */
+    padding: 0;
+    margin-top: 15px;
 }
 
 .future-weather-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    justify-content: center;
+    padding: 20px;
     border-radius: 20px;
-    background-color: #B3E1FF;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.future-weather-card:hover {
+    transform: translateY(-2px);
 }
 
 .forecast-item-date {
     font-family: "Inter", sans-serif;
-    color: #0F172A;
-    font-weight: 500;
-    font-size: 1.1rem;
+    color: #475569;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 10px 0;
 }
 
 .forecast-item-img {
-    width: 60px;
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
 }
 
 .forecast-item-temp {
     font-family: "Outfit", sans-serif;
-    color: #0F172A;
-    margin: 0;
-    padding: 10px;
-    font-size: 1.3rem;
+    color: #0f172a;
+    margin: 10px 0 0 0;
+    padding: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Responsive Scaling Overrides for Mobile devices */
+@media (max-width: 768px) {
+    .weather-result {
+        padding: 30px;
+    }
+    .weather-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .weather-info {
+        text-align: left;
+    }
+    .weather-info h1.temp-txt {
+        font-size: 4rem;
+    }
+    .weather-condition {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    .condition-item {
+        max-width: 100%;
+    }
 }
 
 

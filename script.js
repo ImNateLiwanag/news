@@ -25,7 +25,7 @@ const conditionTxt = document.querySelector('.condition-txt');
 const humidityTxt = document.querySelector('.humidity-value-txt');
 const windTxt = document.querySelector('.wind-value-txt');
 const weatherImg = document.querySelector('.weather-summary-img');
-
+const weatherQuoteTxt = document.querySelector('.weather-quote-txt');
 const futureWeather = document.querySelector('.future-weather');
 const todayTxt = document.querySelector('.today-txt');
 
@@ -604,8 +604,9 @@ async function updateWeatherInfo(city) {
         tempTxt.textContent =
             `${Math.round(temp)} °C`;
 
-        conditionTxt.textContent =
-            main;
+        conditionTxt.textContent = main;
+
+            updateWeatherQuote(main);
 
         humidityTxt.textContent =
             `${humidity}%`;
@@ -702,6 +703,29 @@ async function updateWeatherInfo(city) {
 
         showErrorState();
     }
+}
+
+function updateWeatherQuote(condition) {
+    if (!weatherQuoteTxt) return;
+
+    const mainCondition = condition.toLowerCase();
+    let quote = '"Expect the unexpected with these skies."'; // Default tagline
+
+    if (mainCondition.includes('clear')) {
+        quote = '"Nothing but sunny skies ahead."';
+    } else if (mainCondition.includes('cloud')) {
+        quote = '"Grey clouds make for the brightest minds."';
+    } else if (mainCondition.includes('rain') || mainCondition.includes('drizzle')) {
+        quote = '"Grab your umbrella—nature is watering its canvas."';
+    } else if (mainCondition.includes('thunderstorm')) {
+        quote = '"Don\'t worry, even the loudest storms eventually run out of rain."';
+    } else if (mainCondition.includes('snow')) {
+        quote = '"A cozy, winter wonderland view today."';
+    } else if (mainCondition.includes('mist') || mainCondition.includes('fog') || mainCondition.includes('haze')) {
+        quote = '"Clear intentions, mysterious windows."';
+    }
+
+    weatherQuoteTxt.textContent = quote;
 }
 
 // =========================
