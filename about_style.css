@@ -1,10 +1,9 @@
 html {
     scroll-snap-type: y proximity;
-    scroll-padding-top: 100px; /* Adjust this value based on the height of your navbar */
+    scroll-padding-top: 100px; 
     scroll-behavior: smooth;
 }
 
-/* Framework for about page */
 body {
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -13,15 +12,15 @@ body {
         "main"
         "footer";
     min-height: 100vh;
-    margin: 0px; /* temporary margin to show grid areas (make margin: 0 if done) */
+    margin: 0px; 
 
     nav, main, footer {
         padding: 10px;
     }
-    background-image: url("assets/bg.png"); /* temporary background image */
+    background-image: url("assets/bg.png"); 
     background-size: cover;
 
-    background-color: #F8FAFC; /* temporary background color */
+    background-color: #F8FAFC; 
 }
 body p {
     cursor: default;
@@ -39,7 +38,6 @@ nav {
 main {
     grid-area: main;
 
-    /* border: 1px solid black; /* temporary border */
 }
 .footer {
     grid-area: footer;
@@ -52,7 +50,6 @@ main {
     border-top: 3px solid #0075FF;
 }
 
-/* Footer */
 .slogan {
     margin-bottom: -5px;
     color: #EAF4FF;
@@ -75,61 +72,44 @@ main {
     font-size: 0.8rem;
 }
 
-/* Navigation Panel */
-nav, .navbar {
-    grid-area: navbar;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: rgba(224, 242, 254, 0.7);
-    backdrop-filter: blur(10px);
-    border-bottom: 3px solid #B3E1FF;
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 40px;
-    height: 70px;
-    box-sizing: border-box;
+    padding: 10px 30px;
 }
-
-nav .logo, .logo {
-    display: block;
-    height: 32px;
-    width: auto;
-    filter: drop-shadow(2px 2px 2px rgba(128, 128, 128, 0.475));
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 35px;
+ul {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    gap: 40px;
     list-style: none;
     margin: 0;
-    padding: 0;
-}
 
-.nav-links a {
-    position: relative;
+    display: flex;
+}
+.logo {
+    display: block;
+    width: 100px;
+    filter: drop-shadow(2px 2px 2px rgba(128, 128, 128, 0.475));
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+
+    padding: 5px;
+}
+.nav-links a{
     text-decoration: none;
-    font-family: "Inter", sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #475569;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: color 0.25s ease, background-color 0.25s ease;
-}
+    font-size: 15px;
+    font-family: sans-serif;
+    color: #2D4A6B;
 
+    position: relative;
+}
 .nav-links a.active {
     color: #0075FF;
     font-weight: bold;
 }
-
-.nav-links a:hover {
-    color: #2563EB;
-    background-color: rgba(37, 99, 235, 0.05);
-}
-
 .nav-links a::before {
     content: "";
     position: absolute;
@@ -138,14 +118,12 @@ nav .logo, .logo {
     width: 0;
     height: 2px;
     background-color: #0075FF;
-    transition: all 0.5s;
+    transition: all .5s;
 }
-
 .nav-links a:hover::before {
-    width: 100%;
+    width:100%
 }
 
-/* Main Content */
 .container {
     display: flex;
     flex-direction: column;
@@ -155,21 +133,19 @@ nav .logo, .logo {
     max-width: 1800px;
     margin-inline: auto;
 
-    /* border: 1px solid black; /* temporary border */
 }
 
-.card { /* Card styles */
+.card { 
     padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border: 1px solid black; /* temporary border */
 }
 #problem, #purpose {
     scroll-snap-align: start;
     scroll-snap-stop: always;
 }
-.card h1 { /* Card headers' styles */
+.card h1 { 
     margin: 0;
     margin-bottom: 10px;
     font-family: "Outfit", sans-serif;
@@ -177,17 +153,14 @@ nav .logo, .logo {
     font-size: 3rem;
     margin: 0;
 
-    /* border: 1px solid black; /* temporary border */
 }
 
-/* About Website */
 #about-website hr {
     width: 700px;
     margin: 20px 0;
     border: 0;
     border-top: 2px solid #0075FF;
 
-    /* border: 1px solid black; /* temporary border */
 }
 #about-website p {
     width: 800px;
@@ -196,10 +169,8 @@ nav .logo, .logo {
     font-family: "Inter", sans-serif;
     color: #1E293B;
 
-    /* border: 1px solid black; /* temporary border */
 }
 
-/* Problem */
 #problem {
     flex-direction: row;
     justify-content: center;
@@ -212,7 +183,6 @@ nav .logo, .logo {
 
     transition: transform .2s;
 
-    /* border: 1px solid black; /* temporary border */
 }
 .problem-image:hover {
     transform: scale(1.05);
@@ -222,7 +192,6 @@ nav .logo, .logo {
     flex-direction: column;
     gap: 10px;
 
-    /* border: 1px solid black; /* temporary border */
 }
 .problem-info h3 {
     width: 200px;
@@ -232,29 +201,25 @@ nav .logo, .logo {
     margin: 0;
     color: #0075FF;
 
-    /* border: 1px solid black; /* temporary border */
 }
 .problem-info h2 {
-    width: 450px; /* change depending on font size */
+    width: 450px; 
     font-size: 3em;
     font-family: "Outfit", sans-serif;
-    margin: 0; /* removes default margin and decreace gap between h3 and p */
+    margin: 0; 
 
-    /* border: 1px solid black; /* temporary border */
 }
 .problem-info p {
-    width: 450px; /* change depending on font size */
+    width: 450px; 
     font-size: 1.6rem;
     font-family: "Inter", sans-serif;
     color: #6F747B;
     
-    /* border: 1px solid black; /* temporary border */
 }
 .problem-info strong {
     color: #1E293B;
 }
 
-/* Purpose */
 #purpose {
     flex-direction: row;
     justify-content: center;
@@ -263,10 +228,9 @@ nav .logo, .logo {
 .purpose-info {
     display: flex;
     flex-direction: column;
-    gap: 5px; /* gap between text and image */
+    gap: 5px; 
     align-items: end;
 
-    /* border: 1px solid black; /* temporary border */
 }
 .purpose-info h2 {
     width: 700px;
@@ -276,7 +240,6 @@ nav .logo, .logo {
     text-align: end;
     color: #10B981;
 
-    /* border: 1px solid black; /* temporary border */
 }
 .purpose-info p {
     width: 650px;
@@ -285,22 +248,19 @@ nav .logo, .logo {
     font-family: "Inter", sans-serif;
     line-height: 1.5;
 
-    /* border: 1px solid black; /* temporary border */
 }
 .purpose-image {
     width: 350px;
     filter: drop-shadow(3px 3px 3px rgba(128, 128, 128, 0.475));
     padding: 20px;
-    transform: rotate(15deg); /* rotate effect affects the outline */
+    transform: rotate(15deg);
 
-    /* border: 1px solid black; /* temporary border */
 }
 
-/* Contributors */
 #about-us {
     display: flex;
     flex-direction: column;
-    align-items: center; /* align-items is y-axis and justify-content is x-axis */
+    align-items: center; 
     gap: 20px;
 }
 .members {
@@ -308,8 +268,6 @@ nav .logo, .logo {
     justify-content: center;
     gap: 50px;
 
-    /* padding: 5px; /* Temporary padding */
-    /* border: 1px solid black; /* temporary border */
 }
 .member-card {
     display: flex;
@@ -319,16 +277,14 @@ nav .logo, .logo {
     padding: 20px;
     border-radius: 35px;
 
-    background-color: #F9FAFB; /* temporary color */
-    border: 3px solid transparent; /* temporary color */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: #FFD275; 
+    border: 3px solid #E39800; 
 
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .member-card:hover {
     transform: translateY(-10px);
-    border-color: #E39800;
-    box-shadow: 0 10px 20px rgba(253, 174, 37, 0.5); /* temporary color */
+    box-shadow: 0 10px 20px rgba(15, 91, 255, 0.5); 
 }
 .our-picture {
     width: 200px;
@@ -346,13 +302,11 @@ nav .logo, .logo {
     font-weight: bold;
     margin: 0;
 
-    /* border: 1px solid black; /* temporary border */
 }
 .member-card .role {
     font-size: 1rem;
     font-family: "Inter", sans-serif;
 
-    /* border: 1px solid black; /* temporary border */
 }
 .contacts {
     display: flex;
