@@ -162,20 +162,12 @@ aside a:hover {
     color: #0075FF;
 }
 
-
-/* ==========================================================================
-   MAIN STRUCTURAL ROOT DEFINITIONS
-   ========================================================================== */
 main {
     grid-area: main;
     width: 100%;
     overflow: hidden;
 }
 
-
-/* ==========================================================================
-   HOME VIEWPORT CANVAS (HERO CONTENT)
-   ========================================================================== */
 #home {
     display: flex;
     flex-wrap: wrap;
@@ -229,7 +221,6 @@ main {
     line-height: 1.05;
 }
 
-/* Centralized Brand Pulsing Glow Utilities */
 .glowing-thrive {
     color: #2563EB;
     font-weight: 900;
@@ -243,10 +234,6 @@ main {
     100% { text-shadow: 0 0 12px rgba(37, 99, 235, 0.6), 0 0 25px rgba(37, 99, 235, 0.4); filter: brightness(1.1); }
 }
 
-
-/* ==========================================================================
-   WEATHER INTERACTIVE DATA MODULES (INPUT / PANELS)
-   ========================================================================== */
 .input, .welcome-input {
     width: 100%;
     max-width: 580px;
@@ -318,13 +305,12 @@ main {
     padding: 10px;
 }
 
-/* Weather Result Display Output Metrics */
 .weather-input {
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 100%;
-    max-width: 1100px; /* Expands layout to a dramatic, wide dashboard scale */
+    max-width: 1100px; 
     align-items: center;
     padding: 0;
     margin-top: 10px;
@@ -338,7 +324,6 @@ main {
     padding: 30px 45px;
     width: 100%;
     
-    /* Premium Deep Dark Card Theme */
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 28px;
@@ -365,7 +350,7 @@ main {
 }
 
 .weather-result .weather-day {
-    color: #94a3b8 !important; /* Soft muted silver for date tracker */
+    color: #94a3b8 !important; 
 }
 
 .weather-result .temp-txt {
@@ -373,10 +358,9 @@ main {
 }
 
 .weather-result .condition-txt {
-    color: #38bdf8 !important; /* Vibrant sky-blue accent for the weather state description */
+    color: #38bdf8 !important; 
     font-weight: 600;
 }
-
 
 .city-day {
     display: flex;
@@ -413,7 +397,7 @@ main {
 .location img {
     width: 34px;
     height: auto;
-    filter: brightness(0) invert(1); /* Forces your location icon asset crisp white */
+    filter: brightness(0) invert(1); 
 }
 
 .city-day h3 {
@@ -455,15 +439,15 @@ main {
 
 .weather-info h1.temp-txt {
     font-family: "Outfit", sans-serif;
-    color: transparent; /* Modern, standard way to make text transparent for gradients */
+    color: transparent; 
     margin: 0;
     font-size: 5.5rem; 
     font-weight: 900;
     line-height: 1;
     letter-spacing: -0.04em;
     background: linear-gradient(to bottom, #ffffff, #e2e8f0);
-    -webkit-background-clip: text; /* For older Safari support */
-    background-clip: text;         /* The standard property that clears the warning */
+    -webkit-background-clip: text; 
+    background-clip: text;        
 }
 
 .weather-info h3 {
@@ -475,7 +459,7 @@ main {
 
 .weather-info h3.condition-txt {
     font-family: "Inter", sans-serif;
-    color: #38bdf8; /* Sharp neon-blue status descriptor accent */
+    color: #38bdf8; 
     margin: 0;
     font-size: 1.6rem;
     font-weight: 700;
@@ -485,7 +469,6 @@ main {
 
 .weather-condition {
     display: grid;
-    /* Two fixed width spaces for metrics, remaining space allocated to the quote */
     grid-template-columns: auto auto 1fr; 
     align-items: center;
     width: 100%;
@@ -541,10 +524,10 @@ main {
     font-style: italic;
     font-weight: 500;
     font-size: 1.1rem;
-    color: #cbd5e1; /* Premium muted slate-silver color */
+    color: #cbd5e1; 
     line-height: 1.4;
     margin: 0;
-    max-width: 380px; /* Keeps sentence structures compact and beautiful */
+    max-width: 380px;
     opacity: 0.9;
     letter-spacing: 0.01em;
 }
@@ -575,22 +558,18 @@ main {
     width: 32px;
     height: 32px;
     object-fit: contain;
-    filter: brightness(0) invert(1); /* Forces data indicators (humidity/wind) clean white */
+    filter: brightness(0) invert(1); 
 }
 
-
-/* ==========================================================================
-   EXTENDED FORECAST FOREGROUND STYLES
-   ========================================================================== */
 .weather-text {
     display: flex;
     flex-direction: column;
-    gap: 12px;         /* Slightly tightened from 15px */
+    gap: 12px;        
     padding: 0;
     width: 100%;
     max-width: 1100px;
     margin-inline: auto;
-    margin-top: 5px;   /* Dropped from 20px to let it sit flush beneath your card */
+    margin-top: 5px;  
 }
 
 .weather-text #welcome {
@@ -614,7 +593,7 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 16px;
-    width: 100%; /* Spans out to match the width of your main panel layout */
+    width: 100%; 
     padding: 0;
     margin-top: 15px;
 }
@@ -624,11 +603,9 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     padding: 15px;
     border-radius: 24px;
 
-    /* DARK PREMIUM BACKGROUND */
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -701,36 +678,6 @@ main {
     z-index: 2;
 }
 
-/* Responsive Scaling Overrides for Mobile devices */
-@media (max-width: 768px) {
-    .weather-result {
-        padding: 30px;
-    }
-    .weather-summary {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-    .weather-info {
-        text-align: left;
-    }
-    .weather-info h1.temp-txt {
-        font-size: 4rem;
-    }
-    .weather-condition {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-    }
-    .condition-item {
-        max-width: 100%;
-    }
-}
-
-
-/* ==========================================================================
-   TIPS SAFETY APPLICATION TRACK
-   ========================================================================== */
 #tips {
     display: none;
     width: 100%;
@@ -870,10 +817,6 @@ main {
     object-fit: contain;
 }
 
-
-/* ==========================================================================
-   EMERGENCY MAP DISCOVERY LAYOUTS (LEAFLET INTEGRATIONS)
-   ========================================================================== */
 .shelter-wrapper {
     margin-top: 50px;
     background: #FFFFFF;
@@ -917,7 +860,6 @@ main {
     font-family: "Inter", sans-serif;
 }
 
-/* Leaflet Layout Overrides */
 .leaflet-container {
     border-radius: 24px;
 }
@@ -981,10 +923,6 @@ main {
     transform: scale(1.2);
 }
 
-
-/* ==========================================================================
-   CLIMATE ACTION & GLOBAL CAROUSEL GRID NEWS
-   ========================================================================== */
 #news {
     padding: 100px 5%;
     background: #f4f7fb;
@@ -1058,7 +996,6 @@ main {
     box-shadow: 0 8px 20px rgba(238,49,49,0.35);
 }
 
-/* Base Carousel Display Grid Track rules */
 .news-grid, .news-grid.two-cards {
     position: relative;
     width: 100%;
@@ -1083,7 +1020,6 @@ main {
     opacity: 1 !important;
 }
 
-/* Card Geometry & Structural Configurations */
 .news-card {
     position: absolute;
     transform-origin: center center;
@@ -1137,7 +1073,6 @@ main {
     transform: scale(1.08);
 }
 
-/* Carousel Active View Positions */
 .news-card.center, .news-grid.two-cards .news-card.center {
     width: 1180px;
     height: 700px;
@@ -1167,7 +1102,6 @@ main {
 .news-card.right { transform: translateX(500px) scale(0.88); }
 .news-card.side, .news-grid.two-cards .news-card.side { transform: translateX(500px) scale(0.88); }
 
-/* News Content Layouts */
 .news-content {
     position: absolute;
     left: 0;
@@ -1257,7 +1191,6 @@ main {
     font-size: 0.72rem;
 }
 
-/* Fallback & Missing Assets Utilities */
 .no-image {
     width: 180px !important;
     height: 180px !important;
@@ -1322,10 +1255,6 @@ main {
     display: flex !important;
 }
 
-
-/* ==========================================================================
-   EMERGENCY HOTLINES VIEWPORT GRID (CONTACT)
-   ========================================================================== */
 #contact {
     display: flex;
     flex-direction: column;
@@ -1412,10 +1341,6 @@ main {
     font-size: 0.8rem;
 }
 
-
-/* ==========================================================================
-   FOOTER FRAMEWORK ELEMENTS
-   ========================================================================== */
 .footer {
     grid-area: footer;
     display: flex;
@@ -1454,10 +1379,6 @@ main {
     font-size: 0.8rem;
 }
 
-
-/* ==========================================================================
-   RESPONSIVE LAYOUT CALIBRATIONS (MEDIA QUERIES)
-   ========================================================================== */
 @media (max-width: 1200px) {
     .news-card.center {
         width: 90%;

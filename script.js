@@ -1,7 +1,3 @@
-// =========================
-// ELEMENTS
-// =========================
-
 const cityInput = document.querySelector('.city-input');
 const welcomeSearchBtn = document.querySelector('.welcome-search-btn');
 const searchBtn = document.querySelector('.search-btn');
@@ -41,10 +37,6 @@ const tipsList = document.querySelector('.tips-list');
 
 let currentActiveTab = 'current';
 
-// =========================
-// API KEYS
-// =========================
-
 const apiKey = '5fd9094f4742b02276d974ee0f156d43';
 
 const newsDataKey =
@@ -76,11 +68,6 @@ async function loadShelterData(){
         );
     }
 }
-
-
-// =========================
-// REGION DETECTION
-// =========================
 
 function detectRegion(city){
 
@@ -177,21 +164,11 @@ function detectRegion(city){
     return 'luzon';
 }
 
-// =========================
-// MAP SYSTEM
-// =========================
-
 let map = null;
 let shelterMarkers = [];
 let mapInitialized = false;
 
-// =========================
-// INITIALIZE MAP
-// =========================
-
 function initializeMap(){
-
-    // PREVENT DUPLICATE MAPS
 
     if(mapInitialized) return;
 
@@ -210,8 +187,6 @@ function initializeMap(){
         5
     );
 
-    // TILE LAYER
-
     L.tileLayer(
         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         {
@@ -224,10 +199,6 @@ function initializeMap(){
 
     console.log('Map initialized');
 }
-
-// =========================
-// CLEAR ALL MARKERS
-// =========================
 
 function clearShelterMarkers(){
 
@@ -242,10 +213,6 @@ function clearShelterMarkers(){
     shelterMarkers = [];
 }
 
-// =========================
-// FORCE MAP REFRESH
-// =========================
-
 function refreshMap(){
 
     if(!map) return;
@@ -257,25 +224,16 @@ function refreshMap(){
     }, 400);
 }
 
-// =========================
-// UPDATE SHELTER MAP
-// =========================
-
 async function updateShelterMap(city) {
 
-    // ENSURE MAP EXISTS
     if (!mapInitialized) {
         initializeMap();
     }
 
     if (!map) return;
 
-    // CLEAR OLD MARKERS
     clearShelterMarkers();
 
-    // =========================
-    // GET CITY COORDINATES
-    // =========================
     let cityLat = 12.8797;
     let cityLng = 121.7740;
 
@@ -286,10 +244,8 @@ async function updateShelterMap(city) {
 
         const geoData = await geoResponse.json();
 
-        // CLEAN SEARCH TERM FOR BETTER MATCHING
         const searchClean = city.toLowerCase().replace(' city', '').replace('city of ', '').trim();
-
-        // FIND PHILIPPINE MATCH
+       
         const phLocation = geoData.find(location => {
             if (location.country !== 'PH') return false;
             const locName = location.name.toLowerCase();
@@ -308,9 +264,6 @@ async function updateShelterMap(city) {
         console.log('Geocoding failed', error);
     }
 
-    // =========================
-    // DETECT REGION
-    // =========================
     const region = detectRegion(city);
 
     if(region === 'luzon'){
@@ -342,13 +295,11 @@ async function updateShelterMap(city) {
         .replace('city of ', '')
         .trim();
 
-    // TEXT MATCH
     const isCityMatch =
         shelterCity === normalizedCity ||
         shelterCity.includes(normalizedCity) ||
         normalizedCity.includes(shelterCity);
 
-    // DISTANCE MATCH
     const sLat = parseFloat(shelter.lat);
     const sLng = parseFloat(shelter.lng);
 
@@ -361,17 +312,11 @@ async function updateShelterMap(city) {
         Math.pow(sLng - cityLng, 2)
     );
 
-    // INCREASED RADIUS
     const isNearby = distance < 0.5;
 
     return isCityMatch || isNearby;
 });
 
-
-
-    // =========================
-    // FIND NEAREST SHELTER
-    // =========================
     let nearestShelter = null;
     let nearestDistance = Infinity;
 
@@ -390,9 +335,6 @@ async function updateShelterMap(city) {
         }
     });
 
-    // =========================
-    // CREATE MARKERS
-    // =========================
     cityShelters.forEach(shelter => {
         const coords = [
             parseFloat(shelter.lat),
@@ -401,7 +343,6 @@ async function updateShelterMap(city) {
 
         const marker = L.marker(coords).addTo(map);
 
-        // HIGHLIGHT ONLY NEAREST
         if (shelter === nearestShelter) {
             marker.setIcon(
                 L.icon({
@@ -414,16 +355,14 @@ async function updateShelterMap(city) {
                 })
             );
         }
-
-        // POPUP
+        
         marker.bindPopup(`
             <div class="map-popup">
                 <h3 class="highlight-location">${shelter.city || city}</h3>
                 <p>${shelter.name || 'Evacuation Center'}</p>
             </div>
         `);
-
-        // CLICK TO ZOOM
+   
         marker.on('click', () => {
             map.setView(coords, 16, {
                 animate: true,
@@ -435,14 +374,11 @@ async function updateShelterMap(city) {
         shelterMarkers.push(marker);
     });
 
-    // =========================
-    // FOCUS ON SEARCHED CITY
-    // =========================
     setTimeout(() => {
         map.invalidateSize(true);
         map.setView(
             [cityLat, cityLng],
-            13, // Increased zoom level from 11 to 13 to focus closer on the target city
+            13, 
             {
                 animate: true,
                 duration: 1.5
@@ -450,10 +386,6 @@ async function updateShelterMap(city) {
         );
     }, 500);
 }
-
-// =========================
-// SEARCH EVENTS
-// =========================
 
 function handleSearch(){
 
@@ -469,8 +401,6 @@ function handleSearch(){
     countryInput.value = '';
 }
 
-// BUTTONS
-
 welcomeSearchBtn?.addEventListener(
     'click',
     handleSearch
@@ -480,8 +410,6 @@ searchBtn?.addEventListener(
     'click',
     handleSearch
 );
-
-// ENTER KEY
 
 cityInput?.addEventListener(
     'keypress',
@@ -505,10 +433,6 @@ countryInput?.addEventListener(
     }
 );
 
-// =========================
-// WEATHER ICONS
-// =========================
-
 function getWeatherIcon(id) {
 
     if (id <= 232) return 'thunderstorm.svg';
@@ -525,10 +449,6 @@ function getWeatherIcon(id) {
 
     return 'clouds.svg';
 }
-
-// =========================
-// WEATHER LABEL
-// =========================
 
 function getTodayLabel(id) {
 
@@ -553,10 +473,6 @@ function getTodayLabel(id) {
     return 'Cloudy skies today.';
 }
 
-// =========================
-// UPDATE WEATHER
-// =========================
-
 async function updateWeatherInfo(city) {
 
     try {
@@ -564,7 +480,6 @@ async function updateWeatherInfo(city) {
         const weatherData =
             await getFetchData('weather', city);
 
-        // INVALID RESPONSE
 
         if (
             Number(weatherData.cod) !== 200 ||
@@ -595,10 +510,6 @@ async function updateWeatherInfo(city) {
 
         } = weatherData;
 
-        // =========================
-        // UPDATE WEATHER INFO
-        // =========================
-
         cityTxt.textContent = name;
 
         tempTxt.textContent =
@@ -624,10 +535,6 @@ async function updateWeatherInfo(city) {
                 }
             );
 
-        // =========================
-        // WEATHER ICONS
-        // =========================
-
         const icon =
             getWeatherIcon(id);
 
@@ -639,10 +546,6 @@ async function updateWeatherInfo(city) {
 
         todayTxt.textContent =
             getTodayLabel(id);
-
-        // =========================
-        // UPDATE UI
-        // =========================
 
         updateTipsSection(
             id,
@@ -712,7 +615,7 @@ function updateWeatherQuote(condition) {
     if (!weatherQuoteTxt) return;
 
     const mainCondition = condition.toLowerCase();
-    let quote = '"Expect the unexpected with these skies."'; // Default tagline
+    let quote = '"Expect the unexpected with these skies."'; 
 
     if (mainCondition.includes('clear')) {
         quote = '"Nothing but sunny skies ahead."';
@@ -731,10 +634,6 @@ function updateWeatherQuote(condition) {
     weatherQuoteTxt.textContent = quote;
 }
 
-// =========================
-// TIPS SECTION
-// =========================
-
 function updateTipsSection(id, temp, city, condition) {
 
     tipsTemp.textContent =
@@ -748,9 +647,6 @@ function updateTipsSection(id, temp, city, condition) {
     let alertColor;
     let tips;
 
-    // =========================
-    // EXTREME HEAT
-    // =========================
 
     if (temp >= 32) {
 
@@ -786,10 +682,6 @@ function updateTipsSection(id, temp, city, condition) {
 
     }
 
-    // =========================
-    // THUNDERSTORM
-    // =========================
-
     else if (id <= 232) {
 
         title = 'Thunderstorm Warning';
@@ -823,10 +715,6 @@ function updateTipsSection(id, temp, city, condition) {
         ];
 
     }
-
-    // =========================
-    // DRIZZLE
-    // =========================
 
     else if (id <= 321) {
 
@@ -862,10 +750,6 @@ function updateTipsSection(id, temp, city, condition) {
 
     }
 
-    // =========================
-    // RAIN
-    // =========================
-
     else if (id <= 531) {
 
         title = 'Rainfall Advisory';
@@ -899,10 +783,6 @@ function updateTipsSection(id, temp, city, condition) {
         ];
 
     }
-
-    // =========================
-    // SNOW
-    // =========================
 
     else if (id <= 622) {
 
@@ -938,10 +818,6 @@ function updateTipsSection(id, temp, city, condition) {
 
     }
 
-    // =========================
-    // FOG / ATMOSPHERE
-    // =========================
-
     else if (id <= 781) {
 
         title = 'Fog Advisory';
@@ -975,10 +851,6 @@ function updateTipsSection(id, temp, city, condition) {
         ];
 
     }
-
-    // =========================
-    // CLEAR SKY
-    // =========================
 
     else if (id == 800) {
 
@@ -1014,10 +886,6 @@ function updateTipsSection(id, temp, city, condition) {
 
     }
 
-    // =========================
-    // CLOUDY
-    // =========================
-
     else {
 
         title = 'Cloudy Weather Advisory';
@@ -1051,10 +919,6 @@ function updateTipsSection(id, temp, city, condition) {
         ];
     }
 
-    // =========================
-    // UPDATE UI
-    // =========================
-
     dangerTitle.textContent = title;
 
     dangerDescription.textContent =
@@ -1071,10 +935,6 @@ function updateTipsSection(id, temp, city, condition) {
         alertBox.style.borderLeft =
         `6px solid ${alertColor}`;
     }
-
-    // =========================
-    // RENDER TIPS
-    // =========================
 
     tipsList.innerHTML =
     tips.map(tip => `
@@ -1094,16 +954,8 @@ function updateTipsSection(id, temp, city, condition) {
 
     `).join('');
 
-    // =========================
-    // UPDATE MAP
-    // =========================
-
     updateShelterMap(city);
 }
-
-// =========================
-// FORECAST
-// =========================
 
 async function updateForecastsInfo(city) {
 
@@ -1153,10 +1005,6 @@ async function updateForecastsInfo(city) {
     });
 }
 
-// =========================
-// HIDE SECTIONS
-// =========================
-
 function hideAllSections(){
 
     [
@@ -1185,14 +1033,6 @@ function showErrorState(){
     errorMsg.style.display = 'block';
 }
 
-// =========================
-// NEWS
-// =========================
-
-// =========================
-// NEWS SYSTEM
-// =========================
-
 const newsGrid =
 document.querySelector('.news-grid');
 
@@ -1201,10 +1041,6 @@ document.querySelectorAll('.climate-btn');
 
 let currentNews = [];
 let historicalNews = [];
-
-// =========================
-// HISTORICAL DATABASE
-// =========================
 
 const historicalDatabase = {
 
@@ -1311,9 +1147,6 @@ const historicalDatabase = {
         }
     ]
 };
-// =========================
-// FETCH NEWS
-// =========================
 
 async function fetchClimateNews(city = 'Philippines') {
 
@@ -1345,7 +1178,6 @@ async function fetchClimateNews(city = 'Philippines') {
             }
         }
 
-        // FILTERS WORDS NEWS
         const blockedWords = [ 
             'election',
             'senate',
@@ -1401,15 +1233,6 @@ async function fetchClimateNews(city = 'Philippines') {
     }
 }
 
-// =========================
-// GENERATE RELATED HISTORY
-// =========================
-
-// =========================
-// GENERATE RELATED HISTORY
-// STRICT 1:1 MATCHING
-// =========================
-
 function generateHistoricalNews(news) {
 
     historicalNews = [];
@@ -1419,7 +1242,6 @@ function generateHistoricalNews(news) {
         const type =
         detectDisasterType(article);
 
-        // SKIP ARTICLES WITH NO MATCH
         if(!type){
             return;
         }
@@ -1444,7 +1266,6 @@ function generateHistoricalNews(news) {
         }
     });
 
-    // REMOVE DUPLICATES
     historicalNews = historicalNews.filter(
         (item, index, self) =>
             index === self.findIndex(
@@ -1452,7 +1273,6 @@ function generateHistoricalNews(news) {
             )
     );
 
-    // IF NO HISTORY EXISTS
     if(historicalNews.length === 0){
 
         historicalNews.push({
@@ -1479,17 +1299,9 @@ function generateHistoricalNews(news) {
     );
 }
 
-// =========================
-// RENDER NEWS
-// =========================
-
 function renderNews(newsArray) {
 
     newsGrid.innerHTML = '';
-
-    // =========================
-    // REMOVE DUPLICATES
-    // =========================
 
     const uniqueNews = [];
     const usedTitles = new Set();
@@ -1511,8 +1323,6 @@ function renderNews(newsArray) {
         .trim()
         .toLowerCase();
 
-        // SKIP DUPLICATES
-
         if(
             usedTitles.has(title) ||
             (
@@ -1532,13 +1342,8 @@ function renderNews(newsArray) {
         uniqueNews.push(article);
     });
 
-    // LIMIT TO 3
-
     newsArray = uniqueNews.slice(0,3);
 
-    // =========================
-    // NO HISTORICAL NEWS
-    // =========================
 
     if (
         currentActiveTab === 'historical' &&
@@ -1584,10 +1389,6 @@ function renderNews(newsArray) {
         return;
     }
 
-    // =========================
-    // NORMAL NEWS
-    // =========================
-
     newsArray.forEach((article, index) => {
 
         let position = '';
@@ -1615,17 +1416,9 @@ function renderNews(newsArray) {
                 position = 'right';
         }
 
-        // =========================
-        // DISABLE CLICK
-        // =========================
-
         const isDisabled =
             !article.link ||
             article.link === '#';
-
-        // =========================
-        // IMAGE
-        // =========================
 
         const imageSrc =
             article.image_url ||
@@ -1702,11 +1495,6 @@ function renderNews(newsArray) {
     setupCarousel();
 }
 
-
-// =========================
-// NEWS GRID CLASS HANDLING
-// =========================
-
 function updateNewsGridClasses() {
     const activeButton = document.querySelector('.climate-btn.active');
     if (!activeButton) return;
@@ -1723,10 +1511,6 @@ function updateNewsGridClasses() {
     }
 }
 
-// =========================
-// CAROUSEL
-// =========================
-
 function setupCarousel(){
 
     const cards =
@@ -1736,18 +1520,10 @@ function setupCarousel(){
 
         card.addEventListener('click',e=>{
 
-            // =========================
-            // SINGLE CARD
-            // =========================
-
             if(cards.length === 1){
 
                 return;
             }
-
-            // =========================
-            // TWO CARDS
-            // =========================
 
             if(cards.length === 2){
 
@@ -1780,10 +1556,6 @@ function setupCarousel(){
 
                 return;
             }
-
-            // =========================
-            // THREE CARDS
-            // =========================
 
             e.preventDefault();
 
@@ -1854,10 +1626,6 @@ function rotateLeft(){
     'news-card left';
 }
 
-// =========================
-// FALLBACK
-// =========================
-
 function renderFallback(){
 
     newsGrid.innerHTML = `
@@ -1907,10 +1675,6 @@ function detectDisasterType(article){
         ${article.description || ''}
     `.toLowerCase();
 
-    // =========================
-    // TYPHOON
-    // =========================
-
     const typhoonWords = [
         'super typhoon',
         'typhoon',
@@ -1918,10 +1682,6 @@ function detectDisasterType(article){
         'cyclone',
         'storm surge'
     ];
-
-    // =========================
-    // HEAT
-    // =========================
 
     const heatWords = [
         'heat index',
@@ -1931,10 +1691,6 @@ function detectDisasterType(article){
         'high temperature'
     ];
 
-    // =========================
-    // FLOOD
-    // =========================
-
     const floodWords = [
         'flood',
         'flooding',
@@ -1942,19 +1698,11 @@ function detectDisasterType(article){
         'flash flood'
     ];
 
-    // =========================
-    // EARTHQUAKE
-    // =========================
-
     const earthquakeWords = [
         'earthquake',
         'magnitude',
         'tectonic'
     ];
-
-    // =========================
-    // HELPER
-    // =========================
 
     function hasKeyword(words){
 
@@ -1962,10 +1710,6 @@ function detectDisasterType(article){
             text.includes(word)
         );
     }
-
-    // =========================
-    // PRIORITY MATCHING
-    // =========================
 
     if(hasKeyword(typhoonWords))
         return 'typhoon';
@@ -1981,10 +1725,6 @@ function detectDisasterType(article){
 
     return null;
 }
-
-// =========================
-// TOGGLE BUTTONS
-// =========================
 
 climateButtons.forEach(button=>{
 
@@ -2009,10 +1749,6 @@ climateButtons.forEach(button=>{
         }
     });
 });
-
-// =========================
-// INIT
-// =========================
 
 document.addEventListener(
     'DOMContentLoaded',
