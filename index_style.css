@@ -624,39 +624,81 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    border-radius: 20px;
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
+
+    padding: 15px;
+    border-radius: 24px;
+
+    /* DARK PREMIUM BACKGROUND */
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 15px 30px rgba(15, 23, 42, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.future-weather-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(37, 99, 235, 0.22),
+            transparent 55%
+        );
+
+    pointer-events: none;
 }
 
 .future-weather-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 25px 40px rgba(15, 23, 42, 0.28),
+        0 0 25px rgba(37, 99, 235, 0.12);
 }
+
 
 .forecast-item-date {
     font-family: "Inter", sans-serif;
-    color: #475569;
+    color: #94a3b8;
     font-weight: 600;
     font-size: 1rem;
-    margin: 0 0 10px 0;
+    margin: 0 0 12px 0;
+    z-index: 2;
 }
 
 .forecast-item-img {
-    width: 55px;
-    height: 55px;
+    width: 58px;
+    height: 58px;
     object-fit: contain;
+    z-index: 2;
+
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
 }
 
 .forecast-item-temp {
     font-family: "Outfit", sans-serif;
-    color: #0f172a;
-    margin: 10px 0 0 0;
-    padding: 0;
-    font-size: 1.25rem;
-    font-weight: 700;
+    color: #ffffff;
+
+    margin-top: 14px;
+
+    font-size: 1.35rem;
+    font-weight: 800;
+
+    letter-spacing: -0.02em;
+
+    z-index: 2;
 }
 
 /* Responsive Scaling Overrides for Mobile devices */
