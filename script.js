@@ -264,12 +264,12 @@ async function updateShelterMap(city) {
         console.log('Geocoding failed', error);
     }
 
-    const region = detectRegion(city);
+const region = detectRegion(city);
 
-    if(region === 'luzon'){
-    query = 'Luzon weather';
+if(region === 'luzon'){
+    let query = 'Luzon weather'; //  Fixed! Properly declared locally
 }
-    console.log('Detected region:', region);
+console.log('Detected region:', region);
 
     const normalizedCity = city
         .toLowerCase()
@@ -312,7 +312,7 @@ async function updateShelterMap(city) {
         Math.pow(sLng - cityLng, 2)
     );
 
-    const isNearby = distance < 0.5;
+    const isNearby = distance < 1.5;
 
     return isCityMatch || isNearby;
 });
@@ -1183,8 +1183,17 @@ async function fetchClimateNews(city = 'Philippines') {
             'senate',
             'congress',
             'partylist',
-            
-            
+            'celebrity',
+            'hearing',
+            'racing',
+            'scandal',
+            'champion',
+            'comfort',
+            'supreme',
+            'court',
+            'impeachment',
+            'stock',
+            'games',
             
         ];
 

@@ -136,26 +136,34 @@ aside {
     justify-content: center;
     align-items: center;
     border-right: 1px solid #0077ff65;
+    
 }
 
 aside ul {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 55px;
     list-style: none;
     padding: 0;
     margin: 0;
+    align-items: center;
 }
 
 aside a {
     text-decoration: none;
     color: #2D4A6B;
-    font-weight: 600;
-    transition: 0.3s ease;
+    font-weight: 700;
+    font-size: 1rem;
+
     writing-mode: vertical-rl;
     text-orientation: mixed;
     transform: rotate(180deg);
-    letter-spacing: 2px;
+
+    letter-spacing: 4px;
+    padding: 10px 0;
+
+    transition: color 0.3s ease,
+                transform 0.3s ease;
 }
 
 aside a:hover {
