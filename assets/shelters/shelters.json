@@ -26,6 +26,12 @@
   "lng": 121.0509
 },
 {
+      "name": "Taguig Integrated Shelter",
+      "city": "Taguig",
+      "lat": 14.5178,
+      "lng": 121.0501
+    },
+{
   "name": "Pasay City Sports Complex",
   "city": "Pasay",
   "lat": 14.5378,
@@ -44,11 +50,23 @@
       "lat": 14.6500,
       "lng": 121.1020
     },
+     {
+      "name": "Marikina River Park Evacuation Center",
+      "city": "Marikina",
+      "lat": 14.6406,
+      "lng": 121.1028
+    },
     {
       "name": "Pasig Mega Market Evacuation Area",
       "city": "Pasig",
       "image": "assets/shelters/pasig-mega-market.jpg",
       "lat": 14.5764,
+      "lng": 121.0851
+    },
+    {
+      "name": "Pasig City Mega Shelter",
+      "city": "Pasig",
+      "lat": 14.5769,
       "lng": 121.0851
     },
     {
@@ -169,6 +187,48 @@
       "image": "assets/shelters/puerto-princesa-center.jpg",
       "lat": 9.7392,
       "lng": 118.7353
+    },
+    {
+      "name": "Muntinlupa Sports Complex Shelter",
+      "city": "Muntinlupa",
+      "lat": 14.3835,
+      "lng": 121.0453
+    },
+     {
+      "name": "Las Piñas Evacuation Gym",
+      "city": "Las Piñas",
+      "lat": 14.4445,
+      "lng": 120.9936
+    },
+    {
+      "name": "Parañaque City Shelter Hall",
+      "city": "Parañaque",
+      "lat": 14.4793,
+      "lng": 121.0198
+    },
+     {
+      "name": "Valenzuela Civic Center",
+      "city": "Valenzuela",
+      "lat": 14.7006,
+      "lng": 120.9830
+    },
+     {
+      "name": "Navotas Covered Court Shelter",
+      "city": "Navotas",
+      "lat": 14.6691,
+      "lng": 120.9428
+    },
+     {
+      "name": "Malabon City Evacuation Hall",
+      "city": "Malabon",
+      "lat": 14.6627,
+      "lng": 120.9567
+    },
+        {
+      "name": "Caloocan North Gym Shelter",
+      "city": "Caloocan",
+      "lat": 14.7565,
+      "lng": 121.0453
     }
   ],
 
@@ -242,10 +302,130 @@
       "image": "assets/shelters/kalibo-shelter.jpg",
       "lat": 11.7061,
       "lng": 122.3648
+    },
+     {
+      "name": "Borongan City Shelter",
+      "city": "Borongan",
+      "lat": 11.6081,
+      "lng": 125.4319
+    },
+    {
+      "name": "Catbalogan Civic Center",
+      "city": "Catbalogan",
+      "lat": 11.7753,
+      "lng": 124.8861
+    },
+    {
+      "name": "Baybay City Evacuation Gym",
+      "city": "Baybay",
+      "lat": 10.6785,
+      "lng": 124.8006
+    },
+    {
+      "name": "Kabankalan Sports Center",
+      "city": "Kabankalan",
+      "lat": 9.9839,
+      "lng": 122.8143
+    },
+    {
+      "name": "Toledo City Shelter Hub",
+      "city": "Toledo",
+      "lat": 10.3774,
+      "lng": 123.6386
+    },
+    {
+      "name": "Guihulngan Community Shelter",
+      "city": "Guihulngan",
+      "lat": 10.1214,
+      "lng": 123.2742
+    },
+    {
+      "name": "Maasin City Gymnasium",
+      "city": "Maasin",
+      "lat": 10.1328,
+      "lng": 124.8447
+    },
+    {
+      "name": "Escalante Evacuation Area",
+      "city": "Escalante",
+      "lat": 10.8406,
+      "lng": 123.4995
+    },
+    {
+      "name": "Sagay City Rescue Shelter",
+      "city": "Sagay",
+      "lat": 10.9447,
+      "lng": 123.4242
+    },
+    {
+      "name": "Bais City Hall Shelter",
+      "city": "Bais",
+      "lat": 9.5915,
+      "lng": 123.1220
     }
   ],
 
   "mindanao": [
+     {
+      "name": "Malaybalay Rescue Center",
+      "city": "Malaybalay",
+      "lat": 8.1575,
+      "lng": 125.1278
+    },
+    {
+      "name": "Surigao City Mega Shelter",
+      "city": "Surigao",
+      "lat": 9.7845,
+      "lng": 125.4888
+    },
+    {
+      "name": "Pagadian Sports Complex",
+      "city": "Pagadian",
+      "lat": 7.8257,
+      "lng": 123.4370
+    },
+    {
+      "name": "Dipolog City Evacuation Hall",
+      "city": "Dipolog",
+      "lat": 8.5883,
+      "lng": 123.3409
+    },
+    {
+      "name": "Bislig Community Shelter",
+      "city": "Bislig",
+      "lat": 8.2150,
+      "lng": 126.3167
+    },
+    {
+      "name": "Mati Disaster Response Center",
+      "city": "Mati",
+      "lat": 6.9551,
+      "lng": 126.2168
+    },
+    {
+      "name": "Ozamiz City Civic Shelter",
+      "city": "Ozamiz",
+      "lat": 8.1481,
+      "lng": 123.8405
+    },
+    {
+      "name": "Valencia Bukidnon Shelter",
+      "city": "Valencia",
+      "lat": 7.9064,
+      "lng": 125.0948
+    },
+    {
+      "name": "Tagum City Rescue Gym",
+      "city": "Tagum",
+      "lat": 7.4478,
+      "lng": 125.8078
+    },
+    {
+      "name": "Panabo City Shelter Complex",
+      "city": "Panabo",
+      "lat": 7.3081,
+      "lng": 125.6847
+    },
     {
       "name": "Davao City Recreation Center",
       "city": "Davao",
