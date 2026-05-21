@@ -675,7 +675,7 @@ function updateTipsSection(id, temp, city, condition) {
             },
 
             {
-                icon:'assets/tips/sun-ua.png',
+                icon:'assets/tips/sun-um.png',
                 title:'Avoid Noon Heat'
             }
         ];
