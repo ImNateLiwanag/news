@@ -5,7 +5,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: #f4f7fb;
+    background: #FAF9F6; /* Changed from #f4f7fb to Off-White */
     font-family: "Inter", sans-serif;
     overflow-x: hidden;
     display: grid;
@@ -17,7 +17,6 @@ body {
         "footer footer";
     min-height: 100vh;
 }
-
 .container {
     width: 100%;
     max-width: 1600px;
@@ -175,6 +174,7 @@ main {
 }
 
 .weather-welcome {
+    position: relative;
     width: 100%;
     height: calc(100vh - 70px);
     display: flex;
@@ -182,11 +182,24 @@ main {
     justify-content: center;
     padding: 40px;
     box-sizing: border-box;
-    background: radial-gradient(circle at center, #ffffff 0%, #f4f7fb 100%);
+    /* Updated gradient: Center is crisp white (#ffffff), edges fade to off-white (#FAF9F6) */
+    background: radial-gradient(circle at center, #ffffff 0%, #FAF9F6 100%);
     margin-bottom: 50px;
+    overflow: hidden;
+}
+
+.bg-weather-decor {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows users to click through them to type in the input box */
+    z-index: 0;
 }
 
 .welcome-container {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -194,6 +207,97 @@ main {
     padding: 20px;
     width: 100%;
     max-width: 1100px;
+}
+
+.decor-sun {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, #FFDE4D 0%, #FFB200 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(255, 178, 0, 0.4), 0 0 80px rgba(255, 222, 77, 0.2);
+    animation: sunGlow 6s ease-in-out infinite alternate;
+}
+
+.decor-cloud {
+    position: absolute;
+    /* Soft gradient from a crisp white top to a gentle sky-blue bottom */
+    background: linear-gradient(to bottom, #ffffff 0%, #E0F2FE 100%);
+    width: 180px;
+    height: 60px;
+    border-radius: 50px;
+    /* Changed shadow from dark gray to a soft, translucent blue-gray for depth */
+    box-shadow: 0 15px 35px rgba(12, 74, 110, 0.12);
+    opacity: 0.95;
+}
+
+.decor-cloud::before,
+.decor-cloud::after {
+    content: '';
+    position: absolute;
+    background: inherit; /* Inherits the same white-to-blue gradient seamlessly */
+    border-radius: 50%;
+}
+
+.decor-cloud::before {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    left: 30px;
+}
+
+.decor-cloud::after {
+    width: 60px;
+    height: 60px;
+    top: -25px;
+    right: 25px;
+}
+
+.cloud-1 {
+    top: 25%;
+    left: 10%;
+    transform: scale(0.9);
+    animation: floatLeft 24s linear infinite;
+}
+
+.cloud-2 {
+    top: 10%;
+    right: 25%;
+    transform: scale(1.2);
+    opacity: 0.5; 
+    z-index: -1;
+    animation: floatRight 30s linear infinite;
+}
+
+.cloud-3 {
+    bottom: 20%;
+    left: 20%;
+    transform: scale(0.7);
+    opacity: 0.7;
+    animation: floatLeft 18s linear infinite;
+}
+
+@keyframes sunGlow {
+    0% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 178, 0, 0.4); }
+    100% { transform: scale(1.05); box-shadow: 0 0 60px rgba(255, 178, 0, 0.6), 0 0 100px rgba(255, 222, 77, 0.3); }
+}
+
+@keyframes floatLeft {
+    0% { left: -200px; }
+    100% { left: 100%; }
+}
+
+@keyframes floatRight {
+    0% { right: -200px; }
+    100% { right: 100%; }
+}
+
+@media (max-width: 768px) {
+    .bg-weather-decor {
+        display: none;
+    }
 }
 
 .welcome-container h1 {
@@ -707,16 +811,32 @@ main {
     height: 88%;
 }
 
-.tips-top {
+.tips-icon-wrapper {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    /* Soft sky-tinted background to match your new cloud aesthetic */
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 24px; /* Matches the rounded vibe of your dashboard items */
+    box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.6), 
+                0 8px 20px rgba(12, 74, 110, 0.06);
+    flex-shrink: 0; /* Prevents the circle from squishing on small windows */
+}
+
+.tips-top {
+    display: flex;
+    align-items: center; /* Aligns items perfectly straight in the center */
+    gap: 20px;           /* Gives comfortable, fixed breathing room between circle and text */
+    justify-content: flex-start; /* Groups them nicely to the left instead of stretching them */
 }
 
 .about-weather-icon {
-    width: 90px;
-    height: 90px;
+    width: 75px;  /* Scaled slightly down to create comfortable inner padding */
+    height: 75px;
     object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(15, 23, 42, 0.08));
 }
 
 .tips-temp {
@@ -734,24 +854,65 @@ main {
 }
 
 .tips-alert {
-    background: #FFF7ED;
-    border-left: 5px solid #F97316;
-    border-radius: 22px;
-    padding: 20px;
+    position: relative;
+    /* Rich, warm gradient background that is soft but noticeable */
+    background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+    border-radius: 20px;
+    padding: 20px 24px 20px 28px; /* Extra padding on the left to clear the bar */
+    
+    /* Adds a modern, soft ambient orange glow around the entire card */
+    box-shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.12), 
+                0 8px 16px -6px rgba(249, 115, 22, 0.08);
+                
+    /* Clean overflow management for the pseudo-element bar */
+    overflow: hidden; 
+    border: 1px solid rgba(253, 186, 116, 0.3); /* Ultra-subtle border line */
+}
+
+.tips-alert::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px; /* Clean, intentional thickness */
+    height: 100%;
+    /* Gradient moving from an urgent crimson/red-orange down to bright sun-orange */
+    background: linear-gradient(to bottom, #EF4444, #F97316); 
 }
 
 .danger-title {
-    margin: 0 0 10px;
-    color: #9A3412;
-    font-size: 1.2rem;
-    font-family: "Outfit", sans-serif;
+    color: #9A3412; /* Deep, highly legible crimson-orange */
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.danger-title::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #EF4444;
+    border-radius: 50%;
+    animation: alertPulse 2s infinite;
 }
 
 .danger-description {
+    color: #C2410C; /* Muted burnt-orange for reading contrast */
+    font-size: 0.95rem;
+    line-height: 1.5;
     margin: 0;
-    line-height: 1.6;
-    color: #7C2D12;
-    font-family: "Inter", sans-serif;
+    font-weight: 500;
+}
+
+/* Keyframe for the live alert dot */
+@keyframes alertPulse {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 8px #EF4444; }
+    100% { transform: scale(0.9); opacity: 0.6; }
 }
 
 .tips-weather {
@@ -797,7 +958,9 @@ main {
 }
 
 .tips-list li:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px); /* Gently lifts the card upward */
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08); /* Softens and drops the shadow further down */
+    background: #E0F2FE; /* Shifts to a light blue tint to mimic selection */
 }
 
 .tip-title {
@@ -810,8 +973,8 @@ main {
 }
 
 .tip-icon {
-    width: 55px;
-    height: 55px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
 }
 
@@ -962,10 +1125,11 @@ main {
 
 .climate-toggle {
     display: flex;
+    gap: 12px;
     justify-content: center;
     width: max-content;
     margin-inline: auto;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
     padding: 8px;
     border-radius: 999px;
     background: #ffffff;

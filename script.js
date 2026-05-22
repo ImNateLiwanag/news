@@ -1194,6 +1194,8 @@ async function fetchClimateNews(city = 'Philippines') {
             'impeachment',
             'stock',
             'games',
+            'meralco',
+            'games',
             
         ];
 
