@@ -71,15 +71,19 @@ async function loadShelterData(){
 
 function detectRegion(city){
 
-    city = city
-        .toLowerCase()
-        .trim();
+    const cleanCity = city.toLowerCase();
 
     const luzonKeywords = [
 
         'manila',
         'quezon city',
         'makati',
+        'marinduque',
+        'gasan',
+        'boac',
+        'mogpog',
+        'torrijos',
+        'buenavista',
         'pasig',
         'taguig',
         'marikina',
@@ -152,16 +156,14 @@ function detectRegion(city){
         );
     }
 
-    if(matchesRegion(luzonKeywords))
+ if (cleanCity.includes('sulu') || cleanCity.includes('jolo') || cleanCity.includes('tawi') || cleanCity.includes('zamboanga')) {
+        return 'mindanao'; 
+    }
+    
+    if (cleanCity.includes('manila') || cleanCity.includes('marinduque')) {
         return 'luzon';
-
-    if(matchesRegion(visayasKeywords))
-        return 'visayas';
-
-    if(matchesRegion(mindanaoKeywords))
-        return 'mindanao';
-
-    return 'luzon';
+    }
+    return 'luzon'; 
 }
 
 let map = null;
@@ -225,7 +227,6 @@ function refreshMap(){
 }
 
 async function updateShelterMap(city) {
-
     if (!mapInitialized) {
         initializeMap();
     }
@@ -234,17 +235,38 @@ async function updateShelterMap(city) {
 
     clearShelterMarkers();
 
+    let searchCity = city;
+    const cleanLower = city.toLowerCase().trim();
+    
+    const mapRegionalMap = {
+        'sulu': 'Jolo',
+        'marinduque': 'Boac',
+        'batanes': 'Basco',
+        'palawan': 'Puerto Princesa',
+        'tawi-tawi': 'Bongao',
+        'tawitawi': 'Bongao',
+        'romblon': 'Romblon',
+        'camiguin': 'Mambajao',
+        'dinagat': 'San Jose'
+    };
+
+    for (const [province, capital] of Object.entries(mapRegionalMap)) {
+        if (cleanLower.includes(province)) {
+            searchCity = capital;
+            break;
+        }
+    }
+
     let cityLat = 12.8797;
     let cityLng = 121.7740;
 
     try {
         const geoResponse = await fetch(
-            `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)},PH&limit=5&appid=${apiKey}`
+            `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(searchCity)},PH&limit=5&appid=${apiKey}`
         );
 
         const geoData = await geoResponse.json();
-
-        const searchClean = city.toLowerCase().replace(' city', '').replace('city of ', '').trim();
+        const searchClean = searchCity.toLowerCase().replace(/\b(city|province|municipality)\b/g, '').trim();
        
         const phLocation = geoData.find(location => {
             if (location.country !== 'PH') return false;
@@ -255,27 +277,18 @@ async function updateShelterMap(city) {
         if (phLocation) {
             cityLat = phLocation.lat;
             cityLng = phLocation.lon;
-        } else {
-            showErrorState();
-            return;
         }
 
     } catch (error) {
         console.log('Geocoding failed', error);
     }
 
-const region = detectRegion(city);
-
-if(region === 'luzon'){
-    let query = 'Luzon weather'; //  Fixed! Properly declared locally
-}
-console.log('Detected region:', region);
+    const region = detectRegion(city);
+    console.log('Detected region:', region);
 
     const normalizedCity = city
         .toLowerCase()
-        .replace(' city', '')
-        .replace('city of ', '')
-        .replace(' municipality', '')
+        .replace(/\b(city|city of|municipality of|municipality)\b/g, '')
         .trim();
 
     if (!shelterData[region]) {
@@ -284,38 +297,36 @@ console.log('Detected region:', region);
     }
 
     const cityShelters = shelterData[region].filter(shelter => {
+        if (shelter.lat == null || shelter.lng == null) {
+            return false;
+        }
 
-    if (shelter.lat == null || shelter.lng == null) {
-        return false;
-    }
+        const shelterCity = shelter.city
+            .toLowerCase()
+            .replace(/\b(city|city of|municipality of|municipality)\b/g, '')
+            .trim();
 
-    const shelterCity = shelter.city
-        .toLowerCase()
-        .replace(' city', '')
-        .replace('city of ', '')
-        .trim();
+        const isCityMatch =
+            shelterCity === normalizedCity ||
+            shelterCity.includes(normalizedCity) ||
+            normalizedCity.includes(shelterCity);
 
-    const isCityMatch =
-        shelterCity === normalizedCity ||
-        shelterCity.includes(normalizedCity) ||
-        normalizedCity.includes(shelterCity);
+        const sLat = parseFloat(shelter.lat);
+        const sLng = parseFloat(shelter.lng);
 
-    const sLat = parseFloat(shelter.lat);
-    const sLng = parseFloat(shelter.lng);
+        if (isNaN(sLat) || isNaN(sLng)) {
+            return false;
+        }
 
-    if (isNaN(sLat) || isNaN(sLng)) {
-        return false;
-    }
+        const distance = Math.sqrt(
+            Math.pow(sLat - cityLat, 2) +
+            Math.pow(sLng - cityLng, 2)
+        );
 
-    const distance = Math.sqrt(
-        Math.pow(sLat - cityLat, 2) +
-        Math.pow(sLng - cityLng, 2)
-    );
+        const isNearby = distance < 2.5;
 
-    const isNearby = distance < 1.5;
-
-    return isCityMatch || isNearby;
-});
+        return isCityMatch || isNearby;
+    });
 
     let nearestShelter = null;
     let nearestDistance = Infinity;
@@ -378,7 +389,7 @@ console.log('Detected region:', region);
         map.invalidateSize(true);
         map.setView(
             [cityLat, cityLng],
-            13, 
+            10, 
             {
                 animate: true,
                 duration: 1.5
@@ -474,139 +485,177 @@ function getTodayLabel(id) {
 }
 
 async function updateWeatherInfo(city) {
-
     try {
+        let weatherData = await getFetchData('weather', city);
 
-        const weatherData =
-            await getFetchData('weather', city);
+        if (Number(weatherData.cod) === 404 || !weatherData.sys || weatherData.sys.country !== 'PH') {
+            const cleanLower = city.toLowerCase().trim();
+            let fallbackCity = null;
 
+            const regionalMap = {
+                'sulu': 'Jolo',
+                'marinduque': 'Boac',
+                'batanes': 'Basco',
+                'palawan': 'Puerto Princesa',
+                'tawi-tawi': 'Bongao',
+                'tawitawi': 'Bongao',
+                'romblon': 'Romblon',
+                'camiguin': 'Mambajao',
+                'dinagat': 'San Jose',
+                'guimaras': 'Jordan',
+                'catanduanes': 'Virac',
+                'siquijor': 'Siquijor',
+                'masbate': 'Masbate City',
+                'bulacan': 'Malolos',
+                'pampanga': 'San Fernando',
+                'cavite': 'Trece Martires',
+                'laguna': 'Santa Cruz',
+                'batangas': 'Batangas City',
+                'rizal': 'Antipolo',
+                'quezon province': 'Lucena',
+                'ilocos norte': 'Laoag',
+                'ilocos sur': 'Vigan',
+                'pangasinan': 'Lingayen',
+                'isabela': 'Ilagan',
+                'cagayan': 'Tuguegarao',
+                'bataan': 'Balanga',
+                'zambales': 'Iba',
+                'tarlac': 'Tarlac City',
+                'nueva ecija': 'Palayan',
+                'aurora': 'Baler',
+                'camarines norte': 'Daet',
+                'camarines sur': 'Pili',
+                'albay': 'Legazpi',
+                'sorsogon': 'Sorsogon City',
+                'abra': 'Bangued',
+                'apayao': 'Kabugao',
+                'benguet': 'La Trinidad',
+                'ifugao': 'Lagawe',
+                'kalinga': 'Tabuk',
+                'mountain province': 'Bontoc',
+                'aklan': 'Kalibo',
+                'antique': 'San Jose de Buenavista',
+                'capiz': 'Roxas City',
+                'iloilo': 'Iloilo City',
+                'negros occidental': 'Bacolod',
+                'bohol': 'Tagbilaran',
+                'cebu': 'Cebu City',
+                'negros oriental': 'Dumaguete',
+                'biliran': 'Naval',
+                'eastern samar': 'Borongan',
+                'leyte': 'Tacloban',
+                'northern samar': 'Catarman',
+                'samar': 'Catbalogan',
+                'southern leyte': 'Maasin',
+                'zamboanga del norte': 'Dipolog',
+                'zamboanga del sur': 'Pagadian',
+                'zamboanga sibugay': 'Ipil',
+                'bukidnon': 'Malaybalay',
+                'lanao del norte': 'Tubod',
+                'misamis occidental': 'Oroquieta',
+                'misamis oriental': 'Cagayan de Oro',
+                'compostela valley': 'Nabunturan',
+                'davao de oro': 'Nabunturan',
+                'davao del norte': 'Tagum',
+                'davao del sur': 'Davao City',
+                'davao occidental': 'Malita',
+                'davao oriental': 'Mati',
+                'cotabato': 'Kidapawan',
+                'south cotabato': 'Koronadal',
+                'sultan kudarat': 'Isulan',
+                'sarangani': 'Alabel',
+                'agusan del norte': 'Cabadbaran',
+                'agusan del sur': 'Prosperidad',
+                'surigao del norte': 'Surigao City',
+                'surigao del sur': 'Tandag',
+                'basilan': 'Isabela City',
+                'lanao del sur': 'Marawi',
+                'maguindanao': 'Buluan'
+            };
 
-        if (
-            Number(weatherData.cod) !== 200 ||
-            !weatherData.sys ||
-            weatherData.sys.country !== 'PH'
-        ) {
+            for (const [province, capital] of Object.entries(regionalMap)) {
+                if (cleanLower.includes(province)) {
+                    fallbackCity = capital;
+                    break;
+                }
+            }
 
-            showErrorState();
-            return;
+            if (fallbackCity) {
+                console.warn(`"${city}" handled as a region. Loading weather context from capital: ${fallbackCity}`);
+                weatherData = await getFetchData('weather', fallbackCity);
+                weatherData.name = city.split(',')[0].trim().replace(/\b\w/g, c => c.toUpperCase());
+            } else {
+                showErrorState();
+                return;
+            }
         }
 
         const {
             name,
-
-            main: {
-                temp,
-                humidity
-            },
-
-            weather: [{
-                id,
-                main
-            }],
-
-            wind: {
-                speed
-            }
-
+            main: { temp, humidity },
+            weather: [{ id, main }],
+            wind: { speed }
         } = weatherData;
 
         cityTxt.textContent = name;
-
-        tempTxt.textContent =
-            `${Math.round(temp)} °C`;
-
+        tempTxt.textContent = `${Math.round(temp)} °C`;
         conditionTxt.textContent = main;
 
-            updateWeatherQuote(main);
+        updateWeatherQuote(main);
 
-        humidityTxt.textContent =
-            `${humidity}%`;
+        humidityTxt.textContent = `${humidity}%`;
+        windTxt.textContent = `${speed} M/s`;
 
-        windTxt.textContent =
-            `${speed} M/s`;
+        weatherDay.textContent = new Date().toLocaleDateString('en-GB', {
+            weekday: 'short',
+            day: '2-digit',
+            month: 'short'
+        });
 
-        weatherDay.textContent =
-            new Date().toLocaleDateString(
-                'en-GB',
-                {
-                    weekday: 'short',
-                    day: '2-digit',
-                    month: 'short'
-                }
-            );
+        const icon = getWeatherIcon(id);
+        weatherImg.src = `assets/weather/${icon}`;
+        lottieWeather.src = `assets/weather/${icon}`;
+        todayTxt.textContent = getTodayLabel(id);
 
-        const icon =
-            getWeatherIcon(id);
-
-        weatherImg.src =
-            `assets/weather/${icon}`;
-
-        lottieWeather.src =
-            `assets/weather/${icon}`;
-
-        todayTxt.textContent =
-            getTodayLabel(id);
-
-        updateTipsSection(
-            id,
-            temp,
-            name,
-            main
-        );
+        updateTipsSection(id, temp, name, main);
 
         try {
-
             fetchClimateNews(city);
-
         } catch (err) {
-
-            console.log(err);
+            console.log("News fetch mismatch omitted gracefully:", err);
         }
 
         try {
-
             await updateForecastsInfo(city);
-
         } catch (err) {
-
-            console.log(err);
+            console.log("Forecast trace bypassed:", err);
         }
 
         hideAllSections();
 
-        weatherInput.style.display =
-            'flex';
+        weatherInput.style.display = 'flex';
+        weatherText.style.display = 'flex';
+        sideBar.style.display = 'flex';
 
-        weatherText.style.display =
-            'flex';
+        tipsSection.classList.add('show');
+        weatherWelcome.style.display = 'none';
 
-        sideBar.style.display =
-            'flex';
-
-        tipsSection.classList.add(
-            'show'
-        );
-        
-        weatherWelcome.style.display = 'none'; 
-
+        try {
+            await updateShelterMap(city);
+        } catch (mapErr) {
+            console.error("Map pinning layout error:", mapErr);
+        }
 
         setTimeout(() => {
-
             if (map) {
-
                 map.invalidateSize(true);
             }
-
         }, 300);
 
-        newsSection.classList.add(
-            'show'
-        );
+        newsSection.classList.add('show');
 
     } catch (error) {
-
-        console.log(error);
-
+        console.error(error);
         showErrorState();
     }
 }
