@@ -8,41 +8,41 @@
       "lng": 120.9798
     },
     {
-  "name": "Quezon City Memorial Circle Shelter",
-  "city": "Quezon City",
-  "lat": 14.6507,
-  "lng": 121.0494
-},
-{
-  "name": "Makati Coliseum Evacuation Center",
-  "city": "Makati",
-  "lat": 14.5547,
-  "lng": 121.0244
-},
-{
-  "name": "Taguig Lakeshore Hall Shelter",
-  "city": "Taguig",
-  "lat": 14.5176,
-  "lng": 121.0509
-},
-{
+      "name": "Quezon City Memorial Circle Shelter",
+      "city": "Quezon City",
+      "lat": 14.6507,
+      "lng": 121.0494
+    },
+    {
+      "name": "Makati Coliseum Evacuation Center",
+      "city": "Makati",
+      "lat": 14.5547,
+      "lng": 121.0244
+    },
+    {
+      "name": "Taguig Lakeshore Hall Shelter",
+      "city": "Taguig",
+      "lat": 14.5176,
+      "lng": 121.0509
+    },
+    {
       "name": "Taguig Integrated Shelter",
       "city": "Taguig",
       "lat": 14.5178,
       "lng": 121.0501
     },
-{
-  "name": "Pasay City Sports Complex",
-  "city": "Pasay",
-  "lat": 14.5378,
-  "lng": 120.9989
-},
-{
-  "name": "Mandaluyong Mega Hall Shelter",
-  "city": "Mandaluyong",
-  "lat": 14.5794,
-  "lng": 121.0359
-},
+    {
+      "name": "Pasay City Sports Complex",
+      "city": "Pasay",
+      "lat": 14.5378,
+      "lng": 120.9989
+    },
+    {
+      "name": "Mandaluyong Mega Hall Shelter",
+      "city": "Mandaluyong",
+      "lat": 14.5794,
+      "lng": 121.0359
+    },
     {
       "name": "Marikina Sports Center",
       "city": "Marikina",
@@ -50,7 +50,7 @@
       "lat": 14.6500,
       "lng": 121.1020
     },
-     {
+    {
       "name": "Marikina River Park Evacuation Center",
       "city": "Marikina",
       "lat": 14.6406,
@@ -194,7 +194,31 @@
       "lat": 14.3835,
       "lng": 121.0453
     },
-     {
+    {
+      "name": "Boac Municipal Gym Shelter",
+      "city": "Boac, Marinduque",
+      "lat": 13.4467,
+      "lng": 121.8408
+    },
+    {
+      "name": "Gasan Evacuation Center",
+      "city": "Gasan, Marinduque",
+      "lat": 13.3247,
+      "lng": 121.8463
+    },
+    {
+      "name": "Santa Cruz Central Evacuation Hub",
+      "city": "Santa Cruz, Marinduque",
+      "lat": 13.4839,
+      "lng": 122.0284
+    },
+    {
+      "name": "Mogpog Covered Court",
+      "city": "Mogpog, Marinduque",
+      "lat": 13.4812,
+      "lng": 121.8601
+    },
+    {
       "name": "Las Piñas Evacuation Gym",
       "city": "Las Piñas",
       "lat": 14.4445,
@@ -206,29 +230,143 @@
       "lat": 14.4793,
       "lng": 121.0198
     },
-     {
+    {
       "name": "Valenzuela Civic Center",
       "city": "Valenzuela",
       "lat": 14.7006,
       "lng": 120.9830
     },
-     {
+    {
       "name": "Navotas Covered Court Shelter",
       "city": "Navotas",
       "lat": 14.6691,
       "lng": 120.9428
     },
-     {
+    {
       "name": "Malabon City Evacuation Hall",
       "city": "Malabon",
       "lat": 14.6627,
       "lng": 120.9567
     },
-        {
+    {
       "name": "Caloocan North Gym Shelter",
       "city": "Caloocan",
       "lat": 14.7565,
       "lng": 121.0453
+    },
+    {
+      "name": "Batanes Provincial Gym",
+      "city": "Basco, Batanes",
+      "lat": 20.4484,
+      "lng": 121.9705
+    },
+    {
+      "name": "Romblon Public Evacuation Center",
+      "city": "Romblon, Romblon",
+      "lat": 12.5742,
+      "lng": 122.2694
+    },
+    {
+      "name": "Abra Provincial Gymnasium",
+      "city": "Bangued, Abra",
+      "lat": 17.5956,
+      "lng": 120.6198
+    },
+    {
+      "name": "Ilocos Norte Youth Center",
+      "city": "Laoag, Ilocos Norte",
+      "lat": 18.1960,
+      "lng": 120.5927
+    },
+    {
+      "name": "Vigan Culture Trade Center",
+      "city": "Vigan, Ilocos Sur",
+      "lat": 17.5747,
+      "lng": 120.3869
+    },
+    {
+      "name": "Pangasinan Disaster Post",
+      "city": "Lingayen, Pangasinan",
+      "lat": 16.0204,
+      "lng": 120.2319
+    },
+    {
+      "name": "Isabela Provincial Shelter",
+      "city": "Ilagan, Isabela",
+      "lat": 17.1352,
+      "lng": 121.8887
+    },
+    {
+      "name": "Bataan Civic Center",
+      "city": "Balanga, Bataan",
+      "lat": 14.6781,
+      "lng": 120.5404
+    },
+    {
+      "name": "Zambales Sports Complex Gym",
+      "city": "Iba, Zambales",
+      "lat": 15.3242,
+      "lng": 119.9814
+    },
+    {
+      "name": "Tarlac City Gymnasium",
+      "city": "Tarlac City, Tarlac",
+      "lat": 15.4889,
+      "lng": 120.5901
+    },
+    {
+      "name": "Nueva Ecija Convention Facility",
+      "city": "Palayan, Nueva Ecija",
+      "lat": 15.4619,
+      "lng": 121.0822
+    },
+    {
+      "name": "Aurora Evacuation Hub",
+      "city": "Baler, Aurora",
+      "lat": 15.7592,
+      "lng": 121.5622
+    },
+    {
+      "name": "Cavite Provincial Gymnasium",
+      "city": "Trece Martires, Cavite",
+      "lat": 14.2811,
+      "lng": 120.8672
+    },
+    {
+      "name": "Laguna Cultural Center",
+      "city": "Santa Cruz, Laguna",
+      "lat": 14.2818,
+      "lng": 121.4158
+    },
+    {
+      "name": "Rizal Provincial Hall",
+      "city": "Antipolo, Rizal",
+      "lat": 14.5842,
+      "lng": 121.1763
+    },
+    {
+      "name": "Daet Municipal Sports Center",
+      "city": "Daet, Camarines Norte",
+      "lat": 14.1122,
+      "lng": 122.9553
+    },
+    {
+      "name": "Pili Central Gymnasium",
+      "city": "Pili, Camarines Sur",
+      "lat": 13.5936,
+      "lng": 123.2458
+    },
+    {
+      "name": "Sorsogon Provincial Stadium",
+      "city": "Sorsogon City, Sorsogon",
+      "lat": 12.9692,
+      "lng": 124.0058
+    },
+    {
+      "name": "Catanduanes Civic Center",
+      "city": "Virac, Catanduanes",
+      "lat": 13.5828,
+      "lng": 124.2319
     }
   ],
 
@@ -303,7 +441,7 @@
       "lat": 11.7061,
       "lng": 122.3648
     },
-     {
+    {
       "name": "Borongan City Shelter",
       "city": "Borongan",
       "lat": 11.6081,
@@ -362,11 +500,47 @@
       "city": "Bais",
       "lat": 9.5915,
       "lng": 123.1220
+    },
+    {
+      "name": "San Jose de Buenavista Gym",
+      "city": "Antique",
+      "lat": 10.7441,
+      "lng": 121.9332
+    },
+    {
+      "name": "Roxas City Civic Center",
+      "city": "Capiz",
+      "lat": 11.5853,
+      "lng": 122.7554
+    },
+    {
+      "name": "Jordan Provincial Evacuation Hub",
+      "city": "Guimaras",
+      "lat": 10.5972,
+      "lng": 122.5881
+    },
+    {
+      "name": "Siquijor Municipal Pavilion",
+      "city": "Siquijor",
+      "lat": 9.2136,
+      "lng": 123.5156
+    },
+    {
+      "name": "Naval Base Emergency Center",
+      "city": "Biliran",
+      "lat": 11.5714,
+      "lng": 124.4397
+    },
+    {
+      "name": "Catarman Covered Court Complex",
+      "city": "Northern Samar",
+      "lat": 12.4994,
+      "lng": 124.6394
     }
   ],
 
   "mindanao": [
-     {
+    {
       "name": "Malaybalay Rescue Center",
       "city": "Malaybalay",
       "lat": 8.1575,
@@ -495,6 +669,90 @@
       "image": "assets/shelters/kidapawan-gym.jpg",
       "lat": 7.0083,
       "lng": 125.0894
+    },
+    {
+      "name": "Jolo Municipal Gymnasium Center",
+      "city": "Jolo, Sulu",
+      "lat": 6.0522,
+      "lng": 121.0012
+    },
+    {
+      "name": "Sulu Provincial Capitol Relief Hub",
+      "city": "Patikul, Sulu",
+      "lat": 6.0494,
+      "lng": 121.0185
+    },
+    {
+      "name": "Bongao Civic Multi-Purpose Center",
+      "city": "Bongao, Tawi-Tawi",
+      "lat": 5.0292,
+      "lng": 119.7714
+    },
+    {
+      "name": "Mambajao Sports Complex",
+      "city": "Camiguin",
+      "lat": 9.2514,
+      "lng": 124.7158
+    },
+    {
+      "name": "San Jose Civic Center",
+      "city": "Dinagat Islands",
+      "lat": 9.9283,
+      "lng": 125.5744
+    },
+    {
+      "name": "Isabela City Gymnasium",
+      "city": "Basilan",
+      "lat": 6.7042,
+      "lng": 121.9719
+    },
+    {
+      "name": "Marawi City Hall Shelter Complex",
+      "city": "Lanao del Sur",
+      "lat": 8.0047,
+      "lng": 124.2853
+    },
+    {
+      "name": "Buluan Municipal Gymnasium Area",
+      "city": "Maguindanao",
+      "lat": 6.7194,
+      "lng": 124.7933
+    },
+    {
+      "name": "Ipil Sports Center Arena",
+      "city": "Zamboanga Sibugay",
+      "lat": 7.7812,
+      "lng": 122.5853
+    },
+    {
+      "name": "Prosperidad Covered Court Terminal",
+      "city": "Agusan del Sur",
+      "lat": 8.6083,
+      "lng": 125.9228
+    },
+    {
+      "name": "Tandag City Disaster Gymnasium",
+      "city": "Surigao del Sur",
+      "lat": 9.0747,
+      "lng": 126.1983
+    },
+    {
+      "name": "Alabel Sports Pavilion Hub",
+      "city": "Sarangani",
+      "lat": 6.1031,
+      "lng": 125.2847
+    },
+    {
+      "name": "Isulan Disaster Response Shelter",
+      "city": "Sultan Kudarat",
+      "lat": 6.6342,
+      "lng": 124.6053
+    },
+    {
+      "name": "Malita Municipal Multi-Purpose Center",
+      "city": "Davao Occidental",
+      "lat": 5.5156,
+      "lng": 125.6094
     }
   ]
 }
