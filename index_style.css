@@ -33,12 +33,10 @@ body {
     padding: 10px;
 }
 
-/* Base Typographic Utility Accent colors */
 .brand-blue {
     color: #2563EB;
 }
 
-/* Background Shift Animations */
 @keyframes bgMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -182,7 +180,6 @@ main {
     justify-content: center;
     padding: 40px;
     box-sizing: border-box;
-    /* Updated gradient: Center is crisp white (#ffffff), edges fade to off-white (#FAF9F6) */
     background: radial-gradient(circle at center, #ffffff 0%, #FAF9F6 100%);
     margin-bottom: 50px;
     overflow: hidden;
@@ -193,7 +190,7 @@ main {
     inset: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Allows users to click through them to type in the input box */
+    pointer-events: none; 
     z-index: 0;
 }
 
@@ -223,12 +220,10 @@ main {
 
 .decor-cloud {
     position: absolute;
-    /* Soft gradient from a crisp white top to a gentle sky-blue bottom */
     background: linear-gradient(to bottom, #ffffff 0%, #E0F2FE 100%);
     width: 180px;
     height: 60px;
     border-radius: 50px;
-    /* Changed shadow from dark gray to a soft, translucent blue-gray for depth */
     box-shadow: 0 15px 35px rgba(12, 74, 110, 0.12);
     opacity: 0.95;
 }
@@ -237,7 +232,7 @@ main {
 .decor-cloud::after {
     content: '';
     position: absolute;
-    background: inherit; /* Inherits the same white-to-blue gradient seamlessly */
+    background: inherit;
     border-radius: 50%;
 }
 
@@ -817,23 +812,22 @@ main {
     justify-content: center;
     width: 110px;
     height: 110px;
-    /* Soft sky-tinted background to match your new cloud aesthetic */
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border-radius: 24px; /* Matches the rounded vibe of your dashboard items */
+    border-radius: 24px; 
     box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.6), 
                 0 8px 20px rgba(12, 74, 110, 0.06);
-    flex-shrink: 0; /* Prevents the circle from squishing on small windows */
+    flex-shrink: 0; 
 }
 
 .tips-top {
     display: flex;
-    align-items: center; /* Aligns items perfectly straight in the center */
-    gap: 20px;           /* Gives comfortable, fixed breathing room between circle and text */
-    justify-content: flex-start; /* Groups them nicely to the left instead of stretching them */
+    align-items: center; 
+    gap: 20px;           
+    justify-content: flex-start; 
 }
 
 .about-weather-icon {
-    width: 75px;  /* Scaled slightly down to create comfortable inner padding */
+    width: 75px;  
     height: 75px;
     object-fit: contain;
     filter: drop-shadow(0 8px 16px rgba(15, 23, 42, 0.08));
@@ -855,18 +849,14 @@ main {
 
 .tips-alert {
     position: relative;
-    /* Rich, warm gradient background that is soft but noticeable */
     background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
     border-radius: 20px;
-    padding: 20px 24px 20px 28px; /* Extra padding on the left to clear the bar */
-    
-    /* Adds a modern, soft ambient orange glow around the entire card */
+    padding: 20px 24px 20px 28px; 
     box-shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.12), 
                 0 8px 16px -6px rgba(249, 115, 22, 0.08);
                 
-    /* Clean overflow management for the pseudo-element bar */
     overflow: hidden; 
-    border: 1px solid rgba(253, 186, 116, 0.3); /* Ultra-subtle border line */
+    border: 1px solid rgba(253, 186, 116, 0.3); 
 }
 
 .tips-alert::before {
@@ -874,14 +864,13 @@ main {
     position: absolute;
     top: 0;
     left: 0;
-    width: 6px; /* Clean, intentional thickness */
+    width: 6px; 
     height: 100%;
-    /* Gradient moving from an urgent crimson/red-orange down to bright sun-orange */
     background: linear-gradient(to bottom, #EF4444, #F97316); 
 }
 
 .danger-title {
-    color: #9A3412; /* Deep, highly legible crimson-orange */
+    color: #9A3412; 
     font-size: 1.15rem;
     font-weight: 700;
     margin: 0 0 6px 0;
@@ -901,14 +890,13 @@ main {
 }
 
 .danger-description {
-    color: #C2410C; /* Muted burnt-orange for reading contrast */
+    color: #C2410C; 
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
     font-weight: 500;
 }
 
-/* Keyframe for the live alert dot */
 @keyframes alertPulse {
     0% { transform: scale(0.9); opacity: 0.6; }
     50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 8px #EF4444; }
@@ -958,9 +946,9 @@ main {
 }
 
 .tips-list li:hover {
-    transform: translateY(-6px); /* Gently lifts the card upward */
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08); /* Softens and drops the shadow further down */
-    background: #E0F2FE; /* Shifts to a light blue tint to mimic selection */
+    transform: translateY(-6px); 
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08); 
+    background: #E0F2FE; 
 }
 
 .tip-title {
