@@ -34,6 +34,12 @@ const dangerDescription = document.querySelector('.danger-description');
 
 const tipsMainTitle = document.querySelector('.tips-main-title');
 const tipsList = document.querySelector('.tips-list');
+const mapMenuBtn = document.getElementById("mapMenuBtn");
+const shelterMenu = document.getElementById("shelterMenu");
+
+mapMenuBtn.addEventListener("click", () => {
+    shelterMenu.classList.toggle("show");
+});
 
 let currentActiveTab = 'current';
 
@@ -82,103 +88,304 @@ async function loadShelterData(){
     }
 }
 
+function buildShelterMenu() {
+
+    const luzonList =
+    document.getElementById('luzon-list');
+
+    const visayasList =
+    document.getElementById('visayas-list');
+
+    const mindanaoList =
+    document.getElementById('mindanao-list');
+
+    if (!luzonList || !visayasList || !mindanaoList)
+        return;
+
+    luzonList.innerHTML = '';
+    visayasList.innerHTML = '';
+    mindanaoList.innerHTML = '';
+
+    const regions = {
+        luzon: luzonList,
+        visayas: visayasList,
+        mindanao: mindanaoList
+    };
+
+    Object.keys(regions).forEach(region => {
+
+        if (!shelterData[region]) return;
+
+        // GET UNIQUE CITIES
+        const cities = [
+            ...new Set(
+                shelterData[region]
+                .map(shelter => shelter.city)
+                .filter(Boolean)
+            )
+        ];
+
+        // SORT ALPHABETICALLY
+        cities.sort((a, b) =>
+            a.localeCompare(b)
+        );
+
+        cities.forEach(city => {
+
+            const cityBtn =
+            document.createElement('div');
+
+            cityBtn.className =
+            'shelter-city';
+
+            cityBtn.textContent =
+            city;
+
+            cityBtn.addEventListener('click', () => {
+                const normalizedCity = normalizeLocationName(city);
+
+                countryInput.value = normalizedCity;
+            cityInput.value = normalizedCity;
+
+    
+
+    const cityFallbacks = {
+    'masbate city': 'Masbate',
+    'masbate': 'Masbate',
+    'sorsogon': 'Sorsogon',
+    'cebu': 'Cebu',
+    'iloilo': 'Iloilo',
+    'davao': 'Davao',
+    'cotabato': 'Cotabato',
+    'isabela': 'Isabela City'
+};
+
+        const normalized =
+        city.toLowerCase().trim();
+
+        const finalCity =
+        cityFallbacks[normalized] || city;
+
+        countryInput.value = finalCity;
+
+        updateWeatherInfo(finalCity);
+    }
+);
+
+            regions[region]
+            .appendChild(cityBtn);
+        });
+    });
+
+    // ACCORDION TOGGLES
+    document
+    .querySelectorAll('.region-toggle')
+    .forEach(button => {
+
+        button.addEventListener(
+            'click',
+            () => {
+
+                const list =
+                button.nextElementSibling;
+
+                list.classList.toggle(
+                    'active'
+                );
+            }
+        );
+    });
+}
+
+
 function detectRegion(city) {
     const cleanCity = city.toLowerCase().trim();
 
-    // 1. Explicit priority overrides for Visayas (Check these first to protect Negros/Panay)
+    // 1. Hard Boundaries & Priority Exclusions (Stops Cross-island Jumping)
     if (
-        cleanCity.includes('aklan') ||
-        cleanCity.includes('panay') ||
-        cleanCity.includes('capiz') ||
-        cleanCity.includes('antique') ||
-        cleanCity.includes('iloilo') ||
-        cleanCity.includes('bacolod') ||
-        cleanCity.includes('negros')
+        cleanCity.includes('basilan') || 
+        cleanCity.includes('isabela city') || 
+        cleanCity.includes('cagayan de oro') || 
+        cleanCity.includes('cayan de oro') ||
+        cleanCity.includes('cdo') || 
+        cleanCity.includes('davao') || 
+        cleanCity.includes('cotabato') || 
+        cleanCity.includes('zamboanga') || 
+        cleanCity.includes('butuan') || 
+        cleanCity.includes('gensan') || 
+        cleanCity.includes('general santos') || 
+        cleanCity.includes('iligan')
+    ) {
+        return 'mindanao';
+    }
+
+    if (
+        cleanCity.includes('cebu') || 
+        cleanCity.includes('negros') || 
+        cleanCity.includes('antique') || 
+        cleanCity.includes('roxas city') || 
+        cleanCity.includes('capiz') || 
+        cleanCity.includes('iloilo') || 
+        cleanCity.includes('bacolod') || 
+        cleanCity.includes('samar') || 
+        cleanCity.includes('leyte') || 
+        cleanCity.includes('tacloban') || 
+        cleanCity.includes('bohol') || 
+        cleanCity.includes('siquijor') || 
+        cleanCity.includes('guimaras')
     ) {
         return 'visayas';
     }
 
-    // 2. Explicit priority overrides for Luzon (Moved up to protect Isabela Province)
     if (
-        cleanCity.includes('ilocos norte') || 
-        cleanCity.includes('laoag') || 
-        cleanCity.includes('bataan') || 
-        cleanCity.includes('balanga') || 
-        cleanCity.includes('nueva ecija') || 
-        cleanCity.includes('palayan') || 
-        cleanCity.includes('kalinga') || 
-        cleanCity.includes('tabuk') || 
-        cleanCity.includes('tuguegarao') || 
         cleanCity.includes('manila') || 
-        cleanCity.includes('marinduque') ||
-        cleanCity.includes('boac') ||
-        cleanCity.includes('gasan') ||
-        cleanCity.includes('santa cruz') ||
-        cleanCity.includes('mogpog') ||
-        cleanCity.includes('puerto princesa') ||
-        cleanCity.includes('palawan') ||
-        cleanCity.includes('masbate') ||
-        cleanCity.includes('catanduanes') ||
-        cleanCity.includes('virac') ||
-        cleanCity.includes('sorsogon') ||
-        (cleanCity.includes('isabela') && !cleanCity.includes('basilan')) // Protects Luzon's Isabela Province
+        cleanCity.includes('quezon') || 
+        cleanCity.includes('pangasinan') || 
+        cleanCity.includes('nueva ecija') || 
+        cleanCity.includes('batangas') || 
+        cleanCity.includes('pampanga') || 
+        cleanCity.includes('bulacan') || 
+        cleanCity.includes('cavite') || 
+        cleanCity.includes('laguna') || 
+        cleanCity.includes('naga city') || 
+        cleanCity.includes('masbate') || 
+        cleanCity.includes('sorsogon') || 
+        cleanCity.includes('tuguegarao') || 
+        cleanCity.includes('ilagan') || 
+        cleanCity.includes('batanes')
     ) {
         return 'luzon';
     }
 
-    // 3. Explicit priority overrides for Mindanao
-    if (
-        cleanCity.includes('sulu') || 
-        cleanCity.includes('jolo') || 
-        cleanCity.includes('patikul') ||
-        cleanCity.includes('tawi') || 
-        cleanCity.includes('bongao') || 
-        cleanCity.includes('zamboanga') ||
-        cleanCity.includes('basilan') ||
-        (cleanCity.includes('isabela') && cleanCity.includes('basilan')) || // Only maps to Mindanao if explicitly "Isabela, Basilan"
-        cleanCity.includes('dipolog') ||
-        cleanCity.includes('camiguin') ||
-        cleanCity.includes('mambajao') ||
-        cleanCity.includes('dinagat')
-    ) {
-        return 'mindanao'; 
-    }
+    // 2. Structural Keyword Fallbacks
+    const luzonKeywords = ['luzon', 'ilocos', 'cagayan', 'isabela', 'tarlac', 'zambales', 'bataan', 'rizal', 'aurora', 'quirino', 'benguet', 'baguio', 'albay', 'camarines', 'catanduanes', 'marinduque', 'romblon', 'mindoro'];
+    const visayasKeywords = ['visayas', 'aklan', 'boracay', 'ormoc', 'biliran', 'catbalogan'];
+    const mindanaoKeywords = ['mindanao', 'misamis', 'bukidnon', 'lanao', 'sultan kudarat', 'sarangani', 'agusan', 'surigao', 'dinagat', 'sulu', 'tawi', 'marawi',];
 
-    // 4. Broad keyword arrays for fallback matching
-    const luzonKeywords = [
-        'manila', 'quezon city', 'makati', 'pasay', 'taguig', 'caloocan', 'pasig', 'marikina', 'valenzuela',
-        'batanes', 'basco', 'ilocos', 'laoag', 'vigan', 'pangasinan', 'lingayen', 'zambales', 'iba', 
-        'bataan', 'balanga', 'cagayan', 'tuguegarao', 'isabela', 'ilagan', 'camarines', 'daet', 'pili', 
-        'masbate', 'palawan', 'puerto princesa', 'marinduque', 'boac', 'romblon', 'aurora', 'baler',
-        'pampanga', 'san fernando', 'bulacan', 'malolos', 'laguna', 'calamba', 'rizal', 'antipolo', 'quezon'
-    ];
+    if (luzonKeywords.some(kw => cleanCity.includes(kw))) return 'luzon';
+    if (visayasKeywords.some(kw => cleanCity.includes(kw))) return 'visayas';
+    if (mindanaoKeywords.some(kw => cleanCity.includes(kw))) return 'mindanao';
 
-    const visayasKeywords = [
-        'bacolod', 'iloilo', 'cebu', 'mandaue', 'lapu-lapu', 'tacloban', 'ormoc', 
-        'aklan', 'kalibo', 'panay', 'capiz', 'roxas', 'antique', 'san jose', 'guimaras', 'jordan', 
-        'negros', 'occidental', 'oriental', 'dumaguete', 'siquijor', 'bohol', 'tagbilaran', 
-        'biliran', 'naval', 'leyte', 'samar', 'catbalogan', 'borongan', 'catarman'
-    ];
-
-    const mindanaoKeywords = [
-        'davao', 'cagayan de oro', 'cdo', 'zamboanga', 'general santos', 'gensan', 'iligan', 'marawi', 'butuan',
-        'del norte', 'del sur', 'sibugay', 'oroquieta', 'misamis', 'camiguin', 'mambajao', 'bukidnon', 
-        'malaybalay', 'lanao', 'cotabato', 'kidapawan', 'koronadal', 'sarangani', 'alabel', 'sultan kudarat', 
-        'isulan', 'agusan', 'prosperidad', 'dinagat', 'surigao', 'basilan', 'sulu', 'jolo', 'tawi-tawi', 
-        'bongao', 'maguindanao'
-    ];
-
-    if (luzonKeywords.some(keyword => cleanCity.includes(keyword))) return 'luzon';
-    if (visayasKeywords.some(keyword => cleanCity.includes(keyword))) return 'visayas';
-    if (mindanaoKeywords.some(keyword => cleanCity.includes(keyword))) return 'mindanao';
-
-    // Safe global fallback instead of defaulting strictly to luzon
     return null; 
 }
 
 let map = null;
 let shelterMarkers = [];
 let mapInitialized = false;
+
+function normalizeLocationName(input) {
+    if (!input) return "";
+    let clean = input.toLowerCase().trim()
+        .replace(/\s+/g, ' ') // Collapse extra whitespace
+        .replace(/,/g, '');   // Drop commas for clean checking
+
+    // Direct Exact-Match Mapping Enforcements
+    if (clean === 'roxas' || clean === 'roxas city' || clean === 'roxas capiz') {
+        return 'Roxas City';
+    }
+    if (clean === 'masbate' || clean === 'masbate city') {
+        return 'Masbate';
+    }
+    if (clean === 'isabela city' || clean.includes('isabela city basilan')) {
+        return 'Isabela City'; // OpenWeather API matches 'Isabela City' directly
+    }
+    if (clean.includes('cayan de oro') || clean.includes('cagayan de oro') || clean === 'cdo') {
+        return 'Cagayan de Oro';
+    }
+
+    // Advanced Multi-Region Disambiguation
+    // 1. Naga Collision
+    if (clean.includes('naga')) {
+        if (clean.includes('visayas') || clean.includes('cebu')) {
+            return 'Naga, Cebu';
+        }
+        return 'Naga City'; // Defaults to Camarines Sur (Luzon)
+    }
+
+    // 2. San Carlos Collision
+    if (clean.includes('san carlos')) {
+        if (clean.includes('visayas') || clean.includes('negros') || clean.includes('occidental')) {
+            return 'San Carlos City'; 
+        }
+        return 'San Carlos'; // Defaults to Pangasinan (Luzon)
+    }
+
+    // 3. San Jose Multi-Island Collision
+    if (clean.includes('san jose')) {
+
+    // NUEVA ECIJA
+    if (
+        clean.includes('nueva ecija') ||
+        clean.includes('luzon')
+    ) {
+        return 'San Jose City';
+    }
+
+    // OCCIDENTAL MINDORO
+    if (
+        clean.includes('mindoro')
+    ) {
+        return 'San Jose';
+    }
+
+    // ANTIQUE
+    if (
+        clean.includes('antique') ||
+        clean.includes('visayas')
+    ) {
+        return 'San Jose de Buenavista';
+    }
+
+    // DINAGAT
+    if (
+        clean.includes('dinagat') ||
+        clean.includes('mindanao')
+    ) {
+        return 'San Jose';
+    }
+
+    // DEFAULT
+    return 'San Jose City';
+}
+
+    // 4. Santo Tomas / Sto. Tomas Collision
+    if (
+    clean.includes('santo tomas') ||
+    clean.includes('sto tomas') ||
+    clean.includes('sto. tomas')
+) {
+
+    // BATANGAS
+    if (
+        clean.includes('batangas') ||
+        clean.includes('luzon')
+    ) {
+        return 'Santo Tomas Batangas';
+    }
+
+    // DAVAO
+    if (
+        clean.includes('davao') ||
+        clean.includes('mindanao')
+    ) {
+        return 'Santo Tomas Davao';
+    }
+
+    // SAMAR
+    if (
+        clean.includes('samar') ||
+        clean.includes('visayas')
+    ) {
+        return 'Santo Tomas Samar';
+    }
+
+    // DEFAULT TO BATANGAS
+    return 'Santo Tomas Batangas';
+}
+
+    // Fallback title casing for unmapped parameters
+    return input.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+}
 
 function initializeMap(){
 
@@ -189,17 +396,28 @@ function initializeMap(){
 
     if(!mapContainer) return;
 
-    map = L.map('map', {
+map = L.map('map', {
 
-        preferCanvas:true,
-        zoomControl:true
+    preferCanvas: true,
+    zoomControl: true,
+    scrollWheelZoom: false,
 
-    }).setView(
-        [12.8797, 121.7740],
-        5
-    );
+    maxBounds: [
+        [4.5, 116.0],
+        [21.5, 127.5]
+    ],
 
-    L.tileLayer(
+    maxBoundsViscosity: 1.0,
+
+    minZoom: 5,
+    maxZoom: 16
+
+}).setView(
+    [12.8797, 121.7740],
+    6
+);
+
+ L.tileLayer(
         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         {
             attribution:
@@ -207,10 +425,232 @@ function initializeMap(){
         }
     ).addTo(map);
 
+map.fitBounds([
+    [4.5, 116.0],
+    [21.5, 127.5]
+]);
+
     mapInitialized = true;
 
     console.log('Map initialized');
 }
+
+ const VALID_PH_LOCATIONS = [
+    // NCR
+    'manila',
+    'quezon city',
+    'makati',
+    'pasig',
+    'taguig',
+    'pasay',
+    'mandaluyong',
+    'marikina',
+    'parañaque',
+    'las piñas',
+    'muntinlupa',
+    'caloocan',
+    'malabon',
+    'navotas',
+    'valenzuela',
+    'san juan',
+
+    // Luzon Provinces
+    'abra',
+    'apayao',
+    'aurora',
+    'bataan',
+    'batangas',
+    'benguet',
+    'bulacan',
+    'cagayan',
+    'camarines norte',
+    'camarines sur',
+    'catanduanes',
+    'cavite',
+    'ifugao',
+    'ilocos norte',
+    'ilocos sur',
+    'isabela',
+    'kalinga',
+    'laguna',
+    'la union',
+    'marinduque',
+    'masbate',
+    'mountain province',
+    'nueva ecija',
+    'nueva vizcaya',
+    'occidental mindoro',
+    'oriental mindoro',
+    'palawan',
+    'pangasinan',
+    'quezon province',
+    'quirino',
+    'rizal',
+    'romblon',
+    'sorsogon',
+    'tarlac',
+    'zambales',
+    'metro manila', // Idinagdag para sa province checks ng Manila/QC/Makati
+
+    // Luzon Cities / Municipalities
+    'alaminos',
+    'angeles',
+    'antipolo',
+    'balanga',
+    'baguio',
+    'basco',
+    'batangas city',
+    'biñan',
+    'boac',
+    'bontoc',
+    'cabanatuan',
+    'cabuyao',
+    'calamba',
+    'calapan',
+    'cauayan',
+    'daet',
+    'dagupan',
+    'dasmariñas',
+    'gapan',
+    'general trias',
+    'ilagan',
+    'imus',
+    'iriga',
+    'laoag',
+    'legazpi',
+    'ligao',          // DAGDAG: Mula sa shelters.json (Ligao City, Albay)
+    'lipa',
+    'lucena',
+    'mabalacat',      // DAGDAG: Para sa dynamic dropdown keywords mo
+    'malolos',
+    'masbate city',   // DAGDAG: Mula sa shelters.json (Masbate City, Masbate)
+    'meycauayan',
+    'muñoz',          // DAGDAG: Science City of Muñoz sa keywords mo
+    'naga',
+    'olongapo',
+    'palayan',
+    'puerto princesa',
+    'rosales',
+    'san fernando',
+    'san jose (nueva ecija)', // DAGDAG: Katugma ng eksaktong spelling sa JSON mo
+    'san jose del monte',     // DAGDAG: Para sa Bulacan shelters mo
+    'san pablo',
+    'san pedro',
+    'santa cruz',
+    'santa rosa',
+    'santo tomas',    // DAGDAG: Batangas keyword compatibility
+    'santiago',
+    'sorsogon city',
+    'tabaco',
+    'tabuk',
+    'tagaytay',
+    'tanauan',
+    'tayabas',
+    'trece martires',
+    'tuguegarao',
+    'vigan',
+
+    // Visayas Provinces
+    'aklan',
+    'antique',
+    'biliran',
+    'bohol',
+    'capiz',
+    'cebu',
+    'eastern samar',
+    'guimaras',
+    'iloilo',
+    'leyte',
+    'negros occidental',
+    'negros oriental',
+    'northern samar',
+    'samar',
+    'siquijor',
+    'southern leyte',
+
+    // Visayas Cities / Municipalities
+    'bacolod',
+    'borongan',
+    'catarman',
+    'catbalogan',
+    'cebu city',
+    'calbayog',
+    'dumaguete',
+    'iloilo city',
+    'jordan',
+    'kalibo',
+    'lapu-lapu',
+    'mandaue',
+    'naval',
+    'ormoc',
+    'roxas city',
+    'san jose de buenavista',
+    'siquijor',
+    'tagbilaran',
+    'tacloban',
+
+    // Mindanao Provinces
+    'agusan del norte',
+    'agusan del sur',
+    'basilan',
+    'bukidnon',
+    'camiguin',
+    'cotabato',
+    'davao de oro',
+    'davao del norte',
+    'davao del sur',
+    'davao occidental',
+    'davao oriental',
+    'dinagat islands',
+    'lanao del norte',
+    'lanao del sur',
+    'maguindanao',
+    'misamis occidental',
+    'misamis oriental',
+    'sarangani',
+    'south cotabato',
+    'sultan kudarat',
+    'surigao del norte',
+    'surigao del sur',
+    'tawi-tawi',
+    'zamboanga del norte',
+    'zamboanga del sur',
+    'zamboanga sibugay',
+
+    // Mindanao Cities / Municipalities
+    'alabel',
+    'bislig',         // DAGDAG: Mula sa shelters.json (Bislig, Surigao del Sur)
+    'bongao',         // DAGDAG: Mula sa shelters.json (Bongao, Tawi-Tawi)
+    'butuan',
+    'cabadbaran',
+    'cagayan de oro',
+    'cotabato city',
+    'davao',
+    'davao city',
+    'dipolog',
+    'general santos',
+    'gensan',
+    'iligan',
+    'ipil',
+    'isabela city',
+    'isulan',
+    'jolo',
+    'kidapawan',
+    'koronadal',
+    'malaybalay',
+    'malita',
+    'marawi',
+    'mati',
+    'nabunturan',
+    'oroquieta',
+    'pagadian',
+    'prosperidad',
+    'surigao city',
+    'tagum',
+    'tandag',
+    'tubod',
+    'zamboanga city'
+];
 
 function clearShelterMarkers(){
 
@@ -267,15 +707,17 @@ async function updateShelterMap(city) {
         'isabela': 'Ilagan',
         'camarines norte': 'Daet',
         'camarines sur': 'Pili',
-        'masbate': 'Masbate City',
+        'masbate city': 'Masbate',
         'aklan': 'Kalibo',
         'panay': 'Iloilo City'
     };
 
-    for (const [province, capital] of Object.entries(mapRegionalMap)) {
-        if (cleanLower.includes(province)) {
-            searchCity = capital;
-            break;
+    if (!cleanLower.includes('cagayan de oro') && !cleanLower.includes('cdo') && !cleanLower.includes('isabela city')) {
+        for (const [province, capital] of Object.entries(mapRegionalMap)) {
+            if (cleanLower.includes(province)) {
+                searchCity = capital;
+                break;
+            }
         }
     }
 
@@ -321,8 +763,47 @@ async function updateShelterMap(city) {
     }
     // --------------------------------------------
 
-const region = detectRegion(city);
-    console.log('Detected region:', region);
+    const exactOverrides = {
+
+    // LUZON
+    'san jose del monte': 'luzon',
+    'sto. tomas': 'luzon',
+    'santo tomas': 'luzon',
+    'sto tomas batangas': 'luzon',
+    'santo tomas batangas': 'luzon',
+    'naga city': 'luzon',
+    'naga': 'luzon',
+    'san carlos pangasinan': 'luzon',
+    'naga camarines sur': 'luzon',
+    'san jose nueva ecija': 'luzon',
+
+    // VISAYAS
+    'san jose de buenavista': 'visayas',
+    'sto tomas samar': 'visayas',
+    'santo tomas samar': 'visayas',
+    'roxas city': 'visayas',
+    'borongan': 'visayas',
+    'san carlos city negros occidental': 'visayas',
+    'naga cebu': 'visayas',
+    'calbayog': 'visayas',
+
+    // MINDANAO
+    'cagayan de oro (cdo)': 'mindanao',
+    'cagayan de oro': 'mindanao',
+    'isabela city': 'mindanao',
+    'san jose dinagat': 'mindanao',
+    'dinagat islands': 'mindanao',
+    'sto tomas davao': 'mindanao',
+    'santo tomas davao': 'mindanao',
+};
+
+const forcedRegion = exactOverrides[cleanLower];
+
+const region =
+    forcedRegion ||
+    detectRegion(city);
+
+console.log('Detected region:', region);
 
     const normalizedCity = city
         .toLowerCase()
@@ -331,40 +812,80 @@ const region = detectRegion(city);
 
     let cityShelters = [];
 
-    // --- STRATEGY CHANGE HERE ---
-    // If we confidently matched a region, only search that specific array
     if (region && shelterData[region]) {
-        console.log(`Region confirmed. Filtering inside: ${region}`);
-        
-        cityShelters = shelterData[region].filter(shelter => {
-            if (shelter.lat == null || shelter.lng == null) return false;
 
-            const shelterCity = shelter.city
+    console.log(`Region confirmed. Filtering inside: ${region}`);
+
+    cityShelters = shelterData[region].filter(shelter => {
+
+        if (shelter.lat == null || shelter.lng == null)
+            return false;
+
+        const normalize = value =>
+            value
                 .toLowerCase()
-                .replace(/\b(city|city of|municipality of|municipality)\b/g, '')
+                .replace(/\./g, '')
+                .replace(/\b(city|city of|municipality|municipality of|province)\b/g, '')
+                .replace(/\s+/g, ' ')
                 .trim();
 
-            const isCityMatch =
-                shelterCity === normalizedCity ||
-                shelterCity.includes(normalizedCity) ||
-                normalizedCity.includes(shelterCity);
+        const shelterCity =
+            normalize(shelter.city || '');
 
-            const shelterProvince = shelter.province?.toLowerCase() || '';
-            const isProvinceMatch = shelterProvince.includes(normalizedCity);
+        const shelterProvince =
+            normalize(shelter.province || '');
 
-            const sLat = parseFloat(shelter.lat);
-            const sLng = parseFloat(shelter.lng);
-            if (isNaN(sLat) || isNaN(sLng)) return false;
+        const normalizedSearch =
+            normalize(city);
 
-            // Distance math
-            const distance = Math.sqrt(
-                Math.pow(sLat - cityLat, 2) +
-                Math.pow(sLng - cityLng, 2)
-            );
-            const isNearby = distance < 0.3;
+        // STRICT CITY MATCH
+        const isExactCity =
+            shelterCity === normalizedSearch;
 
-            return isCityMatch || isProvinceMatch || isNearby;
-        });
+        // PARTIAL CITY MATCH
+        const isPartialCity =
+            shelterCity.includes(normalizedSearch) ||
+            normalizedSearch.includes(shelterCity);
+
+        // PROVINCE MATCH
+        const isProvinceMatch =
+            shelterProvince.includes(normalizedSearch);
+
+        // DISTANCE CHECK
+        const sLat = parseFloat(shelter.lat);
+        const sLng = parseFloat(shelter.lng);
+
+        if (isNaN(sLat) || isNaN(sLng))
+            return false;
+
+        const distance = Math.sqrt(
+            Math.pow(sLat - cityLat, 2) +
+            Math.pow(sLng - cityLng, 2)
+        );
+
+        /*
+        IMPORTANT:
+        Lowered radius dramatically to prevent
+        Samar/Luzon crossover bugs.
+        */
+
+        const isNearby = distance < 0.08;
+
+        /*
+        PRIORITY ORDER:
+        1. Exact city
+        2. Partial city
+        3. Province
+        4. Nearby fallback
+        */
+
+        return (
+            isExactCity ||
+            isPartialCity ||
+            isProvinceMatch ||
+            isNearby
+        );
+    });
 
     } else {
         // FALLBACK: Search nationwide across all arrays if region is null or unrecognized
@@ -430,44 +951,81 @@ const region = detectRegion(city);
         }
     });
 
-    cityShelters.forEach(shelter => {
-        const coords = [
-            parseFloat(shelter.lat),
-            parseFloat(shelter.lng)
-        ];
+const sortedShelters = cityShelters
+    .map(shelter => {
 
-        const marker = L.marker(coords).addTo(map);
+        const sLat = parseFloat(shelter.lat);
+        const sLng = parseFloat(shelter.lng);
 
-        if (shelter === nearestShelter) {
-            marker.setIcon(
-                L.icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                })
-            );
-        }
-        
-        marker.bindPopup(`
-            <div class="map-popup">
-                <h3 class="highlight-location">${shelter.city || city}</h3>
-                <p>${shelter.name || 'Evacuation Center'}</p>
-            </div>
-        `);
-   
-        marker.on('click', () => {
-            map.setView(coords, 16, {
-                animate: true,
-                duration: 1.5
-            });
-            marker.openPopup();
-        });
+        const distance = Math.sqrt(
+            Math.pow(sLat - cityLat, 2) +
+            Math.pow(sLng - cityLng, 2)
+        );
 
-        shelterMarkers.push(marker);
-    });
+        return {
+            ...shelter,
+            distance
+        };
+    })
+
+    .sort((a, b) => a.distance - b.distance)
+
+    // ONLY SHOW 5 NEAREST
+    .slice(0, 5);
+
+
+// CREATE MARKERS
+sortedShelters.forEach((shelter, index) => {
+
+    const coords = [
+        parseFloat(shelter.lat),
+        parseFloat(shelter.lng)
+    ];
+
+    const isNearest = index === 0;
+
+    const marker = L.marker(coords, {
+
+        icon: L.icon({
+
+            iconUrl: isNearest
+
+                ? 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png'
+
+                : 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+
+            shadowUrl:
+                'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        })
+    }).addTo(map);
+
+    marker.bindPopup(`
+        <div class="map-popup">
+
+            <h3 class="highlight-location">
+                ${shelter.city || city}
+            </h3>
+
+            <p>
+                ${shelter.name || 'Evacuation Center'}
+            </p>
+
+            ${
+                isNearest
+                ? '<span class="nearest-badge">Nearest Shelter</span>'
+                : ''
+            }
+
+        </div>
+    `);
+
+    shelterMarkers.push(marker);
+});
 
     setTimeout(() => {
         map.invalidateSize(true);
@@ -488,7 +1046,25 @@ function handleSearch(){
     countryInput.value.trim() ||
     cityInput.value.trim();
 
-    if(!location) return;
+    if (!location) return;
+
+const cleanLocation =
+location.toLowerCase().trim();
+
+const isValid =
+VALID_PH_LOCATIONS.some(place =>
+    cleanLocation === place ||
+    cleanLocation.includes(place)
+);
+
+if (!isValid) {
+
+    alert(
+        'Please enter a supported Philippine city or province.'
+    );
+
+    return;
+}
 
     updateWeatherInfo(location);
 
@@ -1086,8 +1662,6 @@ function updateTipsSection(id, temp, city, condition) {
         </li>
 
     `).join('');
-
-    updateShelterMap(city);
 }
 
 async function updateForecastsInfo(city) {
@@ -1913,6 +2487,8 @@ document.addEventListener(
         'flex';
 
         await loadShelterData();
+
+        buildShelterMenu();
 
         initializeMap();
     }
