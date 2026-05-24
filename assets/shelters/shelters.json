@@ -9,39 +9,108 @@
       "lng": 120.9798
     },
     {
+      "name": "Manila Youth Reception Center Gymnasium",
+      "city": "Manila",
+      "province": "Metro Manila",
+      "image": "assets/shelters/manila-youth-gym.jpg",
+      "lat": 14.5894,
+      "lng": 120.9815
+    },
+    {
       "name": "Quezon City Memorial Circle Shelter",
       "city": "Quezon City",
       "province": "Metro Manila",
+      "image": "assets/shelters/qc-circle-shelter.jpg",
       "lat": 14.6507,
       "lng": 121.0494
+    },
+    {
+      "name": "Amoranto Sports Complex Evacuation Center",
+      "city": "Quezon City",
+      "province": "Metro Manila",
+      "image": "assets/shelters/amoranto-complex.jpg",
+      "lat": 14.6294,
+      "lng": 121.0211
+    },
+    {
+      "name": "Caloocan Sports Complex Hub",
+      "city": "Caloocan",
+      "province": "Metro Manila",
+      "image": "assets/shelters/caloocan-sports-complex.jpg",
+      "lat": 14.7561,
+      "lng": 121.0444
+    },
+    {
+      "name": "Caloocan High School Evacuation Center",
+      "city": "Caloocan",
+      "province": "Metro Manila",
+      "image": "assets/shelters/caloocan-high-school.jpg",
+      "lat": 14.6567,
+      "lng": 120.9764
+    },
+    {
+      "name": "Las Piñas City Civic Center",
+      "city": "Las Piñas",
+      "province": "Metro Manila",
+      "image": "assets/shelters/las-pinas-civic.jpg",
+      "lat": 14.4461,
+      "lng": 120.9819
+    },
+    {
+      "name": "Verdant Covered Court Evacuation Station",
+      "city": "Las Piñas",
+      "province": "Metro Manila",
+      "image": "assets/shelters/verdant-court.jpg",
+      "lat": 14.4522,
+      "lng": 120.9947
     },
     {
       "name": "Makati Coliseum Evacuation Center",
       "city": "Makati",
       "province": "Metro Manila",
+      "image": "assets/shelters/makati-coliseum.jpg",
       "lat": 14.5547,
       "lng": 121.0244
     },
     {
-      "name": "Taguig Lakeshore Hall Shelter",
-      "city": "Taguig",
+      "name": "University of Makati Stadium Hub",
+      "city": "Makati",
       "province": "Metro Manila",
-      "lat": 14.5176,
-      "lng": 121.0509
+      "image": "assets/shelters/umak-stadium.jpg",
+      "lat": 14.5614,
+      "lng": 121.0556
     },
     {
-      "name": "Pasay City Sports Complex",
-      "city": "Pasay",
+      "name": "Malabon Sports Complex",
+      "city": "Malabon",
       "province": "Metro Manila",
-      "lat": 14.5378,
-      "lng": 120.9989
+      "image": "assets/shelters/malabon-sports.jpg",
+      "lat": 14.6617,
+      "lng": 120.9572
+    },
+    {
+      "name": "Oreta Sports Center Evacuation Ground",
+      "city": "Malabon",
+      "province": "Metro Manila",
+      "image": "assets/shelters/oreta-sports.jpg",
+      "lat": 14.6625,
+      "lng": 120.9564
     },
     {
       "name": "Mandaluyong Mega Hall Shelter",
       "city": "Mandaluyong",
       "province": "Metro Manila",
+      "image": "assets/shelters/mandaluyong-mega-hall.jpg",
       "lat": 14.5794,
       "lng": 121.0359
+    },
+    {
+      "name": "Addition Hills Integrated School Shelter",
+      "city": "Mandaluyong",
+      "province": "Metro Manila",
+      "image": "assets/shelters/addition-hills-school.jpg",
+      "lat": 14.5886,
+      "lng": 121.0412
     },
     {
       "name": "Marikina Sports Center",
@@ -52,6 +121,78 @@
       "lng": 121.1020
     },
     {
+      "name": "Bulelak Covered Court Disaster Center",
+      "city": "Marikina",
+      "province": "Metro Manila",
+      "image": "assets/shelters/bulelak-court.jpg",
+      "lat": 14.6394,
+      "lng": 121.1022
+    },
+    {
+      "name": "Muntinlupa Sports Complex",
+      "city": "Muntinlupa",
+      "province": "Metro Manila",
+      "image": "assets/shelters/muntinlupa-sports.jpg",
+      "lat": 14.3853,
+      "lng": 121.0436
+    },
+    {
+      "name": "Cupang Covered Court Evacuation Center",
+      "city": "Muntinlupa",
+      "province": "Metro Manila",
+      "image": "assets/shelters/cupang-court.jpg",
+      "lat": 14.4267,
+      "lng": 121.0461
+    },
+    {
+      "name": "Navotas Sports Complex",
+      "city": "Navotas",
+      "province": "Metro Manila",
+      "image": "assets/shelters/navotas-sports.jpg",
+      "lat": 14.6692,
+      "lng": 120.9431
+    },
+    {
+      "name": "San Jose Academy Disaster Hub",
+      "city": "Navotas",
+      "province": "Metro Manila",
+      "image": "assets/shelters/san-jose-academy.jpg",
+      "lat": 14.6622,
+      "lng": 120.9456
+    },
+    {
+      "name": "Parañaque Sports Complex",
+      "city": "Parañaque",
+      "province": "Metro Manila",
+      "image": "assets/shelters/paranaque-sports.jpg",
+      "lat": 14.4989,
+      "lng": 121.0022
+    },
+    {
+      "name": "Don Bosco Barangay Covered Court",
+      "city": "Parañaque",
+      "province": "Metro Manila",
+      "image": "assets/shelters/don-bosco-court.jpg",
+      "lat": 14.4856,
+      "lng": 121.0278
+    },
+    {
+      "name": "Pasay City Sports Complex",
+      "city": "Pasay",
+      "province": "Metro Manila",
+      "image": "assets/shelters/pasay-sports.jpg",
+      "lat": 14.5378,
+      "lng": 120.9989
+    },
+    {
+      "name": "Cuneta Astrodome Evacuation Center",
+      "city": "Pasay",
+      "province": "Metro Manila",
+      "image": "assets/shelters/cuneta-astrodome.jpg",
+      "lat": 14.5422,
+      "lng": 120.9914
+    },
+    {
       "name": "Pasig Mega Market Evacuation Area",
       "city": "Pasig",
       "province": "Metro Manila",
@@ -60,44 +201,156 @@
       "lng": 121.0851
     },
     {
-      "name": "Cainta Elementary School Evacuation Center",
-      "city": "Cainta",
-      "province": "Rizal",
-      "image": "assets/shelters/cainta-school.jpg",
-      "lat": 14.5786,
-      "lng": 121.1222
+      "name": "Rizal High School Gymnasium",
+      "city": "Pasig",
+      "province": "Metro Manila",
+      "image": "assets/shelters/rizal-high-gym.jpg",
+      "lat": 14.5594,
+      "lng": 121.0742
     },
     {
-      "name": "Antipolo Sports Complex",
-      "city": "Antipolo",
-      "province": "Rizal",
-      "image": "assets/shelters/antipolo-sports.jpg",
-      "lat": 14.5842,
-      "lng": 121.1763
+      "name": "San Juan Gymnasium",
+      "city": "San Juan",
+      "province": "Metro Manila",
+      "image": "assets/shelters/san-juan-gym.jpg",
+      "lat": 14.6042,
+      "lng": 121.0311
     },
     {
-      "name": "Bulacan Capitol Gymnasium",
-      "city": "Malolos",
-      "province": "Bulacan",
-      "image": "assets/shelters/bulacan-gym.jpg",
-      "lat": 14.8448,
-      "lng": 120.8113
+      "name": "Filoil EcoOil Centre Disaster Depot",
+      "city": "San Juan",
+      "province": "Metro Manila",
+      "image": "assets/shelters/filoil-centre.jpg",
+      "lat": 14.6067,
+      "lng": 121.0322
     },
     {
-      "name": "Meycauayan Convention Center",
-      "city": "Meycauayan",
-      "province": "Bulacan",
-      "image": "assets/shelters/meycauayan-center.jpg",
-      "lat": 14.7369,
-      "lng": 120.9605
+      "name": "Taguig Lakeshore Hall Shelter",
+      "city": "Taguig",
+      "province": "Metro Manila",
+      "image": "assets/shelters/taguig-lakeshore.jpg",
+      "lat": 14.5176,
+      "lng": 121.0509
     },
     {
-      "name": "Baguio Convention Center",
-      "city": "Baguio",
-      "province": "Benguet",
-      "image": "assets/shelters/baguio-convention.jpg",
-      "lat": 16.4123,
-      "lng": 120.5960
+      "name": "Taguig City University Gymnasium",
+      "city": "Taguig",
+      "province": "Metro Manila",
+      "image": "assets/shelters/tcu-gymnasium.jpg",
+      "lat": 14.5053,
+      "lng": 121.0544
+    },
+    {
+      "name": "Valenzuela Astrodome",
+      "city": "Valenzuela",
+      "province": "Metro Manila",
+      "image": "assets/shelters/valenzuela-astrodome.jpg",
+      "lat": 14.7011,
+      "lng": 120.9703
+    },
+    {
+      "name": "ALERT Center Disaster Response Hub",
+      "city": "Valenzuela",
+      "province": "Metro Manila",
+      "image": "assets/shelters/valenzuela-alert.jpg",
+      "lat": 14.6917,
+      "lng": 120.9631
+    },
+    {
+      "name": "Laoag Provincial Disaster Center",
+      "city": "Laoag",
+      "province": "Ilocos Norte",
+      "image": "assets/shelters/laoag-disaster-center.jpg",
+      "lat": 18.1953,
+      "lng": 120.5925
+    },
+    {
+      "name": "Ilocos Norte National High School Gym",
+      "city": "Laoag",
+      "province": "Ilocos Norte",
+      "image": "assets/shelters/innhs-gym.jpg",
+      "lat": 18.1981,
+      "lng": 120.5953
+    },
+    {
+      "name": "Imelda Cultural Center Evacuation Hub",
+      "city": "Batac",
+      "province": "Ilocos Norte",
+      "image": "assets/shelters/imelda-cultural.jpg",
+      "lat": 18.0556,
+      "lng": 120.5647
+    },
+    {
+      "name": "MMSU Covered Court Shelter Area",
+      "city": "Batac",
+      "province": "Ilocos Norte",
+      "image": "assets/shelters/mmsu-court.jpg",
+      "lat": 18.0614,
+      "lng": 120.5689
+    },
+    {
+      "name": "Vigan Convention Shelter",
+      "city": "Vigan",
+      "province": "Ilocos Sur",
+      "image": "assets/shelters/vigan-convention.jpg",
+      "lat": 17.5747,
+      "lng": 120.3869
+    },
+    {
+      "name": "Vigan Culture and Trade Center",
+      "city": "Vigan",
+      "province": "Ilocos Sur",
+      "image": "assets/shelters/vigan-culture-center.jpg",
+      "lat": 17.5739,
+      "lng": 120.3883
+    },
+    {
+      "name": "Candon City Civic Center",
+      "city": "Candon",
+      "province": "Ilocos Sur",
+      "image": "assets/shelters/candon-civic.jpg",
+      "lat": 17.1894,
+      "lng": 120.4464
+    },
+    {
+      "name": "Candon City Arena Emergency Center",
+      "city": "Candon",
+      "province": "Ilocos Sur",
+      "image": "assets/shelters/candon-arena.jpg",
+      "lat": 17.1950,
+      "lng": 120.4522
+    },
+    {
+      "name": "San Fernando City Plaza Gymnasium",
+      "city": "San Fernando",
+      "province": "La Union",
+      "image": "assets/shelters/la-union-civic-gym.jpg",
+      "lat": 16.6158,
+      "lng": 120.3164
+    },
+    {
+      "name": "DMMMSU Gymnasium Evacuation Station",
+      "city": "San Fernando",
+      "province": "La Union",
+      "image": "assets/shelters/dmmmsu-gym.jpg",
+      "lat": 16.6111,
+      "lng": 120.3206
+    },
+    {
+      "name": "Alaminos City Sports Complex",
+      "city": "Alaminos",
+      "province": "Pangasinan",
+      "image": "assets/shelters/alaminos-sports.jpg",
+      "lat": 16.1558,
+      "lng": 119.9811
+    },
+    {
+      "name": "Alaminos Central School Evacuation Center",
+      "city": "Alaminos",
+      "province": "Pangasinan",
+      "image": "assets/shelters/alaminos-central-school.jpg",
+      "lat": 16.1536,
+      "lng": 119.9842
     },
     {
       "name": "Dagupan City People's Astrodome",
@@ -108,6 +361,46 @@
       "lng": 120.3340
     },
     {
+      "name": "West Central Elementary School Disaster Hub",
+      "city": "Dagupan",
+      "province": "Pangasinan",
+      "image": "assets/shelters/west-central-dagupan.jpg",
+      "lat": 16.0417,
+      "lng": 120.3353
+    },
+    {
+      "name": "San Carlos City Gymnasium",
+      "city": "San Carlos",
+      "province": "Pangasinan",
+      "image": "assets/shelters/san-carlos-gym.jpg",
+      "lat": 15.9281,
+      "lng": 120.3489
+    },
+    {
+      "name": "Central I Elementary School Evacuation Complex",
+      "city": "San Carlos",
+      "province": "Pangasinan",
+      "image": "assets/shelters/san-carlos-central.jpg",
+      "lat": 15.9256,
+      "lng": 120.3514
+    },
+    {
+      "name": "Urdaneta City Cultural Sports Center",
+      "city": "Urdaneta",
+      "province": "Pangasinan",
+      "image": "assets/shelters/urdaneta-cultural.jpg",
+      "lat": 15.9761,
+      "lng": 120.5714
+    },
+    {
+      "name": "Badipa Barangay Hall and Covered Court",
+      "city": "Urdaneta",
+      "province": "Pangasinan",
+      "image": "assets/shelters/badipa-court.jpg",
+      "lat": 15.9814,
+      "lng": 120.5794
+    },
+    {
       "name": "Tuguegarao Sports Complex",
       "city": "Tuguegarao",
       "province": "Cagayan",
@@ -116,102 +409,236 @@
       "lng": 121.7228
     },
     {
-      "name": "Legazpi City Convention Center",
-      "city": "Legazpi",
-      "province": "Albay",
-      "image": "assets/shelters/legazpi-center.jpg",
-      "lat": 13.1391,
-      "lng": 123.7438
+      "name": "Tuguegarao City People's Gymnasium",
+      "city": "Tuguegarao",
+      "province": "Cagayan",
+      "image": "assets/shelters/tuguegarao-peoples-gym.jpg",
+      "lat": 17.6133,
+      "lng": 121.7275
     },
     {
-      "name": "Naga City Civic Center",
-      "city": "Naga",
-      "province": "Camarines Sur",
-      "image": "assets/shelters/naga-civic.jpg",
-      "lat": 13.6218,
-      "lng": 123.1948
+      "name": "Cauayan Rescue Gymnasium",
+      "city": "Cauayan",
+      "province": "Isabela",
+      "image": "assets/shelters/cauayan-gym.jpg",
+      "lat": 16.9299,
+      "lng": 121.7696
     },
     {
-      "name": "Daet Municipal Evacuation Center",
-      "city": "Daet",
-      "province": "Camarines Norte",
-      "lat": 14.1122,
-      "lng": 122.9553
+      "name": "Cauayan City Sports Complex Area",
+      "city": "Cauayan",
+      "province": "Isabela",
+      "image": "assets/shelters/cauayan-sports-complex.jpg",
+      "lat": 16.9367,
+      "lng": 121.7744
     },
     {
-      "name": "Pili Provincial Gymnasium",
-      "city": "Pili",
-      "province": "Camarines Sur",
-      "lat": 13.5848,
-      "lng": 123.2780
+      "name": "Ilagan Community Shelter",
+      "city": "Ilagan",
+      "province": "Isabela",
+      "image": "assets/shelters/ilagan-community.jpg",
+      "lat": 17.1485,
+      "lng": 121.8892
     },
     {
-      "name": "Batangas City Sports Coliseum",
-      "city": "Batangas City",
-      "province": "Batangas",
-      "image": "assets/shelters/batangas-coliseum.jpg",
-      "lat": 13.7565,
-      "lng": 121.0583
+      "name": "Isabela Sports Complex Evacuation Center",
+      "city": "Ilagan",
+      "province": "Isabela",
+      "image": "assets/shelters/isabela-sports-complex.jpg",
+      "lat": 17.1294,
+      "lng": 121.8911
     },
     {
-      "name": "Calaca Emergency Response Center",
-      "city": "Calaca",
-      "province": "Batangas",
-      "lat": 13.9321,
-      "lng": 120.8135
+      "name": "Santiago City Shelter Hub",
+      "city": "Santiago",
+      "province": "Isabela",
+      "image": "assets/shelters/santiago-hub.jpg",
+      "lat": 16.6885,
+      "lng": 121.5487
     },
     {
-      "name": "Lucena City Convention Center",
-      "city": "Lucena",
-      "province": "Quezon",
-      "image": "assets/shelters/lucena-center.jpg",
-      "lat": 13.9411,
-      "lng": 121.6236
+      "name": "San Andres Covered Court Disaster Hub",
+      "city": "Santiago",
+      "province": "Isabela",
+      "image": "assets/shelters/san-andres-court.jpg",
+      "lat": 16.6856,
+      "lng": 121.5422
     },
     {
-      "name": "Burdeos Civic Shelter",
-      "city": "Burdeos",
-      "province": "Quezon",
-      "lat": 14.8432,
-      "lng": 121.9695
+      "name": "Bataan People's Center Disaster Base",
+      "city": "Balanga",
+      "province": "Bataan",
+      "image": "assets/shelters/bataan-peoples-center.jpg",
+      "lat": 14.6789,
+      "lng": 120.5367
     },
     {
-      "name": "Olongapo City Convention Center",
-      "city": "Olongapo",
-      "province": "Zambales",
-      "image": "assets/shelters/olongapo-center.jpg",
-      "lat": 14.8386,
-      "lng": 120.2842
+      "name": "Balanga City Elementary School Gym",
+      "city": "Balanga",
+      "province": "Bataan",
+      "image": "assets/shelters/balanga-elementary-gym.jpg",
+      "lat": 14.6744,
+      "lng": 120.5411
     },
     {
-      "name": "Subic Gymnasium Evacuation Center",
-      "city": "Subic",
-      "province": "Zambales",
-      "image": "assets/shelters/subic-gym.jpg",
-      "lat": 14.8796,
-      "lng": 120.2670
+      "name": "Bulacan Capitol Gymnasium",
+      "city": "Malolos",
+      "province": "Bulacan",
+      "image": "assets/shelters/bulacan-gym.jpg",
+      "lat": 14.8448,
+      "lng": 120.8113
     },
     {
-      "name": "Calamba City Hall Evacuation Area",
-      "city": "Calamba",
-      "province": "Laguna",
-      "image": "assets/shelters/calamba-hall.jpg",
-      "lat": 14.2117,
-      "lng": 121.1653
+      "name": "Malolos Congress Hall Response Hub",
+      "city": "Malolos",
+      "province": "Bulacan",
+      "image": "assets/shelters/malolos-congress-hall.jpg",
+      "lat": 14.8436,
+      "lng": 120.8114
     },
     {
-      "name": "San Pablo Community Shelter",
-      "city": "San Pablo",
-      "province": "Laguna",
-      "lat": 14.0683,
-      "lng": 121.3256
+      "name": "Meycauayan Convention Center",
+      "city": "Meycauayan",
+      "province": "Bulacan",
+      "image": "assets/shelters/meycauayan-center.jpg",
+      "lat": 14.7369,
+      "lng": 120.9605
     },
     {
-      "name": "Santa Cruz Civic Gym",
-      "city": "Santa Cruz",
-      "province": "Laguna",
-      "lat": 14.2814,
-      "lng": 121.4161
+      "name": "Meycauayan West Central School Arena",
+      "city": "Meycauayan",
+      "province": "Bulacan",
+      "image": "assets/shelters/meycauayan-west-school.jpg",
+      "lat": 14.7356,
+      "lng": 120.9511
+    },
+    {
+      "name": "City of San Jose del Monte Convention Center",
+      "city": "San Jose del Monte",
+      "province": "Bulacan",
+      "image": "assets/shelters/csjdm-convention.jpg",
+      "lat": 14.8114,
+      "lng": 121.0442
+    },
+    {
+      "name": "Sapang Palay Sports Complex Shelter",
+      "city": "San Jose del Monte",
+      "province": "Bulacan",
+      "image": "assets/shelters/sapang-palay-complex.jpg",
+      "lat": 14.8344,
+      "lng": 121.0489
+    },
+    {
+      "name": "Cabanatuan City Hall Gym Stadium",
+      "city": "Cabanatuan",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/cabanatuan-city-hall-gym.jpg",
+      "lat": 15.4853,
+      "lng": 120.9778
+    },
+    {
+      "name": "Wesleyan University Philippines Gymnasium",
+      "city": "Cabanatuan",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/wesleyan-gym.jpg",
+      "lat": 15.4794,
+      "lng": 120.9614
+    },
+    {
+      "name": "Gapan City Gymnasium Complex",
+      "city": "Gapan",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/gapan-gym.jpg",
+      "lat": 15.3144,
+      "lng": 120.9472
+    },
+    {
+      "name": "San Roque Barangay Evacuation Center",
+      "city": "Gapan",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/gapan-san-roque.jpg",
+      "lat": 15.3194,
+      "lng": 120.9536
+    },
+    {
+      "name": "Nueva Ecija Provincial Convention Center",
+      "city": "Palayan",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/nueva-ecija-convention.jpg",
+      "lat": 15.4522,
+      "lng": 121.0867
+    },
+    {
+      "name": "Palayan City Evacuation Hub",
+      "city": "Palayan",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/palayan-evac-hub.jpg",
+      "lat": 15.4564,
+      "lng": 121.0911
+    },
+    {
+      "name": "Muñoz Central School Gymnasium",
+      "city": "Science City of Muñoz",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/munoz-central-gym.jpg",
+      "lat": 15.7117,
+      "lng": 120.9028
+    },
+    {
+      "name": "CLSU Multi-Purpose Gymnasium Station",
+      "city": "Science City of Muñoz",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/clsu-gym.jpg",
+      "lat": 15.7333,
+      "lng": 120.9272
+    },
+    {
+      "name": "San Jose City Pag-asa Gymnasium",
+      "city": "San Jose, Nueva Ecija",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/san-jose-pag-asa-gym.jpg",
+      "lat": 15.7894,
+      "lng": 120.9889
+    },
+    {
+      "name": "Technical High School Covered Court Shelter",
+      "city": "San Jose, Nueva Ecija",
+      "province": "Nueva Ecija",
+      "image": "assets/shelters/san-jose-tech-high.jpg",
+      "lat": 15.7922,
+      "lng": 120.9925
+    },
+    {
+      "name": "Angeles City Sports Complex Center",
+      "city": "Angeles",
+      "province": "Pampanga",
+      "image": "assets/shelters/angeles-sports-complex.jpg",
+      "lat": 15.1439,
+      "lng": 120.5794
+    },
+    {
+      "name": "Pampanga High School Sports Hall",
+      "city": "Angeles",
+      "province": "Pampanga",
+      "image": "assets/shelters/pampanga-high-sports.jpg",
+      "lat": 15.1311,
+      "lng": 120.5911
+    },
+    {
+      "name": "Mabalacat City Astro Park Evacuation Base",
+      "city": "Mabalacat",
+      "province": "Pampanga",
+      "image": "assets/shelters/mabalacat-astro-park.jpg",
+      "lat": 15.1789,
+      "lng": 120.5314
+    },
+    {
+      "name": "Dau Multi-Purpose Covered Court Terminal",
+      "city": "Mabalacat",
+      "province": "Pampanga",
+      "image": "assets/shelters/dau-court.jpg",
+      "lat": 15.1711,
+      "lng": 120.5289
     },
     {
       "name": "San Fernando Pampanga Evacuation Center",
@@ -222,60 +649,396 @@
       "lng": 120.6840
     },
     {
-      "name": "Tagaytay Emergency Hall",
-      "city": "Tagaytay",
-      "province": "Cavite",
-      "lat": 14.1175,
-      "lng": 120.9515
-    },
-    {
-      "name": "Trece Martires Rescue Center",
-      "city": "Trece Martires",
-      "province": "Cavite",
-      "lat": 14.2811,
-      "lng": 120.8685
+      "name": "Bren Z. Guiao Sports Complex Stadium",
+      "city": "San Fernando",
+      "province": "Pampanga",
+      "image": "assets/shelters/bren-z-guiao.jpg",
+      "lat": 15.0336,
+      "lng": 120.6867
     },
     {
       "name": "Tarlac City Sports Complex",
       "city": "Tarlac City",
       "province": "Tarlac",
+      "image": "assets/shelters/tarlac-sports-complex.jpg",
       "lat": 15.4802,
       "lng": 120.5979
     },
     {
-      "name": "Vigan Convention Shelter",
-      "city": "Vigan",
-      "province": "Ilocos Sur",
-      "lat": 17.5747,
-      "lng": 120.3869
+      "name": "Tarlac State University Multi-Gym",
+      "city": "Tarlac City",
+      "province": "Tarlac",
+      "image": "assets/shelters/tsu-gym.jpg",
+      "lat": 15.4811,
+      "lng": 120.5944
     },
     {
-      "name": "Laoag Provincial Disaster Center",
-      "city": "Laoag",
-      "province": "Ilocos Norte",
-      "lat": 18.1953,
-      "lng": 120.5925
+      "name": "Olongapo City Convention Center",
+      "city": "Olongapo",
+      "province": "Zambales",
+      "image": "assets/shelters/olongapo-center.jpg",
+      "lat": 14.8386,
+      "lng": 120.2842
     },
     {
-      "name": "Ilagan Community Shelter",
-      "city": "Ilagan",
-      "province": "Isabela",
-      "lat": 17.1485,
-      "lng": 121.8892
+      "name": "Gordon College Sports Complex Center",
+      "city": "Olongapo",
+      "province": "Zambales",
+      "image": "assets/shelters/gordon-college-gym.jpg",
+      "lat": 14.8294,
+      "lng": 120.2867
     },
     {
-      "name": "Cauayan Rescue Gymnasium",
-      "city": "Cauayan",
-      "province": "Isabela",
-      "lat": 16.9299,
-      "lng": 121.7696
+      "name": "Antipolo Sports Complex",
+      "city": "Antipolo",
+      "province": "Rizal",
+      "image": "assets/shelters/antipolo-sports.jpg",
+      "lat": 14.5842,
+      "lng": 121.1763
     },
     {
-      "name": "Santiago City Shelter Hub",
-      "city": "Santiago",
-      "province": "Isabela",
-      "lat": 16.6885,
-      "lng": 121.5487
+      "name": "Antipolo Ynares Center Stadium",
+      "city": "Antipolo",
+      "province": "Rizal",
+      "image": "assets/shelters/antipolo-ynares.jpg",
+      "lat": 14.5861,
+      "lng": 121.1758
+    },
+    {
+      "name": "Bacoor Strike Gymnasium Depot",
+      "city": "Bacoor",
+      "province": "Cavite",
+      "image": "assets/shelters/bacoor-strike-gym.jpg",
+      "lat": 14.4447,
+      "lng": 120.9419
+    },
+    {
+      "name": "Bacoor Government Center Evacuation Hall",
+      "city": "Bacoor",
+      "province": "Cavite",
+      "image": "assets/shelters/bacoor-gov-center.jpg",
+      "lat": 14.4411,
+      "lng": 120.9456
+    },
+    {
+      "name": "Cavite City Evacuation Center",
+      "city": "Cavite",
+      "province": "Cavite",
+      "image": "assets/shelters/cavite-city-evac.jpg",
+      "lat": 14.4791,
+      "lng": 120.8970
+    },
+    {
+      "name": "Montano Hall Sports Complex Station",
+      "city": "Cavite",
+      "province": "Cavite",
+      "image": "assets/shelters/montano-hall.jpg",
+      "lat": 14.4828,
+      "lng": 120.8967
+    },
+    {
+      "name": "Dasmariñas Bagani Sports Complex",
+      "city": "Dasmariñas",
+      "province": "Cavite",
+      "image": "assets/shelters/dasmarinas-bagani.jpg",
+      "lat": 14.3292,
+      "lng": 120.9367
+    },
+    {
+      "name": "NCST Gymnasium Disaster Center Hub",
+      "city": "Dasmariñas",
+      "province": "Cavite",
+      "image": "assets/shelters/ncst-gym.jpg",
+      "lat": 14.3244,
+      "lng": 120.9411
+    },
+    {
+      "name": "General Trias Sports Center Pavilion",
+      "city": "General Trias",
+      "province": "Cavite",
+      "image": "assets/shelters/gentrias-sports.jpg",
+      "lat": 14.3858,
+      "lng": 120.8789
+    },
+    {
+      "name": "Gov. Ferrer Memorial National High Gym",
+      "city": "General Trias",
+      "province": "Cavite",
+      "image": "assets/shelters/gov-ferrer-gym.jpg",
+      "lat": 14.3794,
+      "lng": 120.8836
+    },
+    {
+      "name": "Imus Sports Complex Station",
+      "city": "Imus",
+      "province": "Cavite",
+      "image": "assets/shelters/imus-sports.jpg",
+      "lat": 14.4239,
+      "lng": 120.9414
+    },
+    {
+      "name": "Gen. Licerio Topacio National High Gym",
+      "city": "Imus",
+      "province": "Cavite",
+      "image": "assets/shelters/topacio-high-gym.jpg",
+      "lat": 14.4189,
+      "lng": 120.9467
+    },
+    {
+      "name": "Tagaytay Emergency Hall",
+      "city": "Tagaytay",
+      "province": "Cavite",
+      "image": "assets/shelters/tagaytay-emergency-hall.jpg",
+      "lat": 14.1175,
+      "lng": 120.9515
+    },
+    {
+      "name": "Tagaytay Emergency Shelter Center",
+      "city": "Tagaytay",
+      "province": "Cavite",
+      "image": "assets/shelters/tagaytay-emergency-shelter.jpg",
+      "lat": 14.1153,
+      "lng": 120.9621
+    },
+    {
+      "name": "Trece Martires Rescue Center",
+      "city": "Trece Martires",
+      "province": "Cavite",
+      "image": "assets/shelters/trece-martires-rescue.jpg",
+      "lat": 14.2811,
+      "lng": 120.8685
+    },
+    {
+      "name": "Trece Martires City National High School Gym",
+      "city": "Trece Martires",
+      "province": "Cavite",
+      "image": "assets/shelters/tmc-high-gym.jpg",
+      "lat": 14.2856,
+      "lng": 120.8714
+    },
+    {
+      "name": "Alonte Sports Arena Evacuation Core",
+      "city": "Biñan",
+      "province": "Laguna",
+      "image": "assets/shelters/alonte-arena.jpg",
+      "lat": 14.3208,
+      "lng": 121.0856
+    },
+    {
+      "name": "Biñan Central School Evacuation Center",
+      "city": "Biñan",
+      "province": "Laguna",
+      "image": "assets/shelters/binan-central-school.jpg",
+      "lat": 14.3314,
+      "lng": 121.0811
+    },
+    {
+      "name": "Cabuyao Athlete's Basic School Gym",
+      "city": "Cabuyao",
+      "province": "Laguna",
+      "image": "assets/shelters/cabuyao-athletes-gym.jpg",
+      "lat": 14.2758,
+      "lng": 121.1244
+    },
+    {
+      "name": "Banay-Banay Barangay Covered Court Depot",
+      "city": "Cabuyao",
+      "province": "Laguna",
+      "image": "assets/shelters/banay-banay-court.jpg",
+      "lat": 14.2694,
+      "lng": 121.1311
+    },
+    {
+      "name": "Calamba City Hall Evacuation Area",
+      "city": "Calamba",
+      "province": "Laguna",
+      "image": "assets/shelters/calamba-hall.jpg",
+      "lat": 14.2117,
+      "lng": 121.1653
+    },
+    {
+      "name": "Calamba City Sports Complex Station",
+      "city": "Calamba",
+      "province": "Laguna",
+      "image": "assets/shelters/calamba-sports-complex.jpg",
+      "lat": 14.2047,
+      "lng": 121.1558
+    },
+    {
+      "name": "San Pablo Community Shelter",
+      "city": "San Pablo",
+      "province": "Laguna",
+      "image": "assets/shelters/san-pablo-community.jpg",
+      "lat": 14.0683,
+      "lng": 121.3256
+    },
+    {
+      "name": "San Pablo Multi-Purpose Gymnasium",
+      "city": "San Pablo",
+      "province": "Laguna",
+      "image": "assets/shelters/san-pablo-gym.jpg",
+      "lat": 14.0711,
+      "lng": 121.3253
+    },
+    {
+      "name": "San Pedro City Sports Complex Hub",
+      "city": "San Pedro",
+      "province": "Laguna",
+      "image": "assets/shelters/san-pedro-sports.jpg",
+      "lat": 14.3514,
+      "lng": 121.0489
+    },
+    {
+      "name": "Pacita Complex Barangay Covered Court Center",
+      "city": "San Pedro",
+      "province": "Laguna",
+      "image": "assets/shelters/pacita-court.jpg",
+      "lat": 14.3456,
+      "lng": 121.0394
+    },
+    {
+      "name": "Santa Rosa Sports Complex Pavilion",
+      "city": "Santa Rosa",
+      "province": "Laguna",
+      "image": "assets/shelters/santa-rosa-sports.jpg",
+      "lat": 14.3139,
+      "lng": 121.1114
+    },
+    {
+      "name": "Santa Rosa Central School Disaster Hub",
+      "city": "Santa Rosa",
+      "province": "Laguna",
+      "image": "assets/shelters/santa-rosa-central-school.jpg",
+      "lat": 14.3111,
+      "lng": 121.1056
+    },
+    {
+      "name": "Batangas City Sports Coliseum",
+      "city": "Batangas City",
+      "province": "Batangas",
+      "image": "assets/shelters/batangas-coliseum.jpg",
+      "lat": 13.7565,
+      "lng": 121.0583
+    },
+    {
+      "name": "Batangas National High School Gymnasium",
+      "city": "Batangas City",
+      "province": "Batangas",
+      "image": "assets/shelters/batangas-high-gym.jpg",
+      "lat": 13.7611,
+      "lng": 121.0614
+    },
+    {
+      "name": "Lipa City Youth and Cultural Center Hub",
+      "city": "Lipa",
+      "province": "Batangas",
+      "image": "assets/shelters/lipa-youth-center.jpg",
+      "lat": 13.9411,
+      "lng": 121.1636
+    },
+    {
+      "name": "Inosloban-Marawoy Integrated High School Gym",
+      "city": "Lipa",
+      "province": "Batangas",
+      "image": "assets/shelters/inosloban-high-gym.jpg",
+      "lat": 13.9556,
+      "lng": 121.1558
+    },
+    {
+      "name": "Tanauan City Sports Complex Station",
+      "city": "Tanauan",
+      "province": "Batangas",
+      "image": "assets/shelters/tanauan-sports.jpg",
+      "lat": 14.0856,
+      "lng": 121.1472
+    },
+    {
+      "name": "Tanauan National High School Gymnasium",
+      "city": "Tanauan",
+      "province": "Batangas",
+      "image": "assets/shelters/tanauan-high-gym.jpg",
+      "lat": 14.0911,
+      "lng": 121.1528
+    },
+    {
+      "name": "Santo Tomas Civic Center Multi-Hall",
+      "city": "Santo Tomas",
+      "province": "Batangas",
+      "image": "assets/shelters/sto-tomas-civic.jpg",
+      "lat": 14.1089,
+      "lng": 121.1411
+    },
+    {
+      "name": "Poblacion Multi-Purpose Center Base",
+      "city": "Santo Tomas",
+      "province": "Batangas",
+      "image": "assets/shelters/sto-tomas-poblacion.jpg",
+      "lat": 14.1053,
+      "lng": 121.1378
+    },
+    {
+      "name": "Calaca Emergency Response Center",
+      "city": "Calaca",
+      "province": "Batangas",
+      "image": "assets/shelters/calaca-emergency.jpg",
+      "lat": 13.9321,
+      "lng": 120.8135
+    },
+    {
+      "name": "Calaca Central School Evacuation Hub",
+      "city": "Calaca",
+      "province": "Batangas",
+      "image": "assets/shelters/calaca-central-school.jpg",
+      "lat": 13.9311,
+      "lng": 120.8111
+    },
+    {
+      "name": "Lucena City Convention Center",
+      "city": "Lucena",
+      "province": "Quezon",
+      "image": "assets/shelters/lucena-center.jpg",
+      "lat": 13.9411,
+      "lng": 121.6236
+    },
+    {
+      "name": "Lucena City Sports Complex Base",
+      "city": "Lucena",
+      "province": "Quezon",
+      "image": "assets/shelters/lucena-sports-complex.jpg",
+      "lat": 13.9444,
+      "lng": 121.6256
+    },
+    {
+      "name": "Tayabas City Multi-Gymnasium",
+      "city": "Tayabas",
+      "province": "Quezon",
+      "image": "assets/shelters/tayabas-gym.jpg",
+      "lat": 14.0256,
+      "lng": 121.5914
+    },
+    {
+      "name": "San Roque Covered Court Evacuation Hub",
+      "city": "Tayabas",
+      "province": "Quezon",
+      "image": "assets/shelters/tayabas-san-roque.jpg",
+      "lat": 14.0194,
+      "lng": 121.5856
+    },
+    {
+      "name": "Calapan City Evacuation Center",
+      "city": "Calapan",
+      "province": "Oriental Mindoro",
+      "image": "assets/shelters/calapan-evac.jpg",
+      "lat": 13.4117,
+      "lng": 121.1803
+    },
+    {
+      "name": "Oriental Mindoro Provincial Gymnasium",
+      "city": "Calapan",
+      "province": "Oriental Mindoro",
+      "image": "assets/shelters/oriental-mindoro-gym.jpg",
+      "lat": 13.4111,
+      "lng": 121.1811
     },
     {
       "name": "Puerto Princesa Civic Center",
@@ -286,561 +1049,882 @@
       "lng": 118.7353
     },
     {
-      "name": "Boac Municipal Gym Shelter",
-      "city": "Boac",
-      "province": "Marinduque",
-      "lat": 13.4467,
-      "lng": 121.8408
+      "name": "Puerto Princesa City Coliseum Hub",
+      "city": "Puerto Princesa",
+      "province": "Palawan",
+      "image": "assets/shelters/puerto-princesa-coliseum.jpg",
+      "lat": 9.7511,
+      "lng": 118.7456
     },
     {
-      "name": "Gasan Evacuation Center",
-      "city": "Gasan",
-      "province": "Marinduque",
-      "lat": 13.3247,
-      "lng": 121.8463
-    },
-     {
-      "name": "Calapan City Evacuation Center",
-      "city": "Calapan",
-      "province": "Oriental Mindoro",
-      "lat": 13.4117,
-      "lng": 121.1803
+      "name": "Legazpi City Convention Center",
+      "city": "Legazpi",
+      "province": "Albay",
+      "image": "assets/shelters/legazpi-center.jpg",
+      "lat": 13.1391,
+      "lng": 123.7438
     },
     {
-      "name": "Daet Evacuation Center",
-      "city": "Daet",
-      "province": "Camarines Norte",
-      "lat": 14.1122,
-      "lng": 122.9553
+      "name": "Ibalong Epicentre Disaster Stadium",
+      "city": "Legazpi",
+      "province": "Albay",
+      "image": "assets/shelters/ibalong-epicentre.jpg",
+      "lat": 13.1394,
+      "lng": 123.7431
     },
     {
-      "name": "Cavite City Evacuation Center",
-      "city": "Cavite",
-      "province": "Cavite",
-      "lat": 14.4791,
-      "lng": 120.8970
+      "name": "Ligao City Gymnasium Complex",
+      "city": "Ligao",
+      "province": "Albay",
+      "image": "assets/shelters/ligao-gym.jpg",
+      "lat": 13.2189,
+      "lng": 123.5356
     },
     {
-      "name": "Tagaytay Emergency Shelter",
-      "city": "Tagaytay",
-      "province": "Cavite",
-      "lat": 14.1153,
-      "lng": 120.9621
+      "name": "Public Technical-Vocational High School Gym",
+      "city": "Ligao",
+      "province": "Albay",
+      "image": "assets/shelters/ligao-tech-voc-gym.jpg",
+      "lat": 13.2244,
+      "lng": 123.5411
     },
     {
-      "name": "Calaca Evacuation Center",
-      "city": "Calaca",
-      "province": "Batangas",
-      "lat": 13.9321,
-      "lng": 120.8137
+      "name": "Tabaco City Industrial Gym Station",
+      "city": "Tabaco",
+      "province": "Albay",
+      "image": "assets/shelters/tabaco-industrial-gym.jpg",
+      "lat": 13.3614,
+      "lng": 123.7292
     },
     {
-      "name": "Burdeos Shelter Center",
-      "city": "Burdeos",
-      "province": "Quezon",
-      "lat": 14.8432,
-      "lng": 121.9686
+      "name": "Tabaco National High School Evacuation Center",
+      "city": "Tabaco",
+      "province": "Albay",
+      "image": "assets/shelters/tabaco-high-school.jpg",
+      "lat": 13.3567,
+      "lng": 123.7244
     },
     {
-      "name": "Tarlac City Evacuation Center",
-      "city": "Tarlac",
-      "province": "Tarlac",
-      "lat": 15.4802,
-      "lng": 120.5979
+      "name": "Iriga City Sports Center Station",
+      "city": "Iriga",
+      "province": "Camarines Sur",
+      "image": "assets/shelters/iriga-sports.jpg",
+      "lat": 13.4189,
+      "lng": 123.4114
     },
     {
-      "name": "Vigan City Shelter",
-      "city": "Vigan",
-      "province": "Ilocos Sur",
-      "lat": 17.5747,
-      "lng": 120.3869
+      "name": "San Nicolas Covered Court Emergency Hub",
+      "city": "Iriga",
+      "province": "Camarines Sur",
+      "image": "assets/shelters/iriga-san-nicolas.jpg",
+      "lat": 13.4236,
+      "lng": 123.4167
     },
     {
-      "name": "Laguna Provincial Shelter",
-      "city": "Santa Cruz",
-      "province": "Laguna",
-      "lat": 14.2780,
-      "lng": 121.4161
+      "name": "Naga City Civic Center",
+      "city": "Naga",
+      "province": "Camarines Sur",
+      "image": "assets/shelters/naga-civic.jpg",
+      "lat": 13.6218,
+      "lng": 123.1948
     },
     {
-      "name": "San Pablo Emergency Center",
-      "city": "San Pablo",
-      "province": "Laguna",
-      "lat": 14.0683,
-      "lng": 121.3256
-    },
-    {
-      "name": "Ilagan Rescue Shelter",
-      "city": "Ilagan",
-      "province": "Isabela",
-      "lat": 17.1485,
-      "lng": 121.8892
-    },
-    {
-      "name": "Cauayan Shelter Center",
-      "city": "Cauayan",
-      "province": "Isabela",
-      "lat": 16.9299,
-      "lng": 121.7695
-    },
-    {
-      "name": "Santiago Emergency Shelter",
-      "city": "Santiago",
-      "province": "Isabela",
-      "lat": 16.6889,
-      "lng": 121.5487
-    },
-    {
-      "name": "Ilocos Sur Provincial Shelter",
-      "city": "Ilocos Sur",
-      "province": "Ilocos Sur",
-      "lat": 17.2279,
-      "lng": 120.5739
-    },
-     {
-      "name": "Virac Community Gym",
-      "city": "Virac",
-      "province": "Catanduanes",
-      "lat": 13.5828,
-      "lng": 124.2319
-    },
-    {
-      "name": "Sorsogon Emergency Annex",
-      "city": "Sorsogon City",
-      "province": "Sorsogon",
-      "lat": 12.9692,
-      "lng": 124.0058
+      "name": "Jesse M. Robredo Coliseum Station",
+      "city": "Naga",
+      "province": "Camarines Sur",
+      "image": "assets/shelters/jesse-robredo-coliseum.jpg",
+      "lat": 13.6214,
+      "lng": 123.1953
     },
     {
       "name": "Masbate Social Hall",
       "city": "Masbate City",
       "province": "Masbate",
+      "image": "assets/shelters/masbate-social-hall.jpg",
       "lat": 12.3683,
       "lng": 123.6339
+    },
+    {
+      "name": "Masbate Provincial Gymnasium Hub",
+      "city": "Masbate City",
+      "province": "Masbate",
+      "image": "assets/shelters/masbate-provincial-gym.jpg",
+      "lat": 12.3694,
+      "lng": 123.6211
+    },
+    {
+      "name": "Sorsogon Emergency Annex",
+      "city": "Sorsogon City",
+      "province": "Sorsogon",
+      "image": "assets/shelters/sorsogon-annex.jpg",
+      "lat": 12.9692,
+      "lng": 124.0058
+    },
+    {
+      "name": "Sorsogon Provincial Gymnasium Complex",
+      "city": "Sorsogon City",
+      "province": "Sorsogon",
+      "image": "assets/shelters/sorsogon-provincial-gym.jpg",
+      "lat": 12.9694,
+      "lng": 124.0044
+    },
+    {
+      "name": "Baguio Convention Center",
+      "city": "Baguio",
+      "province": "Benguet",
+      "image": "assets/shelters/baguio-convention.jpg",
+      "lat": 16.4123,
+      "lng": 120.5960
+    },
+    {
+      "name": "Baguio City National High School Main Gym",
+      "city": "Baguio",
+      "province": "Benguet",
+      "image": "assets/shelters/baguio-high-gym.jpg",
+      "lat": 16.4067,
+      "lng": 120.5964
+    },
+    {
+      "name": "Tabuk Kalinga Provincial Gymnasium",
+      "city": "Tabuk",
+      "province": "Kalinga",
+      "image": "assets/shelters/kalinga-provincial-gym.jpg",
+      "lat": 17.4522,
+      "lng": 121.4411
+    },
+    {
+      "name": "Tabuk City Gymnasium Complex",
+      "city": "Tabuk",
+      "province": "Kalinga",
+      "image": "assets/shelters/tabuk-city-gym.jpg",
+      "lat": 17.4478,
+      "lng": 121.4356
     }
   ],
 
   "visayas": [
     {
-      "name": "Cebu City Sports Center",
+      "name": "Bacolod City National High School Gym",
+      "city": "Bacolod",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/bacolod-high-gym.jpg",
+      "lat": 10.6653,
+      "lng": 122.9486
+    },
+    {
+      "name": "Bacolod Arts and Youth Sports Center",
+      "city": "Bacolod",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/bacolod-bays-center.jpg",
+      "lat": 10.6694,
+      "lng": 122.9442
+    },
+    {
+      "name": "Bago City Coliseum",
+      "city": "Bago",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/bago-coliseum.jpg",
+      "lat": 10.5317,
+      "lng": 122.8414
+    },
+    {
+      "name": "Bago City Elementary School Gym",
+      "city": "Bago",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/bago-elementary-gym.jpg",
+      "lat": 10.5336,
+      "lng": 122.8392
+    },
+    {
+      "name": "Cadiz City Arena",
+      "city": "Cadiz",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/cadiz-arena.jpg",
+      "lat": 10.9525,
+      "lng": 123.3056
+    },
+    {
+      "name": "Cadiz Central School Evacuation Station",
+      "city": "Cadiz",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/cadiz-central-school.jpg",
+      "lat": 10.9561,
+      "lng": 123.2989
+    },
+    {
+      "name": "Escalante Civic Center",
+      "city": "Escalante",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/escalante-civic.jpg",
+      "lat": 10.8406,
+      "lng": 123.4983
+    },
+    {
+      "name": "Escalante National High School Covered Court",
+      "city": "Escalante",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/escalante-high-court.jpg",
+      "lat": 10.8356,
+      "lng": 123.5022
+    },
+    {
+      "name": "Himamaylan City Gymnasium",
+      "city": "Himamaylan",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/himamaylan-gym.jpg",
+      "lat": 10.0989,
+      "lng": 122.8689
+    },
+    {
+      "name": "Himamaylan Central School Disaster Hub",
+      "city": "Himamaylan",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/himamaylan-central.jpg",
+      "lat": 10.1022,
+      "lng": 122.8722
+    },
+    {
+      "name": "Kabankalan City Cultural and Sports Center",
+      "city": "Kabankalan",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/kabankalan-sports-center.jpg",
+      "lat": 9.9886,
+      "lng": 122.8122
+    },
+    {
+      "name": "Kabankalan National High School Gym",
+      "city": "Kabankalan",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/kabankalan-high-gym.jpg",
+      "lat": 9.9914,
+      "lng": 122.8156
+    },
+    {
+      "name": "La Carlota City Gymnasium",
+      "city": "La Carlota",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/la-carlota-gym.jpg",
+      "lat": 10.4239,
+      "lng": 122.9214
+    },
+    {
+      "name": "La Carlota Central School Disaster Depot",
+      "city": "La Carlota",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/la-carlota-central.jpg",
+      "lat": 10.4211,
+      "lng": 122.9189
+    },
+    {
+      "name": "Sagay City Gymnasium",
+      "city": "Sagay",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/sagay-gym.jpg",
+      "lat": 10.9167,
+      "lng": 123.4158
+    },
+    {
+      "name": "Sagay National High School Covered Court",
+      "city": "Sagay",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/sagay-high-court.jpg",
+      "lat": 10.9211,
+      "lng": 123.4206
+    },
+    {
+      "name": "San Carlos City Multi-Purpose Gym",
+      "city": "San Carlos",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/san-carlos-negros-gym.jpg",
+      "lat": 10.4853,
+      "lng": 123.4194
+    },
+    {
+      "name": "San Carlos Central School Evacuation Station",
+      "city": "San Carlos",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/san-carlos-negros-central.jpg",
+      "lat": 10.4811,
+      "lng": 123.4144
+    },
+    {
+      "name": "Silay City Public Gym",
+      "city": "Silay",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/silay-gym.jpg",
+      "lat": 10.7989,
+      "lng": 122.9753
+    },
+    {
+      "name": "Silay South Central School Evacuation Base",
+      "city": "Silay",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/silay-south-central.jpg",
+      "lat": 10.7944,
+      "lng": 122.9711
+    },
+    {
+      "name": "Sipalay City Gym",
+      "city": "Sipalay",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/sipalay-gym.jpg",
+      "lat": 9.7461,
+      "lng": 122.4506
+    },
+    {
+      "name": "Sipalay Central School Disaster Hub",
+      "city": "Sipalay",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/sipalay-central.jpg",
+      "lat": 9.7503,
+      "lng": 122.4467
+    },
+    {
+      "name": "Talisay City Multi-Purpose Gymnasium",
+      "city": "Talisay",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/talisay-negros-gym.jpg",
+      "lat": 10.7356,
+      "lng": 122.9689
+    },
+    {
+      "name": "Talisay Elementary School Disaster Hub",
+      "city": "Talisay",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/talisay-negros-elementary.jpg",
+      "lat": 10.7322,
+      "lng": 122.9656
+    },
+    {
+      "name": "Victorias City Sports Complex",
+      "city": "Victorias",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/victorias-sports.jpg",
+      "lat": 10.8931,
+      "lng": 123.0722
+    },
+    {
+      "name": "Victorias National High School Covered Court",
+      "city": "Victorias",
+      "province": "Negros Occidental",
+      "image": "assets/shelters/victorias-high-court.jpg",
+      "lat": 10.8894,
+      "lng": 123.0689
+    },
+    {
+      "name": "Bais City Evacuation Center",
+      "city": "Bais",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/bais-evac.jpg",
+      "lat": 9.5911,
+      "lng": 123.1211
+    },
+    {
+      "name": "Bais City Cultural and Sports Center",
+      "city": "Bais",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/bais-sports.jpg",
+      "lat": 9.5886,
+      "lng": 123.1167
+    },
+    {
+      "name": "Bayawan City Gymnasium",
+      "city": "Bayawan",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/bayawan-gym.jpg",
+      "lat": 9.3639,
+      "lng": 122.8056
+    },
+    {
+      "name": "Bayawan National High School Covered Court",
+      "city": "Bayawan",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/bayawan-high-court.jpg",
+      "lat": 9.3606,
+      "lng": 122.8011
+    },
+    {
+      "name": "Canlaon City Gymnasium",
+      "city": "Canlaon",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/canlaon-gym.jpg",
+      "lat": 10.3856,
+      "lng": 123.2325
+    },
+    {
+      "name": "Canlaon Central School Evacuation Base",
+      "city": "Canlaon",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/canlaon-central.jpg",
+      "lat": 10.3894,
+      "lng": 123.2356
+    },
+    {
+      "name": "Dumaguete City Lamberto Macias Sports Complex",
+      "city": "Dumaguete",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/dumaguete-macias-sports.jpg",
+      "lat": 9.3139,
+      "lng": 123.3014
+    },
+    {
+      "name": "Dumaguete City Central School Gym",
+      "city": "Dumaguete",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/dumaguete-central-gym.jpg",
+      "lat": 9.3086,
+      "lng": 123.3056
+    },
+    {
+      "name": "Guihulngan City Gymnasium",
+      "city": "Guihulngan",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/guihulngan-gym.jpg",
+      "lat": 10.1167,
+      "lng": 123.2642
+    },
+    {
+      "name": "Guihulngan National High School Court",
+      "city": "Guihulngan",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/guihulngan-high-court.jpg",
+      "lat": 10.1122,
+      "lng": 123.2611
+    },
+    {
+      "name": "Tanjay City Sports Complex",
+      "city": "Tanjay",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/tanjay-sports.jpg",
+      "lat": 9.5164,
+      "lng": 123.1558
+    },
+    {
+      "name": "Tanjay National High School Covered Gym",
+      "city": "Tanjay",
+      "province": "Negros Oriental",
+      "image": "assets/shelters/tanjay-high-gym.jpg",
+      "lat": 9.5122,
+      "lng": 123.1511
+    },
+    {
+      "name": "Cebu City Sports Complex Arena",
       "city": "Cebu City",
       "province": "Cebu",
-      "image": "assets/shelters/cebu-sports.jpg",
-      "lat": 10.3113,
-      "lng": 123.8910
+      "image": "assets/shelters/cebu-sports-complex.jpg",
+      "lat": 10.3011,
+      "lng": 123.8967
     },
     {
-      "name": "Mandaue City Evacuation Center",
-      "city": "Mandaue",
+      "name": "Abellana National School Gym Hub",
+      "city": "Cebu City",
       "province": "Cebu",
-      "lat": 10.3231,
-      "lng": 123.9337
-    },
-    {
-      "name": "Lapu-Lapu City Hoops Dome",
-      "city": "Lapu-Lapu",
-      "province": "Cebu",
-      "lat": 10.3103,
-      "lng": 123.9494
+      "image": "assets/shelters/abellana-gym.jpg",
+      "lat": 10.3036,
+      "lng": 123.8942
     },
     {
       "name": "Bogo City Sports Complex",
       "city": "Bogo",
       "province": "Cebu",
-      "lat": 11.0514,
-      "lng": 124.0058
+      "image": "assets/shelters/bogo-sports-complex.jpg",
+      "lat": 11.0506,
+      "lng": 124.0044
     },
     {
-      "name": "Toledo City Shelter Hub",
+      "name": "Bogo Central School I Evacuation Base",
+      "city": "Bogo",
+      "province": "Cebu",
+      "image": "assets/shelters/bogo-central-school.jpg",
+      "lat": 11.0472,
+      "lng": 124.0011
+    },
+    {
+      "name": "Carcar City Gymnasium",
+      "city": "Carcar",
+      "province": "Cebu",
+      "image": "assets/shelters/carcar-gym.jpg",
+      "lat": 10.1067,
+      "lng": 123.6444
+    },
+    {
+      "name": "Carcar Central School Covered Court",
+      "city": "Carcar",
+      "province": "Cebu",
+      "image": "assets/shelters/carcar-central-court.jpg",
+      "lat": 10.1111,
+      "lng": 123.6417
+    },
+    {
+      "name": "Danao City Civic Center",
+      "city": "Danao",
+      "province": "Cebu",
+      "image": "assets/shelters/danao-civic.jpg",
+      "lat": 10.5311,
+      "lng": 124.0294
+    },
+    {
+      "name": "Danao National High School Covered Court",
+      "city": "Danao",
+      "province": "Cebu",
+      "image": "assets/shelters/danao-high-court.jpg",
+      "lat": 10.5267,
+      "lng": 124.0256
+    },
+    {
+      "name": "Lapu-Lapu City Hoops Dome",
+      "city": "Lapu-Lapu",
+      "province": "Cebu",
+      "image": "assets/shelters/lapulapu-hoops-dome.jpg",
+      "lat": 10.3167,
+      "lng": 123.9486
+    },
+    {
+      "name": "Lapu-Lapu City Central School Gym",
+      "city": "Lapu-Lapu",
+      "province": "Cebu",
+      "image": "assets/shelters/lapulapu-central-gym.jpg",
+      "lat": 10.3136,
+      "lng": 123.9514
+    },
+    {
+      "name": "Mandaue City Sports Complex",
+      "city": "Mandaue",
+      "province": "Cebu",
+      "image": "assets/shelters/mandaue-sports-complex.jpg",
+      "lat": 10.3258,
+      "lng": 123.9356
+    },
+    {
+      "name": "Mandaue City Comprehensive High School Gym",
+      "city": "Mandaue",
+      "province": "Cebu",
+      "image": "assets/shelters/mandaue-high-gym.jpg",
+      "lat": 10.3294,
+      "lng": 123.9311
+    },
+    {
+      "name": "Naga Cebu Enclosed Stadium",
+      "city": "Naga, Cebu",
+      "province": "Cebu",
+      "image": "assets/shelters/naga-cebu-stadium.jpg",
+      "lat": 10.2114,
+      "lng": 123.7583
+    },
+    {
+      "name": "Naga Central Elementary School Evacuation Hub",
+      "city": "Naga, Cebu",
+      "province": "Cebu",
+      "image": "assets/shelters/naga-cebu-central.jpg",
+      "lat": 10.2086,
+      "lng": 123.7544
+    },
+    {
+      "name": "Talisay City Cebu Multi-Purpose Gym",
+      "city": "Talisay",
+      "province": "Cebu",
+      "image": "assets/shelters/talisay-cebu-gym.jpg",
+      "lat": 10.2444,
+      "lng": 123.8489
+    },
+    {
+      "name": "Talisay Central School Disaster Hub",
+      "city": "Talisay",
+      "province": "Cebu",
+      "image": "assets/shelters/talisay-cebu-central.jpg",
+      "lat": 10.2411,
+      "lng": 123.8456
+    },
+    {
+      "name": "Toledo City Megadome",
       "city": "Toledo",
       "province": "Cebu",
-      "lat": 10.3774,
-      "lng": 123.6386
+      "image": "assets/shelters/toledo-megadome.jpg",
+      "lat": 10.3789,
+      "lng": 123.6356
     },
     {
-      "name": "Iloilo Sports Complex",
-      "city": "Iloilo City",
-      "province": "Iloilo",
-      "image": "assets/shelters/iloilo-sports.jpg",
-      "lat": 10.7202,
-      "lng": 122.5621
+      "name": "Toledo City National Vocational High Gym",
+      "city": "Toledo",
+      "province": "Cebu",
+      "image": "assets/shelters/toledo-voc-high.jpg",
+      "lat": 10.3756,
+      "lng": 123.6311
     },
     {
-      "name": "Roxas City Civic Center",
-      "city": "Roxas City",
-      "province": "Capiz",
-      "lat": 11.5853,
-      "lng": 122.7554
-    },
-    {
-      "name": "San Jose de Buenavista Gym",
-      "city": "San Jose de Buenavista",
-      "province": "Antique",
-      "lat": 10.7441,
-      "lng": 121.9332
-    },
-    {
-      "name": "Kalibo Pastrana Park Shelter",
-      "city": "Kalibo",
-      "province": "Aklan",
-      "lat": 11.7061,
-      "lng": 122.3648
-    },
-    {
-      "name": "Jordan Provincial Evacuation Hub",
-      "city": "Jordan",
-      "province": "Guimaras",
-      "lat": 10.5972,
-      "lng": 122.5881
-    },
-    {
-      "name": "Bacolod City Government Center",
-      "city": "Bacolod",
-      "province": "Negros Occidental",
-      "image": "assets/shelters/bacolod-center.jpg",
-      "lat": 10.6713,
-      "lng": 122.9511
-    },
-    {
-      "name": "Kabankalan Sports Center",
-      "city": "Kabankalan",
-      "province": "Negros Occidental",
-      "lat": 9.9839,
-      "lng": 122.8143
-    },
-    {
-      "name": "Escalante Evacuation Area",
-      "city": "Escalante",
-      "province": "Negros Occidental",
-      "lat": 10.8406,
-      "lng": 123.4995
-    },
-    {
-      "name": "Sagay City Rescue Shelter",
-      "city": "Sagay",
-      "province": "Negros Occidental",
-      "lat": 10.9447,
-      "lng": 123.4242
-    },
-    {
-      "name": "Dumaguete Evacuation Center",
-      "city": "Dumaguete",
-      "province": "Negros Oriental",
-      "image": "assets/shelters/dumaguete-center.jpg",
-      "lat": 9.3077,
-      "lng": 123.3054
-    },
-    {
-      "name": "Guihulngan Community Shelter",
-      "city": "Guihulngan",
-      "province": "Negros Oriental",
-      "lat": 10.1214,
-      "lng": 123.2742
-    },
-    {
-      "name": "Bais City Hall Shelter",
-      "city": "Bais",
-      "province": "Negros Oriental",
-      "lat": 9.5915,
-      "lng": 123.1220
-    },
-    {
-      "name": "Tanjay Sports Pavilion",
-      "city": "Tanjay",
-      "province": "Negros Oriental",
-      "lat": 9.5161,
-      "lng": 123.1583
-    },
-    {
-      "name": "Tagbilaran City Hall Shelter",
+      "name": "Tagbilaran City Bohol Wisdom Gym",
       "city": "Tagbilaran",
       "province": "Bohol",
-      "image": "assets/shelters/tagbilaran-hall.jpg",
-      "lat": 9.6496,
-      "lng": 123.8530
+      "image": "assets/shelters/tagbilaran-wisdom-gym.jpg",
+      "lat": 9.6544,
+      "lng": 123.8614
     },
     {
-      "name": "Tacloban Astrodome",
-      "city": "Tacloban",
+      "name": "Holy Name University Barder Gym",
+      "city": "Tagbilaran",
+      "province": "Bohol",
+      "image": "assets/shelters/hnu-gym.jpg",
+      "lat": 9.6489,
+      "lng": 123.8556
+    },
+    {
+      "name": "Iloilo City Sports Complex",
+      "city": "Iloilo City",
+      "province": "Iloilo",
+      "image": "assets/shelters/iloilo-sports-complex.jpg",
+      "lat": 10.7094,
+      "lng": 122.5614
+    },
+    {
+      "name": "Iloilo National High School Gymnasium",
+      "city": "Iloilo City",
+      "province": "Iloilo",
+      "image": "assets/shelters/iloilo-high-gym.jpg",
+      "lat": 10.7114,
+      "lng": 122.5656
+    },
+    {
+      "name": "Passi City Arena",
+      "city": "Passi",
+      "province": "Iloilo",
+      "image": "assets/shelters/passi-arena.jpg",
+      "lat": 11.1089,
+      "lng": 122.6414
+    },
+    {
+      "name": "Passi National High School Covered Gym",
+      "city": "Passi",
+      "province": "Iloilo",
+      "image": "assets/shelters/passi-high-gym.jpg",
+      "lat": 11.1056,
+      "lng": 122.6386
+    },
+    {
+      "name": "Roxas City Villareal Stadium Shield",
+      "city": "Roxas",
+      "province": "Capiz",
+      "image": "assets/shelters/roxas-villareal-stadium.jpg",
+      "lat": 11.5744,
+      "lng": 122.7558
+    },
+    {
+      "name": "Capiz National High School Main Gym",
+      "city": "Roxas",
+      "province": "Capiz",
+      "image": "assets/shelters/capiz-high-gym.jpg",
+      "lat": 11.5714,
+      "lng": 122.7511
+    },
+    {
+      "name": "Roxas City Capiz Civic Gymnasium",
+      "city": "Roxas",
+      "province": "Capiz",
+      "image": "assets/shelters/capiz-civic-gym.jpg",
+      "lat": 11.5789,
+      "lng": 122.7594
+    },
+    {
+      "name": "Roxas City Integrated School Covered Court",
+      "city": "Roxas",
+      "province": "Capiz",
+      "image": "assets/shelters/roxas-integrated-court.jpg",
+      "lat": 11.5822,
+      "lng": 122.7636
+    },
+    {
+      "name": "Calbayog City Sports Center",
+      "city": "Calbayog",
+      "province": "Samar",
+      "image": "assets/shelters/calbayog-sports.jpg",
+      "lat": 12.0656,
+      "lng": 124.5989
+    },
+    {
+      "name": "Calbayog City National High School Gym",
+      "city": "Calbayog",
+      "province": "Samar",
+      "image": "assets/shelters/calbayog-high-gym.jpg",
+      "lat": 12.0614,
+      "lng": 124.5944
+    },
+    {
+      "name": "Catbalogan City Gymnasium Complex",
+      "city": "Catbalogan",
+      "province": "Samar",
+      "image": "assets/shelters/catbalogan-gym.jpg",
+      "lat": 11.7744,
+      "lng": 124.8811
+    },
+    {
+      "name": "Samar National High School Covered Court",
+      "city": "Catbalogan",
+      "province": "Samar",
+      "image": "assets/shelters/samar-high-court.jpg",
+      "lat": 11.7711,
+      "lng": 124.8786
+    },
+    {
+      "name": "Borongan City Gymnasium Complex",
+      "city": "Borongan",
+      "province": "Eastern Samar",
+      "image": "assets/shelters/borongan-gym.jpg",
+      "lat": 11.6089,
+      "lng": 125.4325
+    },
+    {
+      "name": "Eastern Samar National Comprehensive High Gym",
+      "city": "Borongan",
+      "province": "Eastern Samar",
+      "image": "assets/shelters/esnchs-gym.jpg",
+      "lat": 11.6056,
+      "lng": 125.4289
+    },
+    {
+      "name": "Baybay City Regional Evacuation Hub",
+      "city": "Baybay",
       "province": "Leyte",
-      "image": "assets/shelters/tacloban-astrodome.jpg",
-      "lat": 11.2442,
-      "lng": 125.0027
+      "image": "assets/shelters/baybay-evac-hub.jpg",
+      "lat": 10.6789,
+      "lng": 124.8456
+    },
+    {
+      "name": "Baybay National High School Gym",
+      "city": "Baybay",
+      "province": "Leyte",
+      "image": "assets/shelters/baybay-high-gym.jpg",
+      "lat": 10.6744,
+      "lng": 124.8411
     },
     {
       "name": "Ormoc City Superdome",
       "city": "Ormoc",
       "province": "Leyte",
       "image": "assets/shelters/ormoc-superdome.jpg",
-      "lat": 11.0064,
-      "lng": 124.6075
+      "lat": 11.0114,
+      "lng": 124.6056
     },
     {
-      "name": "Baybay City Evacuation Gym",
-      "city": "Baybay",
+      "name": "New Ormoc City National High School Gym",
+      "city": "Ormoc",
       "province": "Leyte",
-      "lat": 10.6785,
-      "lng": 124.8006
+      "image": "assets/shelters/ormoc-high-gym.jpg",
+      "lat": 11.0156,
+      "lng": 124.6111
     },
     {
-      "name": "Carigara District Shelter",
-      "city": "Carigara",
+      "name": "Tacloban City LNU Gymnasium",
+      "city": "Tacloban",
       "province": "Leyte",
-      "lat": 11.2942,
-      "lng": 124.6853
+      "image": "assets/shelters/tacloban-lnu-gym.jpg",
+      "lat": 11.2417,
+      "lng": 125.0014
     },
     {
-      "name": "Maasin City Gymnasium",
+      "name": "Tacloban City Astrodome Disaster Core",
+      "city": "Tacloban",
+      "province": "Leyte",
+      "image": "assets/shelters/tacloban-astrodome.jpg",
+      "lat": 11.2394,
+      "lng": 125.0056
+    },
+    {
+      "name": "Maasin City Gymnasium Complex",
       "city": "Maasin",
       "province": "Southern Leyte",
-      "lat": 10.1328,
-      "lng": 124.8447
+      "image": "assets/shelters/maasin-gym.jpg",
+      "lat": 10.1356,
+      "lng": 124.8414
     },
     {
-      "name": "Borongan City Shelter",
-      "city": "Borongan",
-      "province": "Eastern Samar",
-      "lat": 11.6081,
-      "lng": 125.4319
-    },
-    {
-      "name": "Catbalogan Civic Center",
-      "city": "Catbalogan",
-      "province": "Samar",
-      "lat": 11.7753,
-      "lng": 124.8861
-    },
-    {
-      "name": "Calbayog City Multi-Purpose Hall",
-      "city": "Calbayog",
-      "province": "Samar",
-      "lat": 12.0674,
-      "lng": 124.5951
-    },
-    {
-      "name": "Catarman Covered Court Complex",
-      "city": "Catarman",
-      "province": "Northern Samar",
-      "lat": 12.4994,
-      "lng": 124.6394
-    },
-    {
-      "name": "Allen Municipal Center",
-      "city": "Allen",
-      "province": "Northern Samar",
-      "lat": 12.5025,
-      "lng": 124.2858
-    },
-    {
-      "name": "Palompon Evacuation Gym",
-      "city": "Palompon",
-      "province": "Leyte",
-      "lat": 11.0506,
-      "lng": 124.3853
-    },
-    {
-      "name": "Siquijor Municipal Pavilion",
-      "city": "Siquijor",
-      "province": "Siquijor",
-      "lat": 9.2136,
-      "lng": 123.5156
-    },
-    {
-      "name": "Naval Base Emergency Center",
-      "city": "Naval",
-      "province": "Biliran",
-      "lat": 11.5714,
-      "lng": 124.4397
+      "name": "Southern Leyte National High School Gym",
+      "city": "Maasin",
+      "province": "Southern Leyte",
+      "image": "assets/shelters/southern-leyte-high.jpg",
+      "lat": 10.1311,
+      "lng": 124.8386
     }
   ],
 
   "mindanao": [
     {
-      "name": "Davao City Recreation Center",
+      "name": "Davao City Recreation Center (Almendras Gym)",
       "city": "Davao City",
       "province": "Davao del Sur",
-      "image": "assets/shelters/davao-rec.jpg",
-      "lat": 7.0707,
-      "lng": 125.6087
+      "image": "assets/shelters/davao-recreation-center.jpg",
+      "lat": 7.0644,
+      "lng": 125.6078
     },
     {
-      "name": "Tagum City Rescue Gym",
-      "city": "Tagum",
-      "province": "Davao del Norte",
-      "lat": 7.4478,
-      "lng": 125.8078
-    },
-    {
-      "name": "Panabo City Shelter Complex",
-      "city": "Panabo",
-      "province": "Davao del Norte",
-      "lat": 7.3081,
-      "lng": 125.6847
-    },
-    {
-      "name": "Mati Disaster Response Center",
-      "city": "Mati",
-      "province": "Davao Oriental",
-      "lat": 6.9551,
-      "lng": 126.2168
-    },
-    {
-      "name": "Malita Municipal Multi-Purpose Center",
-      "city": "Malita",
-      "province": "Davao Occidental",
-      "lat": 5.5156,
-      "lng": 125.6094
-    },
-    {
-      "name": "Digos City Evacuation Center",
-      "city": "Digos",
+      "name": "Davao City National High School Gymnasium",
+      "city": "Davao City",
       "province": "Davao del Sur",
-      "lat": 6.7581,
-      "lng": 125.3551
-    },
-    {
-      "name": "Cagayan de Oro Sports Complex",
-      "city": "Cagayan de Oro",
-      "province": "Misamis Oriental",
-      "image": "assets/shelters/cdo-sports.jpg",
-      "lat": 8.4542,
-      "lng": 124.6319
-    },
-    {
-      "name": "Ozamiz City Civic Shelter",
-      "city": "Ozamiz",
-      "province": "Misamis Occidental",
-      "lat": 8.1481,
-      "lng": 123.8405
-    },
-    {
-      "name": "Malaybalay Rescue Center",
-      "city": "Malaybalay",
-      "province": "Bukidnon",
-      "lat": 8.1575,
-      "lng": 125.1278
-    },
-    {
-      "name": "Valencia Bukidnon Shelter",
-      "city": "Valencia",
-      "province": "Bukidnon",
-      "lat": 7.9064,
-      "lng": 125.0948
-    },
-    {
-      "name": "Butuan City Covered Court Shelter",
-      "city": "Butuan",
-      "province": "Agusan del Norte",
-      "image": "assets/shelters/butuan-court.jpg",
-      "lat": 8.9495,
-      "lng": 125.5436
-    },
-    {
-      "name": "Prosperidad Covered Court Terminal",
-      "city": "Prosperidad",
-      "province": "Agusan del Sur",
-      "lat": 8.6083,
-      "lng": 125.9228
-    },
-    {
-      "name": "Surigao City Mega Shelter",
-      "city": "Surigao City",
-      "province": "Surigao del Norte",
-      "lat": 9.7845,
-      "lng": 125.4888
-    },
-    {
-      "name": "Tandag City Disaster Gymnasium",
-      "city": "Tandag",
-      "province": "Surigao del Sur",
-      "lat": 9.0747,
-      "lng": 126.1983
-    },
-    {
-      "name": "Bislig Community Shelter",
-      "city": "Bislig",
-      "province": "Surigao del Sur",
-      "lat": 8.2150,
-      "lng": 126.3167
+      "image": "assets/shelters/davao-high-gym.jpg",
+      "lat": 7.0692,
+      "lng": 125.5947
     },
     {
       "name": "Zamboanga City Coliseum",
       "city": "Zamboanga City",
       "province": "Zamboanga del Sur",
       "image": "assets/shelters/zamboanga-coliseum.jpg",
-      "lat": 6.9132,
-      "lng": 122.0611
+      "lat": 6.9214,
+      "lng": 122.0794
     },
     {
-      "name": "Dipolog City Evacuation Hall",
-      "city": "Dipolog",
-      "province": "Zamboanga del Norte",
-      "lat": 8.5883,
-      "lng": 123.3409
-    },
-    {
-      "name": "Pagadian Sports Complex",
-      "city": "Pagadian",
+      "name": "Don Pablo Lorenzo Memorial High School Gym",
+      "city": "Zamboanga City",
       "province": "Zamboanga del Sur",
-      "lat": 7.8257,
-      "lng": 123.4370
+      "image": "assets/shelters/dplmhs-gym.jpg",
+      "lat": 6.9136,
+      "lng": 122.0653
     },
     {
-      "name": "Ipil Sports Center Arena",
-      "city": "Ipil",
-      "province": "Zamboanga Sibugay",
-      "lat": 7.7812,
-      "lng": 122.5853
+      "name": "Cagayan de Oro International Convention Center",
+      "city": "Cagayan de Oro (CDO)",
+      "province": "Misamis Oriental",
+      "image": "assets/shelters/cdo-convention.jpg",
+      "lat": 8.4856,
+      "lng": 124.6114
     },
     {
-      "name": "General Santos Gymnasium",
+      "name": "Misamis Oriental General Comprehensive High School Gym",
+      "city": "Cagayan de Oro (CDO)",
+      "province": "Misamis Oriental",
+      "image": "assets/shelters/mogchs-gym.jpg",
+      "lat": 8.4811,
+      "lng": 124.6467
+    },
+    {
+      "name": "General Santos City Gymnasium",
       "city": "General Santos",
       "province": "South Cotabato",
       "image": "assets/shelters/gensan-gym.jpg",
       "lat": 6.1164,
-      "lng": 125.1716
+      "lng": 125.1742
     },
     {
-      "name": "Koronadal City Gymnasium",
-      "city": "Koronadal",
+      "name": "Lagao Barangay Covered Court Evacuation Hub",
+      "city": "General Santos",
       "province": "South Cotabato",
-      "lat": 6.4970,
-      "lng": 124.8470
+      "image": "assets/shelters/lagao-court.jpg",
+      "lat": 6.1311,
+      "lng": 125.1914
     },
     {
-      "name": "Kidapawan City Gymnasium",
-      "city": "Kidapawan",
-      "province": "Cotabato",
-      "lat": 7.0083,
-      "lng": 125.0894
+      "name": "Butuan City Sports Complex",
+      "city": "Butuan",
+      "province": "Agusan del Norte",
+      "image": "assets/shelters/butuan-sports.jpg",
+      "lat": 8.9411,
+      "lng": 125.5244
     },
     {
-      "name": "Cotabato City Mega Shelter",
-      "city": "Cotabato City",
-      "province": "Maguindanao",
-      "lat": 7.2232,
-      "lng": 124.2464
-    },
-    {
-      "name": "Buluan Municipal Gymnasium Area",
-      "city": "Buluan",
-      "province": "Maguindanao",
-      "lat": 6.7194,
-      "lng": 124.7933
-    },
-    {
-      "name": "Alabel Sports Pavilion Hub",
-      "city": "Alabel",
-      "province": "Sarangani",
-      "lat": 6.1031,
-      "lng": 125.2847
-    },
-    {
-      "name": "Isulan Disaster Response Shelter",
-      "city": "Isulan",
-      "province": "Sultan Kudarat",
-      "lat": 6.6342,
-      "lng": 124.6053
+      "name": "Agusan National High School Gymnasium",
+      "city": "Butuan",
+      "province": "Agusan del Norte",
+      "image": "assets/shelters/agusan-high-gym.jpg",
+      "lat": 8.9486,
+      "lng": 125.5389
     },
     {
       "name": "Iligan City Gymnasium",
@@ -851,46 +1935,444 @@
       "lng": 124.2452
     },
     {
+      "name": "Iligan City National High School Covered Court",
+      "city": "Iligan",
+      "province": "Lanao del Norte",
+      "image": "assets/shelters/iligan-high-court.jpg",
+      "lat": 8.2244,
+      "lng": 124.2394
+    },
+    {
+      "name": "Cotabato City Gymnasium",
+      "city": "Cotabato City",
+      "province": "Maguindanao del Norte",
+      "image": "assets/shelters/cotabato-city-gym.jpg",
+      "lat": 7.2189,
+      "lng": 124.2414
+    },
+    {
+      "name": "Cotabato City Central Pilot School Evacuation Station",
+      "city": "Cotabato City",
+      "province": "Maguindanao del Norte",
+      "image": "assets/shelters/cotabato-pilot-school.jpg",
+      "lat": 7.2136,
+      "lng": 124.2467
+    },
+    {
       "name": "Marawi City Hall Shelter Complex",
       "city": "Marawi",
       "province": "Lanao del Sur",
+      "image": "assets/shelters/marawi-city-hall.jpg",
       "lat": 8.0047,
       "lng": 124.2853
     },
     {
-      "name": "Jolo Municipal Gymnasium Center",
-      "city": "Jolo",
-      "province": "Sulu",
-      "lat": 6.0522,
-      "lng": 121.0012
+      "name": "Mindanao State University Gym Hub",
+      "city": "Marawi",
+      "province": "Lanao del Sur",
+      "image": "assets/shelters/msu-marawi-gym.jpg",
+      "lat": 7.9911,
+      "lng": 124.2614
     },
     {
-      "name": "Bongao Civic Multi-Purpose Center",
-      "city": "Bongao",
-      "province": "Tawi-Tawi",
-      "lat": 5.0292,
-      "lng": 119.7714
+      "name": "Tagum City Cultural and Sports Center",
+      "city": "Tagum",
+      "province": "Davao del Norte",
+      "image": "assets/shelters/tagum-cultural-center.jpg",
+      "lat": 7.4447,
+      "lng": 125.8056
     },
     {
-      "name": "Mambajao Sports Complex",
-      "city": "Mambajao",
-      "province": "Camiguin",
-      "lat": 9.2514,
-      "lng": 124.7158
+      "name": "Tagum City National High School Gym",
+      "city": "Tagum",
+      "province": "Davao del Norte",
+      "image": "assets/shelters/tagum-high-gym.jpg",
+      "lat": 7.4506,
+      "lng": 125.8114
     },
     {
-      "name": "San Jose Civic Center",
-      "city": "San Jose",
-      "province": "Dinagat Islands",
-      "lat": 9.9283,
-      "lng": 125.5744
+      "name": "Panabo City Multi-Purpose Tourism Cultural Sports Center",
+      "city": "Panabo",
+      "province": "Davao del Norte",
+      "image": "assets/shelters/panabo-sports-center.jpg",
+      "lat": 7.3089,
+      "lng": 125.6814
     },
     {
-      "name": "Isabela City Gymnasium",
+      "name": "Panabo National High School Covered Gym",
+      "city": "Panabo",
+      "province": "Davao del Norte",
+      "image": "assets/shelters/panabo-high-gym.jpg",
+      "lat": 7.3136,
+      "lng": 125.6856
+    },
+    {
+      "name": "Island Garden City of Samal Gymnasium",
+      "city": "Samal",
+      "province": "Davao del Norte",
+      "image": "assets/shelters/samal-gym.jpg",
+      "lat": 7.1522,
+      "lng": 125.6514
+    },
+    {
+      "name": "Peñaplata Central Elementary School Evacuation Hub",
+      "city": "Samal",
+      "province": "Davao del Norte",
+      "image": "assets/shelters/peaplata-school.jpg",
+      "lat": 7.1486,
+      "lng": 125.6489
+    },
+    {
+      "name": "Digos City Gymnasium Complex",
+      "city": "Digos",
+      "province": "Davao del Sur",
+      "image": "assets/shelters/digos-gym.jpg",
+      "lat": 6.7564,
+      "lng": 125.3556
+    },
+    {
+      "name": "Digos City National High School Gym",
+      "city": "Digos",
+      "province": "Davao del Sur",
+      "image": "assets/shelters/digos-high-gym.jpg",
+      "lat": 6.7511,
+      "lng": 125.3514
+    },
+    {
+      "name": "Mati City Gymnasium Complex",
+      "city": "Mati",
+      "province": "Davao Oriental",
+      "image": "assets/shelters/mati-gym.jpg",
+      "lat": 6.9556,
+      "lng": 126.2144
+    },
+    {
+      "name": "Mati National Comprehensive High School Court",
+      "city": "Mati",
+      "province": "Davao Oriental",
+      "image": "assets/shelters/mati-high-court.jpg",
+      "lat": 6.9511,
+      "lng": 126.2089
+    },
+    {
+      "name": "Koronadal City Cultural and Sports Center",
+      "city": "Koronadal",
+      "province": "South Cotabato",
+      "image": "assets/shelters/koronadal-sports.jpg",
+      "lat": 6.5011,
+      "lng": 124.8489
+    },
+    {
+      "name": "Koronadal National Comprehensive High School Gym",
+      "city": "Koronadal",
+      "province": "South Cotabato",
+      "image": "assets/shelters/koronadal-high-gym.jpg",
+      "lat": 6.4967,
+      "lng": 124.8436
+    },
+    {
+      "name": "Tacurong City Cultural Sports Center",
+      "city": "Tacurong",
+      "province": "Sultan Kudarat",
+      "image": "assets/shelters/tacurong-sports.jpg",
+      "lat": 6.6914,
+      "lng": 124.6611
+    },
+    {
+      "name": "Tacurong National High School Covered Court",
+      "city": "Tacurong",
+      "province": "Sultan Kudarat",
+      "image": "assets/shelters/tacurong-high-court.jpg",
+      "lat": 6.6867,
+      "lng": 124.6567
+    },
+    {
+      "name": "Kidapawan City Gymnasium",
+      "city": "Kidapawan",
+      "province": "Cotabato",
+      "image": "assets/shelters/kidapawan-gym.jpg",
+      "lat": 7.0089,
+      "lng": 125.0889
+    },
+    {
+      "name": "Kidapawan National High School Gym Terminal",
+      "city": "Kidapawan",
+      "province": "Cotabato",
+      "image": "assets/shelters/kidapawan-high-gym.jpg",
+      "lat": 7.0053,
+      "lng": 125.0844
+    },
+    {
+      "name": "Malaybalay City Folk Arts Theater Gymnasium",
+      "city": "Malaybalay",
+      "province": "Bukidnon",
+      "image": "assets/shelters/malaybalay-gym.jpg",
+      "lat": 8.1583,
+      "lng": 125.1256
+    },
+    {
+      "name": "Bukidnon National High School Covered Court",
+      "city": "Malaybalay",
+      "province": "Bukidnon",
+      "image": "assets/shelters/bukidnon-high-court.jpg",
+      "lat": 8.1536,
+      "lng": 125.1211
+    },
+    {
+      "name": "Valencia City Gymnasium",
+      "city": "Valencia",
+      "province": "Bukidnon",
+      "image": "assets/shelters/valencia-bukidnon-gym.jpg",
+      "lat": 7.9067,
+      "lng": 125.0944
+    },
+    {
+      "name": "Valencia National High School Covered Gym",
+      "city": "Valencia",
+      "province": "Bukidnon",
+      "image": "assets/shelters/valencia-high-gym.jpg",
+      "lat": 7.9014,
+      "lng": 125.0889
+    },
+    {
+      "name": "Oroquieta City ABC Gymnasium",
+      "city": "Oroquieta",
+      "province": "Misamis Occidental",
+      "image": "assets/shelters/oroquieta-gym.jpg",
+      "lat": 8.4814,
+      "lng": 123.8056
+    },
+    {
+      "name": "Misamis Occidental National High School Gym",
+      "city": "Oroquieta",
+      "province": "Misamis Occidental",
+      "image": "assets/shelters/misocc-high-gym.jpg",
+      "lat": 8.4789,
+      "lng": 123.8011
+    },
+    {
+      "name": "Ozamiz City Sports Cultural Center",
+      "city": "Ozamiz",
+      "province": "Misamis Occidental",
+      "image": "assets/shelters/ozamiz-sports.jpg",
+      "lat": 8.1489,
+      "lng": 123.8444
+    },
+    {
+      "name": "Ozamiz City National High School Gym",
+      "city": "Ozamiz",
+      "province": "Misamis Occidental",
+      "image": "assets/shelters/ozamiz-high-gym.jpg",
+      "lat": 8.1456,
+      "lng": 123.8411
+    },
+    {
+      "name": "Tangub City Sinanduloy Cultural Center",
+      "city": "Tangub",
+      "province": "Misamis Occidental",
+      "image": "assets/shelters/tangub-cultural.jpg",
+      "lat": 8.0653,
+      "lng": 123.8325
+    },
+    {
+      "name": "Tangub City National High School Covered Arena",
+      "city": "Tangub",
+      "province": "Misamis Occidental",
+      "image": "assets/shelters/tangub-high-arena.jpg",
+      "lat": 8.0611,
+      "lng": 123.8289
+    },
+    {
+      "name": "El Salvador City Gymnasium Complex",
+      "city": "El Salvador",
+      "province": "Misamis Oriental",
+      "image": "assets/shelters/el-salvador-gym.jpg",
+      "lat": 8.5644,
+      "lng": 124.5122
+    },
+    {
+      "name": "El Salvador Central School Evacuation Station",
+      "city": "El Salvador",
+      "province": "Misamis Oriental",
+      "image": "assets/shelters/el-salvador-central.jpg",
+      "lat": 8.5606,
+      "lng": 124.5089
+    },
+    {
+      "name": "Gingoog City Comprehensive High School Gym",
+      "city": "Gingoog",
+      "province": "Misamis Oriental",
+      "image": "assets/shelters/gingoog-high-gym.jpg",
+      "lat": 8.8239,
+      "lng": 125.1014
+    },
+    {
+      "name": "Gingoog Arturo S. Lugod Gymnasium",
+      "city": "Gingoog",
+      "province": "Misamis Oriental",
+      "image": "assets/shelters/gingoog-lugod-gym.jpg",
+      "lat": 8.8211,
+      "lng": 125.0956
+    },
+    {
+      "name": "Dapitan City City Commercial Gym",
+      "city": "Dapitan",
+      "province": "Zamboanga del Norte",
+      "image": "assets/shelters/dapitan-commercial-gym.jpg",
+      "lat": 8.6544,
+      "lng": 123.4214
+    },
+    {
+      "name": "Dapitan City National High School Covered Court",
+      "city": "Dapitan",
+      "province": "Zamboanga del Norte",
+      "image": "assets/shelters/dapitan-high-court.jpg",
+      "lat": 8.6511,
+      "lng": 123.4167
+    },
+    {
+      "name": "Dipolog City Sports Complex Arena",
+      "city": "Dipolog",
+      "province": "Zamboanga del Norte",
+      "image": "assets/shelters/dipolog-sports-complex.jpg",
+      "lat": 8.5889,
+      "lng": 123.3444
+    },
+    {
+      "name": "Zamboanga del Norte National High School Gym",
+      "city": "Dipolog",
+      "province": "Zamboanga del Norte",
+      "image": "assets/shelters/znnhs-gym.jpg",
+      "lat": 8.5836,
+      "lng": 123.3392
+    },
+    {
+      "name": "Pagadian City Provincial Government Gymnasium",
+      "city": "Pagadian",
+      "province": "Zamboanga del Sur",
+      "image": "assets/shelters/pagadian-provincial-gym.jpg",
+      "lat": 7.8325,
+      "lng": 123.4325
+    },
+    {
+      "name": "Zamboanga del Sur National High School Gym",
+      "city": "Pagadian",
+      "province": "Zamboanga del Sur",
+      "image": "assets/shelters/zsnhs-gym.jpg",
+      "lat": 7.8289,
+      "lng": 123.4289
+    },
+    {
+      "name": "Isabela City Gymnasium Complex",
       "city": "Isabela City",
       "province": "Basilan",
-      "lat": 6.7042,
-      "lng": 121.9719
+      "image": "assets/shelters/isabela-basilan-gym.jpg",
+      "lat": 6.7044,
+      "lng": 121.9714
+    },
+    {
+      "name": "Basilan National High School Covered Court",
+      "city": "Isabela City",
+      "province": "Basilan",
+      "image": "assets/shelters/basilan-high-court.jpg",
+      "lat": 6.7011,
+      "lng": 121.9686
+    },
+    {
+      "name": "Lamitan City Gymnasium",
+      "city": "Lamitan",
+      "province": "Basilan",
+      "image": "assets/shelters/lamitan-gym.jpg",
+      "lat": 6.6556,
+      "lng": 122.1414
+    },
+    {
+      "name": "Lamitan Central Elementary School Evacuation Hub",
+      "city": "Lamitan",
+      "province": "Basilan",
+      "image": "assets/shelters/lamitan-central-school.jpg",
+      "lat": 6.6511,
+      "lng": 122.1389
+    },
+    {
+      "name": "Bayugan City Gymnasium Complex",
+      "city": "Bayugan",
+      "province": "Agusan del Sur",
+      "image": "assets/shelters/bayugan-gym.jpg",
+      "lat": 8.7114,
+      "lng": 125.7489
+    },
+    {
+      "name": "Bayugan National Comprehensive High School Court",
+      "city": "Bayugan",
+      "province": "Agusan del Sur",
+      "image": "assets/shelters/bayugan-high-court.jpg",
+      "lat": 8.7086,
+      "lng": 125.7444
+    },
+    {
+      "name": "Cabadbaran City Gymnasium Complex",
+      "city": "Cabadbaran",
+      "province": "Agusan del Norte",
+      "image": "assets/shelters/cabadbaran-gym.jpg",
+      "lat": 9.1239,
+      "lng": 125.5356
+    },
+    {
+      "name": "Cabadbaran City National High School Gym",
+      "city": "Cabadbaran",
+      "province": "Agusan del Norte",
+      "image": "assets/shelters/cabadbaran-high-gym.jpg",
+      "lat": 9.1211,
+      "lng": 125.5311
+    },
+    {
+      "name": "Surigao City Provincial Gymnasium",
+      "city": "Surigao City",
+      "province": "Surigao del Norte",
+      "image": "assets/shelters/surigao-provincial-gym.jpg",
+      "lat": 9.7894,
+      "lng": 125.4944
+    },
+    {
+      "name": "Surigao National High School Covered Court",
+      "city": "Surigao City",
+      "province": "Surigao del Norte",
+      "image": "assets/shelters/surigao-high-court.jpg",
+      "lat": 9.7856,
+      "lng": 125.4911
+    },
+    {
+      "name": "Bislig City Sports Cultural Center",
+      "city": "Bislig",
+      "province": "Surigao del Sur",
+      "image": "assets/shelters/bislig-sports.jpg",
+      "lat": 8.2114,
+      "lng": 126.3556
+    },
+    {
+      "name": "Bislig National High School Covered Gym",
+      "city": "Bislig",
+      "province": "Surigao del Sur",
+      "image": "assets/shelters/bislig-high-gym.jpg",
+      "lat": 8.2086,
+      "lng": 126.3511
+    },
+    {
+      "name": "Tandag City Gymnasium Complex",
+      "city": "Tandag",
+      "province": "Surigao del Sur",
+      "image": "assets/shelters/tandag-gym.jpg",
+      "lat": 9.0789,
+      "lng": 126.1944
+    },
+    {
+      "name": "Surigao del Sur National High School Gym",
+      "city": "Tandag",
+      "province": "Surigao del Sur",
+      "image": "assets/shelters/surigaodelsur-high-gym.jpg",
+      "lat": 9.0756,
+      "lng": 126.1911
     }
   ]
 }
