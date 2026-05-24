@@ -69,100 +69,104 @@ async function loadShelterData(){
     }
 }
 
-function detectRegion(city){
+function detectRegion(city) {
+    const cleanCity = city.toLowerCase().trim();
 
-    const cleanCity = city.toLowerCase();
-
-    const luzonKeywords = [
-
-        'manila',
-        'quezon city',
-        'makati',
-        'marinduque',
-        'gasan',
-        'boac',
-        'mogpog',
-        'torrijos',
-        'buenavista',
-        'pasig',
-        'taguig',
-        'marikina',
-        'marikina city',
-        'baguio',
-        'vigan',
-        'legazpi',
-        'batangas',
-        'olongapo',
-        'cabanatuan',
-        'lucena',
-        'naga',
-        'tuguegarao',
-        'laoag',
-        'baler',
-        'puerto princesa',
-        'palawan',
-        'bulacan',
-        'malolos',
-        'meycauayan',
-        'san jose del monte',
-        'pampanga',
-        'ilocos',
-        'cavite',
-        'laguna',
-        'rizal',
-        'bicol'
-    ];
-
-    const visayasKeywords = [
-
-        'cebu',
-        'iloilo',
-        'bacolod',
-        'dumaguete',
-        'tagbilaran',
-        'ormoc',
-        'tacloban',
-        'roxas',
-        'kalibo',
-        'bohol',
-        'leyte',
-        'samar',
-        'negros',
-        'aklan'
-    ];
-
-    const mindanaoKeywords = [
-
-        'davao',
-        'cagayan de oro',
-        'zamboanga',
-        'butuan',
-        'general santos',
-        'gensan',
-        'surigao',
-        'cotabato',
-        'dipolog',
-        'pagadian',
-        'bukidnon',
-        'misamis',
-        'lanao',
-        'mati'
-    ];
-
-    function matchesRegion(keywords){
-
-        return keywords.some(keyword =>
-            city.includes(keyword)
-        );
-    }
-
- if (cleanCity.includes('sulu') || cleanCity.includes('jolo') || cleanCity.includes('tawi') || cleanCity.includes('zamboanga')) {
+    // 1. Explicit priority overrides for Mindanao
+    if (
+        cleanCity.includes('sulu') || 
+        cleanCity.includes('jolo') || 
+        cleanCity.includes('patikul') ||
+        cleanCity.includes('tawi') || 
+        cleanCity.includes('bongao') || 
+        cleanCity.includes('zamboanga') ||
+        cleanCity.includes('basilan') ||
+        cleanCity.includes('isabela') ||
+        cleanCity.includes('dipolog') ||
+        cleanCity.includes('camiguin') ||
+        cleanCity.includes('mambajao') ||
+        cleanCity.includes('dinagat')
+    ) {
         return 'mindanao'; 
     }
     
-    if (cleanCity.includes('manila') || cleanCity.includes('marinduque')) {
+    // Explicit priority overrides for Luzon
+    if (
+        cleanCity.includes('ilocos norte') || 
+        cleanCity.includes('laoag') || 
+        cleanCity.includes('bataan') || 
+        cleanCity.includes('balanga') || 
+        cleanCity.includes('nueva ecija') || 
+        cleanCity.includes('palayan') || 
+        cleanCity.includes('kalinga') || 
+        cleanCity.includes('tabuk') || 
+        cleanCity.includes('tuguegarao') || 
+        cleanCity.includes('manila') || 
+        cleanCity.includes('marinduque') ||
+        cleanCity.includes('boac') ||
+        cleanCity.includes('gasan') ||
+        cleanCity.includes('santa cruz') ||
+        cleanCity.includes('mogpog') ||
+        cleanCity.includes('puerto princesa') ||
+        cleanCity.includes('palawan') ||
+        cleanCity.includes('masbate') ||
+        cleanCity.includes('catanduanes') ||
+        cleanCity.includes('virac') ||
+        cleanCity.includes('sorsogon')
+    ) {
         return 'luzon';
     }
+
+    // NEW: Explicit priority overrides for Visayas
+    if (
+        cleanCity.includes('aklan') ||
+        cleanCity.includes('panay') ||
+        cleanCity.includes('capiz') ||
+        cleanCity.includes('antique') ||
+        cleanCity.includes('iloilo')
+    ) {
+        return 'visayas';
+    }
+
+    // 2. Broad keyword arrays for fallback matching
+    const luzonKeywords = [
+        'quezon city', 'makati', 'pasig', 'taguig', 'marikina', 'muntinlupa', 
+        'las piñas', 'parañaque', 'cainta', 'antipolo', 'rizal', 'bulacan', 
+        'malolos', 'meycauayan', 'baguio', 'dagupan', 'pangasinan', 'cagayan', 
+        'legazpi', 'naga', 'albay', 'bicol', 'batangas', 'lucena', 'quezon province', 
+        'olongapo', 'subic', 'zambales', 'calamba', 'laguna', 'san fernando', 
+        'pampanga', 'cavite', 'vigan', 'ilocos sur', 'baler', 'aurora',
+        'masbate city', 'sorsogon city'
+    ];
+
+    const visayasKeywords = [
+        'cebu', 'mandaue', 'lapu-lapu', 'negros', 'tacloban', 
+        'ormoc', 'leyte', 'dumaguete', 'tagbilaran', 'bohol', 'kalibo', 
+        'borongan', 'samar', 'catbalogan', 'baybay', 'kabankalan', 'toledo', 
+        'guihulngan', 'maasin', 'escalante', 'sagay', 'bais', 
+        'roxas', 'guimaras', 'jordan', 'siquijor', 'biliran', 'naval', 'catarman', 
+        'calbayog', 'allen', 'palompon', 'carigara', 'tanjay', 'bogo', 'aklan'
+    ];
+
+    const mindanaoKeywords = [
+        'davao', 'cagayan de oro', 'cdo', 'general santos', 'gensan', 'butuan', 
+        'iligan', 'koronadal', 'cotabato', 'kidapawan', 'malaybalay', 'bukidnon', 
+        'surigao', 'pagadian', 'bislig', 'mati', 'valencia', 'tagum', 'panabo', 
+        'marawi', 'buluan', 'maguindanao', 'ipil', 'sibugay', 'prosperidad', 
+        'agusan', 'tandag', 'alabel', 'sarangani', 'isulan', 'sultan kudarat', 
+        'malita', 'digos'
+    ];
+
+    if (luzonKeywords.some(keyword => cleanCity.includes(keyword))) {
+        return 'luzon';
+    }
+    if (visayasKeywords.some(keyword => cleanCity.includes(keyword))) {
+        return 'visayas';
+    }
+    if (mindanaoKeywords.some(keyword => cleanCity.includes(keyword))) {
+        return 'mindanao';
+    }
+
     return 'luzon'; 
 }
 
@@ -238,7 +242,7 @@ async function updateShelterMap(city) {
     let searchCity = city;
     const cleanLower = city.toLowerCase().trim();
     
-    const mapRegionalMap = {
+const mapRegionalMap = {
         'sulu': 'Jolo',
         'marinduque': 'Boac',
         'batanes': 'Basco',
@@ -247,7 +251,21 @@ async function updateShelterMap(city) {
         'tawitawi': 'Bongao',
         'romblon': 'Romblon',
         'camiguin': 'Mambajao',
-        'dinagat': 'San Jose'
+        'dinagat': 'San Jose',
+        'ilocos norte': 'Laoag',
+        'ilocos sur': 'Vigan',
+        'pangasinan': 'Lingayen',
+        'zambales': 'Iba',
+        'bataan': 'Balanga',
+        'cagayan': 'Tuguegarao',
+        'isabela': 'Ilagan',
+        'camarines norte': 'Daet',
+        'camarines sur': 'Pili',
+        'masbate': 'Masbate City',
+        
+        // ADD THESE TWO LINES HERE:
+        'aklan': 'Kalibo',
+        'panay': 'Iloilo City'
     };
 
     for (const [province, capital] of Object.entries(mapRegionalMap)) {
@@ -297,36 +315,43 @@ async function updateShelterMap(city) {
     }
 
     const cityShelters = shelterData[region].filter(shelter => {
-        if (shelter.lat == null || shelter.lng == null) {
-            return false;
-        }
 
-        const shelterCity = shelter.city
-            .toLowerCase()
-            .replace(/\b(city|city of|municipality of|municipality)\b/g, '')
-            .trim();
+    if (shelter.lat == null || shelter.lng == null) {
+        return false;
+    }
 
-        const isCityMatch =
-            shelterCity === normalizedCity ||
-            shelterCity.includes(normalizedCity) ||
-            normalizedCity.includes(shelterCity);
+    const shelterCity = shelter.city
+        .toLowerCase()
+        .replace(/\b(city|city of|municipality of|municipality)\b/g, '')
+        .trim();
 
-        const sLat = parseFloat(shelter.lat);
-        const sLng = parseFloat(shelter.lng);
+    const isCityMatch =
+        shelterCity === normalizedCity ||
+        shelterCity.includes(normalizedCity) ||
+        normalizedCity.includes(shelterCity);
 
-        if (isNaN(sLat) || isNaN(sLng)) {
-            return false;
-        }
+    const shelterProvince =
+        shelter.province?.toLowerCase() || '';
 
-        const distance = Math.sqrt(
-            Math.pow(sLat - cityLat, 2) +
-            Math.pow(sLng - cityLng, 2)
-        );
+    const isProvinceMatch =
+        shelterProvince.includes(normalizedCity);
 
-        const isNearby = distance < 2.5;
+    const sLat = parseFloat(shelter.lat);
+    const sLng = parseFloat(shelter.lng);
 
-        return isCityMatch || isNearby;
-    });
+    if (isNaN(sLat) || isNaN(sLng)) {
+        return false;
+    }
+
+    const distance = Math.sqrt(
+        Math.pow(sLat - cityLat, 2) +
+        Math.pow(sLng - cityLng, 2)
+    );
+
+    const isNearby = distance < 0.30;
+
+    return isCityMatch || isProvinceMatch || isNearby;
+});
 
     let nearestShelter = null;
     let nearestDistance = Infinity;
@@ -505,7 +530,7 @@ async function updateWeatherInfo(city) {
                 'guimaras': 'Jordan',
                 'catanduanes': 'Virac',
                 'siquijor': 'Siquijor',
-                'masbate': 'Masbate City',
+                'masbate city': 'Masbate City',
                 'bulacan': 'Malolos',
                 'pampanga': 'San Fernando',
                 'cavite': 'Trece Martires',
@@ -1245,6 +1270,15 @@ async function fetchClimateNews(city = 'Philippines') {
             'games',
             'meralco',
             'games',
+            'league',
+            'e-wallet',
+            'afp',
+            'war',
+            'drugs',
+            'golf',
+            'taxi',
+            'motorcycle',
+
             
         ];
 
