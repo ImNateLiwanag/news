@@ -44,6 +44,19 @@ const newsDataKey =
 
 let shelterData = {};
 
+const PROVINCE_COORDINATES = {
+    'zamboanga del norte': { lat: 8.1500, lng: 123.0000 },
+    'zamboanga del sur': { lat: 7.7000, lng: 122.8000 },
+    'zamboanga sibugay': { lat: 7.6333, lng: 122.6500 },
+    'misamis occidental': { lat: 8.3333, lng: 123.7500 },
+    'misamis oriental': { lat: 8.7500, lng: 124.8333 },
+    'bukidnon': { lat: 8.0333, lng: 125.0000 },
+    'lanao del norte': { lat: 7.9167, lng: 124.0000 },
+    'lanao del sur': { lat: 7.8333, lng: 124.3333 },
+    'sultan kudarat': { lat: 6.6342, lng: 124.6053 },
+    'sarangani': { lat: 6.1031, lng: 125.2847 }
+};
+
 async function loadShelterData(){
 
     try{
@@ -72,25 +85,20 @@ async function loadShelterData(){
 function detectRegion(city) {
     const cleanCity = city.toLowerCase().trim();
 
-    // 1. Explicit priority overrides for Mindanao
+    // 1. Explicit priority overrides for Visayas (Check these first to protect Negros/Panay)
     if (
-        cleanCity.includes('sulu') || 
-        cleanCity.includes('jolo') || 
-        cleanCity.includes('patikul') ||
-        cleanCity.includes('tawi') || 
-        cleanCity.includes('bongao') || 
-        cleanCity.includes('zamboanga') ||
-        cleanCity.includes('basilan') ||
-        cleanCity.includes('isabela') ||
-        cleanCity.includes('dipolog') ||
-        cleanCity.includes('camiguin') ||
-        cleanCity.includes('mambajao') ||
-        cleanCity.includes('dinagat')
+        cleanCity.includes('aklan') ||
+        cleanCity.includes('panay') ||
+        cleanCity.includes('capiz') ||
+        cleanCity.includes('antique') ||
+        cleanCity.includes('iloilo') ||
+        cleanCity.includes('bacolod') ||
+        cleanCity.includes('negros')
     ) {
-        return 'mindanao'; 
+        return 'visayas';
     }
-    
-    // Explicit priority overrides for Luzon
+
+    // 2. Explicit priority overrides for Luzon (Moved up to protect Isabela Province)
     if (
         cleanCity.includes('ilocos norte') || 
         cleanCity.includes('laoag') || 
@@ -112,62 +120,60 @@ function detectRegion(city) {
         cleanCity.includes('masbate') ||
         cleanCity.includes('catanduanes') ||
         cleanCity.includes('virac') ||
-        cleanCity.includes('sorsogon')
+        cleanCity.includes('sorsogon') ||
+        (cleanCity.includes('isabela') && !cleanCity.includes('basilan')) // Protects Luzon's Isabela Province
     ) {
         return 'luzon';
     }
 
-    // NEW: Explicit priority overrides for Visayas
+    // 3. Explicit priority overrides for Mindanao
     if (
-        cleanCity.includes('aklan') ||
-        cleanCity.includes('panay') ||
-        cleanCity.includes('capiz') ||
-        cleanCity.includes('antique') ||
-        cleanCity.includes('iloilo')
+        cleanCity.includes('sulu') || 
+        cleanCity.includes('jolo') || 
+        cleanCity.includes('patikul') ||
+        cleanCity.includes('tawi') || 
+        cleanCity.includes('bongao') || 
+        cleanCity.includes('zamboanga') ||
+        cleanCity.includes('basilan') ||
+        (cleanCity.includes('isabela') && cleanCity.includes('basilan')) || // Only maps to Mindanao if explicitly "Isabela, Basilan"
+        cleanCity.includes('dipolog') ||
+        cleanCity.includes('camiguin') ||
+        cleanCity.includes('mambajao') ||
+        cleanCity.includes('dinagat')
     ) {
-        return 'visayas';
+        return 'mindanao'; 
     }
 
-    // 2. Broad keyword arrays for fallback matching
+    // 4. Broad keyword arrays for fallback matching
     const luzonKeywords = [
-        'quezon city', 'makati', 'pasig', 'taguig', 'marikina', 'muntinlupa', 
-        'las piñas', 'parañaque', 'cainta', 'antipolo', 'rizal', 'bulacan', 
-        'malolos', 'meycauayan', 'baguio', 'dagupan', 'pangasinan', 'cagayan', 
-        'legazpi', 'naga', 'albay', 'bicol', 'batangas', 'lucena', 'quezon province', 
-        'olongapo', 'subic', 'zambales', 'calamba', 'laguna', 'san fernando', 
-        'pampanga', 'cavite', 'vigan', 'ilocos sur', 'baler', 'aurora',
-        'masbate city', 'sorsogon city'
+        'manila', 'quezon city', 'makati', 'pasay', 'taguig', 'caloocan', 'pasig', 'marikina', 'valenzuela',
+        'batanes', 'basco', 'ilocos', 'laoag', 'vigan', 'pangasinan', 'lingayen', 'zambales', 'iba', 
+        'bataan', 'balanga', 'cagayan', 'tuguegarao', 'isabela', 'ilagan', 'camarines', 'daet', 'pili', 
+        'masbate', 'palawan', 'puerto princesa', 'marinduque', 'boac', 'romblon', 'aurora', 'baler',
+        'pampanga', 'san fernando', 'bulacan', 'malolos', 'laguna', 'calamba', 'rizal', 'antipolo', 'quezon'
     ];
 
     const visayasKeywords = [
-        'cebu', 'mandaue', 'lapu-lapu', 'negros', 'tacloban', 
-        'ormoc', 'leyte', 'dumaguete', 'tagbilaran', 'bohol', 'kalibo', 
-        'borongan', 'samar', 'catbalogan', 'baybay', 'kabankalan', 'toledo', 
-        'guihulngan', 'maasin', 'escalante', 'sagay', 'bais', 
-        'roxas', 'guimaras', 'jordan', 'siquijor', 'biliran', 'naval', 'catarman', 
-        'calbayog', 'allen', 'palompon', 'carigara', 'tanjay', 'bogo', 'aklan'
+        'bacolod', 'iloilo', 'cebu', 'mandaue', 'lapu-lapu', 'tacloban', 'ormoc', 
+        'aklan', 'kalibo', 'panay', 'capiz', 'roxas', 'antique', 'san jose', 'guimaras', 'jordan', 
+        'negros', 'occidental', 'oriental', 'dumaguete', 'siquijor', 'bohol', 'tagbilaran', 
+        'biliran', 'naval', 'leyte', 'samar', 'catbalogan', 'borongan', 'catarman'
     ];
 
     const mindanaoKeywords = [
-        'davao', 'cagayan de oro', 'cdo', 'general santos', 'gensan', 'butuan', 
-        'iligan', 'koronadal', 'cotabato', 'kidapawan', 'malaybalay', 'bukidnon', 
-        'surigao', 'pagadian', 'bislig', 'mati', 'valencia', 'tagum', 'panabo', 
-        'marawi', 'buluan', 'maguindanao', 'ipil', 'sibugay', 'prosperidad', 
-        'agusan', 'tandag', 'alabel', 'sarangani', 'isulan', 'sultan kudarat', 
-        'malita', 'digos'
+        'davao', 'cagayan de oro', 'cdo', 'zamboanga', 'general santos', 'gensan', 'iligan', 'marawi', 'butuan',
+        'del norte', 'del sur', 'sibugay', 'oroquieta', 'misamis', 'camiguin', 'mambajao', 'bukidnon', 
+        'malaybalay', 'lanao', 'cotabato', 'kidapawan', 'koronadal', 'sarangani', 'alabel', 'sultan kudarat', 
+        'isulan', 'agusan', 'prosperidad', 'dinagat', 'surigao', 'basilan', 'sulu', 'jolo', 'tawi-tawi', 
+        'bongao', 'maguindanao'
     ];
 
-    if (luzonKeywords.some(keyword => cleanCity.includes(keyword))) {
-        return 'luzon';
-    }
-    if (visayasKeywords.some(keyword => cleanCity.includes(keyword))) {
-        return 'visayas';
-    }
-    if (mindanaoKeywords.some(keyword => cleanCity.includes(keyword))) {
-        return 'mindanao';
-    }
+    if (luzonKeywords.some(keyword => cleanCity.includes(keyword))) return 'luzon';
+    if (visayasKeywords.some(keyword => cleanCity.includes(keyword))) return 'visayas';
+    if (mindanaoKeywords.some(keyword => cleanCity.includes(keyword))) return 'mindanao';
 
-    return 'luzon'; 
+    // Safe global fallback instead of defaulting strictly to luzon
+    return null; 
 }
 
 let map = null;
@@ -242,7 +248,7 @@ async function updateShelterMap(city) {
     let searchCity = city;
     const cleanLower = city.toLowerCase().trim();
     
-const mapRegionalMap = {
+    const mapRegionalMap = {
         'sulu': 'Jolo',
         'marinduque': 'Boac',
         'batanes': 'Basco',
@@ -262,8 +268,6 @@ const mapRegionalMap = {
         'camarines norte': 'Daet',
         'camarines sur': 'Pili',
         'masbate': 'Masbate City',
-        
-        // ADD THESE TWO LINES HERE:
         'aklan': 'Kalibo',
         'panay': 'Iloilo City'
     };
@@ -277,31 +281,47 @@ const mapRegionalMap = {
 
     let cityLat = 12.8797;
     let cityLng = 121.7740;
+    let isHardcodedProvince = false;
 
-    try {
-        const geoResponse = await fetch(
-            `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(searchCity)},PH&limit=5&appid=${apiKey}`
-        );
-
-        const geoData = await geoResponse.json();
-        const searchClean = searchCity.toLowerCase().replace(/\b(city|province|municipality)\b/g, '').trim();
-       
-        const phLocation = geoData.find(location => {
-            if (location.country !== 'PH') return false;
-            const locName = location.name.toLowerCase();
-            return locName.includes(searchClean) || searchClean.includes(locName);
-        }) || geoData[0];
-
-        if (phLocation) {
-            cityLat = phLocation.lat;
-            cityLng = phLocation.lon;
+    // --- NEW MEASURE / PREVENTION ADDED HERE ---
+    // Check if the user searched for any of our problem-case provinces
+    for (const [provName, coords] of Object.entries(PROVINCE_COORDINATES)) {
+        if (cleanLower.includes(provName)) {
+            cityLat = coords.lat;
+            cityLng = coords.lng;
+            isHardcodedProvince = true;
+            break;
         }
-
-    } catch (error) {
-        console.log('Geocoding failed', error);
     }
 
-    const region = detectRegion(city);
+    // Only hit OpenWeather if it's NOT a hardcoded fallback province
+    if (!isHardcodedProvince) {
+        try {
+            const geoResponse = await fetch(
+                `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(searchCity)},PH&limit=5&appid=${apiKey}`
+            );
+
+            const geoData = await geoResponse.json();
+            const searchClean = searchCity.toLowerCase().replace(/\b(city|province|municipality)\b/g, '').trim();
+           
+            const phLocation = geoData.find(location => {
+                if (location.country !== 'PH') return false;
+                const locName = location.name.toLowerCase();
+                return locName.includes(searchClean) || searchClean.includes(locName);
+            }) || geoData[0];
+
+            if (phLocation) {
+                cityLat = phLocation.lat;
+                cityLng = phLocation.lon;
+            }
+
+        } catch (error) {
+            console.log('Geocoding failed', error);
+        }
+    }
+    // --------------------------------------------
+
+const region = detectRegion(city);
     console.log('Detected region:', region);
 
     const normalizedCity = city
@@ -309,49 +329,88 @@ const mapRegionalMap = {
         .replace(/\b(city|city of|municipality of|municipality)\b/g, '')
         .trim();
 
-    if (!shelterData[region]) {
-        console.log(`No shelter data found for region: ${region}`);
-        return;
+    let cityShelters = [];
+
+    // --- STRATEGY CHANGE HERE ---
+    // If we confidently matched a region, only search that specific array
+    if (region && shelterData[region]) {
+        console.log(`Region confirmed. Filtering inside: ${region}`);
+        
+        cityShelters = shelterData[region].filter(shelter => {
+            if (shelter.lat == null || shelter.lng == null) return false;
+
+            const shelterCity = shelter.city
+                .toLowerCase()
+                .replace(/\b(city|city of|municipality of|municipality)\b/g, '')
+                .trim();
+
+            const isCityMatch =
+                shelterCity === normalizedCity ||
+                shelterCity.includes(normalizedCity) ||
+                normalizedCity.includes(shelterCity);
+
+            const shelterProvince = shelter.province?.toLowerCase() || '';
+            const isProvinceMatch = shelterProvince.includes(normalizedCity);
+
+            const sLat = parseFloat(shelter.lat);
+            const sLng = parseFloat(shelter.lng);
+            if (isNaN(sLat) || isNaN(sLng)) return false;
+
+            // Distance math
+            const distance = Math.sqrt(
+                Math.pow(sLat - cityLat, 2) +
+                Math.pow(sLng - cityLng, 2)
+            );
+            const isNearby = distance < 0.30;
+
+            return isCityMatch || isProvinceMatch || isNearby;
+        });
+
+    } else {
+        // FALLBACK: Search nationwide across all arrays if region is null or unrecognized
+        console.log("Unrecognized or ambiguous region keyword. Scanning nationwide entries...");
+        
+        const categories = ['luzon', 'visayas', 'mindanao'];
+        
+        categories.forEach(regionKey => {
+            if (shelterData[regionKey]) {
+                const matchedInRegion = shelterData[regionKey].filter(shelter => {
+                    if (shelter.lat == null || shelter.lng == null) return false;
+
+                    const shelterCity = shelter.city
+                        .toLowerCase()
+                        .replace(/\b(city|city of|municipality of|municipality)\b/g, '')
+                        .trim();
+
+                    const isCityMatch =
+                        shelterCity === normalizedCity ||
+                        shelterCity.includes(normalizedCity) ||
+                        normalizedCity.includes(shelterCity);
+
+                    const shelterProvince = shelter.province?.toLowerCase() || '';
+                    const isProvinceMatch = shelterProvince.includes(normalizedCity);
+
+                    const sLat = parseFloat(shelter.lat);
+                    const sLng = parseFloat(shelter.lng);
+                    if (isNaN(sLat) || isNaN(sLng)) return false;
+
+                    const distance = Math.sqrt(
+                        Math.pow(sLat - cityLat, 2) +
+                        Math.pow(sLng - cityLng, 2)
+                    );
+                    const isNearby = distance < 0.30;
+
+                    return isCityMatch || isProvinceMatch || isNearby;
+                });
+
+                // Combine results into our main cityShelters array
+                cityShelters = cityShelters.concat(matchedInRegion);
+            }
+        });
     }
 
-    const cityShelters = shelterData[region].filter(shelter => {
-
-    if (shelter.lat == null || shelter.lng == null) {
-        return false;
-    }
-
-    const shelterCity = shelter.city
-        .toLowerCase()
-        .replace(/\b(city|city of|municipality of|municipality)\b/g, '')
-        .trim();
-
-    const isCityMatch =
-        shelterCity === normalizedCity ||
-        shelterCity.includes(normalizedCity) ||
-        normalizedCity.includes(shelterCity);
-
-    const shelterProvince =
-        shelter.province?.toLowerCase() || '';
-
-    const isProvinceMatch =
-        shelterProvince.includes(normalizedCity);
-
-    const sLat = parseFloat(shelter.lat);
-    const sLng = parseFloat(shelter.lng);
-
-    if (isNaN(sLat) || isNaN(sLng)) {
-        return false;
-    }
-
-    const distance = Math.sqrt(
-        Math.pow(sLat - cityLat, 2) +
-        Math.pow(sLng - cityLng, 2)
-    );
-
-    const isNearby = distance < 0.30;
-
-    return isCityMatch || isProvinceMatch || isNearby;
-});
+    // Your existing marker-rendering code follows right below here smoothly...
+    console.log(`Found ${cityShelters.length} shelters near/matching request.`);
 
     let nearestShelter = null;
     let nearestDistance = Infinity;
