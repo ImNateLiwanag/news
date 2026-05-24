@@ -361,7 +361,7 @@ const region = detectRegion(city);
                 Math.pow(sLat - cityLat, 2) +
                 Math.pow(sLng - cityLng, 2)
             );
-            const isNearby = distance < 0.30;
+            const isNearby = distance < 0.3;
 
             return isCityMatch || isProvinceMatch || isNearby;
         });
