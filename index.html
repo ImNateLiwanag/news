@@ -7,7 +7,7 @@
     
     <link rel="stylesheet" href="index_style.css">
     <link rel="icon" type="image/png" href="assets/icons/Logo.png">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,6 @@
         <div class="main container">
             
             <div class="card" id="home">
-                
                 <div class="weather-welcome">
                     <div class="bg-weather-decor">
                         <div class="decor-sun"></div>
@@ -54,14 +53,12 @@
                             <h1>Welcome to <span class="glowing-thrive">Thrive!</span></h1>
                             <h2>Your Weather Companion</h2>
                         </div>
-
                         <div class="welcome-input">
                             <input type="text" placeholder="Enter a Philippine City" class="city-input">
                             <button class="welcome-search-btn">
                                 <img src="assets/icons/Search.png" alt="Search Icon">
                             </button>
                         </div>
-
                         <div class="error-msg">
                             <p>City not found. Please try again.</p>
                         </div>
@@ -70,12 +67,11 @@
 
                 <div class="weather-input" style="display: none;">
                     <div class="input">
-                        <input type="text" placeholder="Enter a Philippine City" class="country-input">
+                        <input type="text" placeholder="Enter a Philippine City: Manila" class="country-input">
                         <button class="search-btn">
                             <img src="assets/icons/Search.png" alt="Search Icon">
                         </button>
                     </div>
-                    
                     <div class="weather-result">
                         <div class="city-day">
                             <div class="location">
@@ -84,7 +80,6 @@
                             </div>
                             <h3 class="weather-day">Mon</h3>
                         </div>
-
                         <div class="weather-summary">
                             <img src="assets/weather/clear.svg" alt="Weather Icon" class="weather-summary-img">
                             <div class="weather-info">
@@ -92,7 +87,6 @@
                                 <h3 class="condition-txt">Clear Sky</h3>
                             </div>
                         </div>
-
                         <div class="weather-condition">
                             <div class="condition-item">
                                 <img src="assets/icons/Humidity.png" alt="Humidity Icon" class="condition-icon">
@@ -108,17 +102,15 @@
                                     <h4 class="wind-value-txt">2 M/s</h4>
                                 </div>
                             </div>
-
                             <div class="weather-quote-box">
-                               <p class="weather-quote-txt">"Fetching your daily sky vibe..."</p>
-                           </div>
+                                <p class="weather-quote-txt">"Fetching your daily sky vibe..."</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="weather-text" style="display: none;">
                     <h1 class="today-txt">It's a hot day today.</h1>
-
                     <div class="future-weather">
                         <div class="future-weather-card">
                             <h2 class="forecast-item-date">07 May</h2>
@@ -150,7 +142,7 @@
                     <div class="tips-card">
                         <div class="tips-top">
                             <div class="tips-icon-wrapper">
-                            <img src="assets/weather/clear.svg" alt="Weather Icon" class="about-weather-icon">
+                                <img src="assets/weather/clear.svg" alt="Weather Icon" class="about-weather-icon">
                             </div>
                             <div class="tips-temp-info">
                                 <h1 class="tips-temp"></h1>
@@ -166,7 +158,6 @@
                     <div class="tips-weather">
                         <h1 class="tips-main-title"></h1>
                         <p class="tips-subtitle">Recommended safety actions for today's conditions.</p>
-                        
                         <ul class="tips-list">
                             <li>
                                 <img src="assets/tips/wt.jpg" class="tip-icon" alt="Drink Water">
@@ -193,68 +184,32 @@
                 </div>
 
                 <div class="shelter-wrapper">
-
-    <div class="shelter-header">
-        <h1>Emergency Shelter Map</h1>
-        <p>
-            Explore nearby evacuation and emergency shelter locations
-            based on your selected city.
-        </p>
-    </div>
-
-    <div class="shelter-map-wrapper">
-
-        <div id="map">
-
-            <!-- FLOATING MENU BUTTON -->
-            <button class="map-menu-btn" id="mapMenuBtn">
-                ☰
-            </button>
-
-            <!-- SLIDE PANEL -->
-            <div class="shelter-menu" id="shelterMenu">
-
-                <div class="shelter-menu-header">
-                    Available Shelters
+                    <div class="shelter-header">
+                        <h1>Emergency Shelter Map</h1>
+                        <p>Explore nearby evacuation and emergency shelter locations based on your selected city.</p>
+                    </div>
+                    <div class="shelter-map-wrapper">
+                        <div id="map">
+                            <button class="map-menu-btn" id="mapMenuBtn">☰</button>
+                            <div class="shelter-menu" id="shelterMenu">
+                                <div class="shelter-menu-header">Available Shelters</div>
+                                <div class="shelter-region">
+                                    <button class="region-toggle">Luzon</button>
+                                    <div class="region-list" id="luzon-list"></div>
+                                </div>
+                                <div class="shelter-region">
+                                    <button class="region-toggle">Visayas</button>
+                                    <div class="region-list" id="visayas-list"></div>
+                                </div>
+                                <div class="shelter-region">
+                                    <button class="region-toggle">Mindanao</button>
+                                    <div class="region-list" id="mindanao-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="shelter-region">
-
-                    <button class="region-toggle">
-                        Luzon
-                    </button>
-
-                    <div class="region-list" id="luzon-list"></div>
-
-                </div>
-
-                <div class="shelter-region">
-
-                    <button class="region-toggle">
-                        Visayas
-                    </button>
-
-                    <div class="region-list" id="visayas-list"></div>
-
-                </div>
-
-                <div class="shelter-region">
-
-                    <button class="region-toggle">
-                        Mindanao
-                    </button>
-
-                    <div class="region-list" id="mindanao-list"></div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+            </section>
 
             <section id="news">
                 <div class="climate-header">
@@ -262,21 +217,17 @@
                     <p>Current climate-related events and historical disasters in the Philippines.</p>
                     <h3 class="news-location"></h3>
                 </div>
-
                 <div class="climate-toggle">
                     <button class="climate-btn active" data-type="current">Current</button>
                     <button class="climate-btn" data-type="past">Historical</button>
                 </div>
-                
-                <div class="news-grid">
-                    </div>
+                <div class="news-grid"></div>
             </section>
            
             <div class="card" id="contact">
                 <img src="assets/icons/Hotline.png" alt="Call Icon" class="call-icon">
                 <h1>Emergency Hotlines</h1>
                 <p>In case of severe weather events, floods, or medical emergencies, please contact these authorized hotlines immediately.</p>
-                
                 <div class="hotlines">
                     <div class="hotline-row">
                         <div class="hotline-card">
@@ -288,7 +239,6 @@
                                 <img src="assets/icons/Call.png" alt="Call Icon">
                             </div>
                         </div>
-
                         <div class="hotline-card">
                             <div class="info">
                                 <h3>Philippine Red Cross</h3>
@@ -299,7 +249,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="hotline-row">
                         <div class="hotline-card">
                             <div class="info">
@@ -310,7 +259,6 @@
                                 <img src="assets/icons/Call.png" alt="Call Icon">
                             </div>
                         </div>
-
                         <div class="hotline-card">
                             <div class="info">
                                 <h3>NDRRMC</h3>
