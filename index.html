@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thrive | Your Weather Companion</title>
-    
     <link rel="stylesheet" href="index_style.css">
     <link rel="icon" type="image/png" href="assets/icons/Logo.png">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
-<body>
 
+<body>
     <nav class="navbar">
         <a href="index.html">
             <img src="assets/icons/Thrive.png" alt="Thrive Logo" class="logo">
@@ -27,7 +24,6 @@
             <a href="about.html">About</a>
         </div>
     </nav>
-
     <aside class="sidebar" style="display: none;">
         <ul>
             <li><a href="#home">Home</a></li>
@@ -36,10 +32,8 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </aside>
-
     <main>
-        <div class="main container">
-            
+        <div class="main container">       
             <div class="card" id="home">
                 <div class="weather-welcome">
                     <div class="bg-weather-decor">
@@ -48,17 +42,20 @@
                         <div class="decor-cloud cloud-2"></div>
                         <div class="decor-cloud cloud-3"></div>
                     </div>
+
                     <div class="welcome-container">
                         <div class="welcome-text">
                             <h1>Welcome to <span class="glowing-thrive">Thrive!</span></h1>
                             <h2>Your Weather Companion</h2>
                         </div>
+
                         <div class="welcome-input">
                             <input type="text" placeholder="Enter a Philippine City" class="city-input">
                             <button class="welcome-search-btn">
                                 <img src="assets/icons/Search.png" alt="Search Icon">
                             </button>
                         </div>
+
                         <div class="error-msg">
                             <p>City not found. Please try again.</p>
                         </div>
@@ -72,6 +69,7 @@
                             <img src="assets/icons/Search.png" alt="Search Icon">
                         </button>
                     </div>
+
                     <div class="weather-result">
                         <div class="city-day">
                             <div class="location">
@@ -80,6 +78,7 @@
                             </div>
                             <h3 class="weather-day">Mon</h3>
                         </div>
+
                         <div class="weather-summary">
                             <img src="assets/weather/clear.svg" alt="Weather Icon" class="weather-summary-img">
                             <div class="weather-info">
@@ -87,6 +86,7 @@
                                 <h3 class="condition-txt">Clear Sky</h3>
                             </div>
                         </div>
+
                         <div class="weather-condition">
                             <div class="condition-item">
                                 <img src="assets/icons/Humidity.png" alt="Humidity Icon" class="condition-icon">
@@ -95,6 +95,7 @@
                                     <h4 class="humidity-value-txt">60%</h4>
                                 </div>
                             </div>
+
                             <div class="condition-item">
                                 <img src="assets/icons/Wind.png" alt="Wind Icon" class="condition-icon">
                                 <div class="condition-info">
@@ -102,9 +103,10 @@
                                     <h4 class="wind-value-txt">2 M/s</h4>
                                 </div>
                             </div>
+
                             <div class="weather-quote-box">
-                                <p class="weather-quote-txt">"Fetching your daily sky vibe..."</p>
-                            </div>
+                               <p class="weather-quote-txt">"Fetching your daily sky vibe..."</p>
+                           </div>
                         </div>
                     </div>
                 </div>
@@ -117,16 +119,19 @@
                             <img src="assets/weather/thunderstorm.svg" alt="Weather Icon" class="forecast-item-img">
                             <h3 class="forecast-item-temp">24°C</h3>
                         </div>
+
                         <div class="future-weather-card">
                             <h2 class="forecast-item-date">08 May</h2>
                             <img src="assets/weather/thunderstorm.svg" alt="Weather Icon" class="forecast-item-img">
                             <h3 class="forecast-item-temp">22°C</h3>
                         </div>
+
                         <div class="future-weather-card">
                             <h2 class="forecast-item-date">09 May</h2>
                             <img src="assets/weather/thunderstorm.svg" alt="Weather Icon" class="forecast-item-img">
                             <h3 class="forecast-item-temp">25°C</h3>
                         </div>
+
                         <div class="future-weather-card">
                             <h2 class="forecast-item-date">10 May</h2>
                             <img src="assets/weather/thunderstorm.svg" alt="Weather Icon" class="forecast-item-img">
@@ -137,18 +142,20 @@
                 </div>
             </div>
 
+
             <section id="tips">
                 <div class="tips-dashboard">
                     <div class="tips-card">
                         <div class="tips-top">
                             <div class="tips-icon-wrapper">
-                                <img src="assets/weather/clear.svg" alt="Weather Icon" class="about-weather-icon">
+                            <img src="assets/weather/clear.svg" alt="Weather Icon" class="about-weather-icon">
                             </div>
                             <div class="tips-temp-info">
                                 <h1 class="tips-temp"></h1>
                                 <p class="tips-condition"></p>
                             </div>
                         </div>
+
                         <div class="tips-alert">
                             <h2 class="danger-title"></h2>
                             <p class="danger-description"></p>
@@ -159,21 +166,25 @@
                         <h1 class="tips-main-title"></h1>
                         <p class="tips-subtitle">Recommended safety actions for today's conditions.</p>
                         <ul class="tips-list">
+
                             <li>
                                 <img src="assets/tips/wt.jpg" class="tip-icon" alt="Drink Water">
                                 <h3 class="tip-title">Drink Water</h3>
                                 <p class="tip-description">Stay hydrated throughout the day.</p>
                             </li>
+
                             <li>
                                 <img src="assets/tips/sc.jpg" class="tip-icon" alt="Wear Sunscreen">
                                 <h3 class="tip-title">Wear Sunscreen</h3>
                                 <p class="tip-description">Protect your skin from UV rays.</p>
                             </li>
+
                             <li>
                                 <img src="assets/tips/ben.jpg" class="tip-icon" alt="Light Clothing">
                                 <h3 class="tip-title">Light Clothing</h3>
                                 <p class="tip-description">Wear breathable clothes outdoors.</p>
                             </li>
+
                             <li>
                                 <img src="assets/tips/um.jpg" class="tip-icon" alt="Avoid Noon Heat">
                                 <h3 class="tip-title">Avoid Noon Heat</h3>
@@ -184,110 +195,301 @@
                 </div>
 
                 <div class="shelter-wrapper">
-                    <div class="shelter-header">
-                        <h1>Emergency Shelter Map</h1>
-                        <p>Explore nearby evacuation and emergency shelter locations based on your selected city.</p>
-                    </div>
-                    <div class="shelter-map-wrapper">
-                        <div id="map">
-                            <button class="map-menu-btn" id="mapMenuBtn">☰</button>
-                            <div class="shelter-menu" id="shelterMenu">
-                                <div class="shelter-menu-header">Available Shelters</div>
-                                <div class="shelter-region">
-                                    <button class="region-toggle">Luzon</button>
-                                    <div class="region-list" id="luzon-list"></div>
-                                </div>
-                                <div class="shelter-region">
-                                    <button class="region-toggle">Visayas</button>
-                                    <div class="region-list" id="visayas-list"></div>
-                                </div>
-                                <div class="shelter-region">
-                                    <button class="region-toggle">Mindanao</button>
-                                    <div class="region-list" id="mindanao-list"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+    <div class="shelter-header">
+
+        <h1>Emergency Shelter Map</h1>
+
+        <p>
+
+            Explore nearby evacuation and emergency shelter locations
+
+            based on your selected city.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="shelter-map-wrapper">
+
+
+
+        <div id="map">
+
+
+
+            <!-- FLOATING MENU BUTTON -->
+
+            <button class="map-menu-btn" id="mapMenuBtn">
+
+                ☰
+
+            </button>
+
+
+
+            <!-- SLIDE PANEL -->
+
+            <div class="shelter-menu" id="shelterMenu">
+
+
+
+                <div class="shelter-menu-header">
+
+                    Available Shelters
+
                 </div>
-            </section>
+
+
+
+                <div class="shelter-region">
+
+
+
+                    <button class="region-toggle">
+
+                        Luzon
+
+                    </button>
+
+
+
+                    <div class="region-list" id="luzon-list"></div>
+
+
+
+                </div>
+
+
+
+                <div class="shelter-region">
+
+
+
+                    <button class="region-toggle">
+
+                        Visayas
+
+                    </button>
+
+
+
+                    <div class="region-list" id="visayas-list"></div>
+
+
+
+                </div>
+
+
+
+                <div class="shelter-region">
+
+
+
+                    <button class="region-toggle">
+
+                        Mindanao
+
+                    </button>
+
+
+
+                    <div class="region-list" id="mindanao-list"></div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+
 
             <section id="news">
-                <div class="climate-header">
-                    <h1>Climate Action</h1>
-                    <p>Current climate-related events and historical disasters in the Philippines.</p>
-                    <h3 class="news-location"></h3>
-                </div>
-                <div class="climate-toggle">
-                    <button class="climate-btn active" data-type="current">Current</button>
-                    <button class="climate-btn" data-type="past">Historical</button>
-                </div>
-                <div class="news-grid"></div>
-            </section>
-           
-            <div class="card" id="contact">
-                <img src="assets/icons/Hotline.png" alt="Call Icon" class="call-icon">
-                <h1>Emergency Hotlines</h1>
-                <p>In case of severe weather events, floods, or medical emergencies, please contact these authorized hotlines immediately.</p>
-                <div class="hotlines">
-                    <div class="hotline-row">
-                        <div class="hotline-card">
-                            <div class="info">
-                                <h3>Philippine National Police</h3>
-                                <h2>9117 / 8723-0401</h2>
-                            </div>
-                            <div class="icon">
-                                <img src="assets/icons/Call.png" alt="Call Icon">
-                            </div>
-                        </div>
-                        <div class="hotline-card">
-                            <div class="info">
-                                <h3>Philippine Red Cross</h3>
-                                <h2>143 / 8790-2300</h2>
-                            </div>
-                            <div class="icon">
-                                <img src="assets/icons/Call.png" alt="Call Icon">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hotline-row">
-                        <div class="hotline-card">
-                            <div class="info">
-                                <h3>DPWH</h3>
-                                <h2>165-02</h2>
-                            </div>
-                            <div class="icon">
-                                <img src="assets/icons/Call.png" alt="Call Icon">
-                            </div>
-                        </div>
-                        <div class="hotline-card">
-                            <div class="info">
-                                <h3>NDRRMC</h3>
-                                <h2>8911-1406</h2>
-                            </div>
-                            <div class="icon">
-                                <img src="assets/icons/Call.png" alt="Call Icon">
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div> 
 
-        </div> 
+                <div class="climate-header">
+
+                    <h1>Climate Action</h1>
+
+                    <p>Current climate-related events and historical disasters in the Philippines.</p>
+
+                    <h3 class="news-location"></h3>
+
+                </div>
+
+
+
+                <div class="climate-toggle">
+
+                    <button class="climate-btn active" data-type="current">Current</button>
+
+                    <button class="climate-btn" data-type="past">Historical</button>
+
+                </div>
+
+               
+
+                <div class="news-grid">
+
+                    </div>
+
+            </section>
+
+           
+
+            <div class="card" id="contact">
+
+                <img src="assets/icons/Hotline.png" alt="Call Icon" class="call-icon">
+
+                <h1>Emergency Hotlines</h1>
+
+                <p>In case of severe weather events, floods, or medical emergencies, please contact these authorized hotlines immediately.</p>
+
+               
+
+                <div class="hotlines">
+
+                    <div class="hotline-row">
+
+                        <div class="hotline-card">
+
+                            <div class="info">
+
+                                <h3>Philippine National Police</h3>
+
+                                <h2>9117 / 8723-0401</h2>
+
+                            </div>
+
+                            <div class="icon">
+
+                                <img src="assets/icons/Call.png" alt="Call Icon">
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="hotline-card">
+
+                            <div class="info">
+
+                                <h3>Philippine Red Cross</h3>
+
+                                <h2>143 / 8790-2300</h2>
+
+                            </div>
+
+                            <div class="icon">
+
+                                <img src="assets/icons/Call.png" alt="Call Icon">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="hotline-row">
+
+                        <div class="hotline-card">
+
+                            <div class="info">
+
+                                <h3>DPWH</h3>
+
+                                <h2>165-02</h2>
+
+                            </div>
+
+                            <div class="icon">
+
+                                <img src="assets/icons/Call.png" alt="Call Icon">
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="hotline-card">
+
+                            <div class="info">
+
+                                <h3>NDRRMC</h3>
+
+                                <h2>8911-1406</h2>
+
+                            </div>
+
+                            <div class="icon">
+
+                                <img src="assets/icons/Call.png" alt="Call Icon">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
     </main>
 
+
+
     <footer class="footer">
+
         <a href="index.html">
+
             <img src="assets/icons/Thrive2.png" alt="Thrive Logo" class="logo">
+
         </a>
+
         <p class="slogan">Smart Tips for Messy Skies.</p>
+
         <hr>
+
         <div class="footer-texts">
+
             <p>© 2026 Thrive. All Rights Reserved.</p>
+
             <p>Web Systems & Technologies</p>
+
         </div>
+
     </footer>
 
+
+
     <script src="script.js"></script>
+
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
 </body>
+
 </html>
