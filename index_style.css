@@ -1302,7 +1302,7 @@ main {
 
 #news {
     padding: 100px 5%;
-    background: #f4f7fb;
+    background: #FAF9F6;
     overflow: hidden;
     display: none;
 }
@@ -1651,25 +1651,29 @@ main {
 #contact h1 {
     font-family: "Outfit", sans-serif;
     color: #DC2626;
-    margin: 5px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size: 2.5rem;
 }
 
 #contact p {
     font-family: "Inter", sans-serif;
     font-size: 0.8rem;
     color: #475569;
+    margin-bottom: 30px;
 }
 
 .hotlines {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 10px;
+    margin: 20px;
 }
 
 .hotline-row {
     display: flex;
     gap: 20px;
+    margin: 10px;
 }
 
 .hotline-card {

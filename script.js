@@ -1403,7 +1403,7 @@ function updateTipsSection(id, temp, city, condition) {
             },
 
             {
-                icon:'assets/tips/sun-um.png',
+                icon:'assets/tips/sun-ht.png',
                 title:'Avoid Noon Heat'
             }
         ];
