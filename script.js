@@ -54,6 +54,8 @@ const apiKey = '5fd9094f4742b02276d974ee0f156d43';
 const newsDataKey =
 'pub_df285ec6a85c42d4a489460e4c019f87';
 
+const guardianApiKey = 'bfdb19f3-7dc9-43d8-9934-d883f0b1cb1e';
+
 let shelterData = {};
 
 const PROVINCE_COORDINATES = {
@@ -671,75 +673,101 @@ VALID_PH_LOCATIONS.forEach(city => {
     }
 });
 
-regionBtn.addEventListener('click', () => {
+document.querySelectorAll('.welcome-input, .weather-input .input').forEach(container => {
+    const currentRegionBtn = container.querySelector('.region-dropdown-btn');
+    const currentRegionMenu = container.querySelector('.region-dropdown-menu');
+    const currentCityDropdown = container.querySelector('.city-list-dropdown');
+    const currentCityListContent = container.querySelector('.city-list-content');
+    const currentCityBackBtn = container.querySelector('.city-back-btn');
+    const currentInput = container.querySelector('.city-input, .country-input');
 
-    regionMenu.classList.toggle('show');
+    if (!currentRegionBtn || !currentRegionMenu || !currentCityDropdown) return;
 
-    cityDropdown.classList.remove('show');
-});
+    // 1. Toggle region view open/close
+    currentRegionBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentRegionMenu.classList.toggle('show');
+        currentCityDropdown.classList.remove('show');
+    });
 
-document
-.querySelectorAll('.region-item')
-.forEach(item => {
+    // 2. Handle region selection
+    currentRegionMenu.querySelectorAll('.region-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentRegionMenu.classList.remove('show');
+            if (currentCityBackBtn) currentCityBackBtn.style.display = 'block';
 
-    item.addEventListener('click', () => {
+            const region = item.dataset.region;
+            currentCityListContent.innerHTML = '';
 
-        regionMenu.classList.remove('show');
-        cityBackBtn.style.display = 'block';
+            if (typeof shelterData !== 'undefined' && shelterData[region]) {
+                const cities = [
+                    ...new Set(
+                        shelterData[region]
+                            .map(shelter => shelter.city)
+                            .filter(Boolean)
+                    )
+                ].sort();
 
-        const region =
-        item.dataset.region;
+                cities.forEach(city => {
+                    const div = document.createElement('div');
+                    div.className = 'city-option';
+                    div.textContent = city;
 
-        cityListContent.innerHTML = '';
+                    // 3. Handle city option selection
+                    div.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        
+                        // Set value to the current active search box input text
+                        currentInput.value = city;
 
-        const cities = [
-    ...new Set(
-        shelterData[region]
-            .map(shelter => shelter.city)
-            .filter(Boolean)
-    )
-        ].sort();
+                        // Sync the other screen input value so they match behind the scenes
+                        if (container.classList.contains('welcome-input')) {
+                            if (typeof countryInput !== 'undefined') countryInput.value = city;
+                        } else {
+                            if (typeof cityInput !== 'undefined') cityInput.value = city;
+                        }
 
-        cities.forEach(city => {
+                        // Close dropdown sub-menus
+                        currentCityDropdown.classList.remove('show');
+                        currentRegionMenu.classList.remove('show');
+                        if (currentCityBackBtn) currentCityBackBtn.style.display = 'none';
 
-            const div =
-            document.createElement('div');
+                        // AUTO-SEARCH: Instantly trigger weather metrics update upon selection
+                        if (typeof checkWeather === 'function') {
+                            checkWeather(city);
+                        } else if (typeof getCityCoordinates === 'function') {
+                            getCityCoordinates(city);
+                        }
+                    });
 
-            div.className =
-            'city-option';
+                    currentCityListContent.appendChild(div);
+                });
+            }
 
-            div.textContent =
-            city;
-
-            div.addEventListener('click', () => {
-
-                cityInput.value = city;
-
-                cityDropdown.classList.remove('show');
-                regionMenu.classList.remove('show');
-            });
-
-            cityListContent.appendChild(div);
+            currentCityDropdown.classList.add('show');
         });
+    });
 
-        cityDropdown.classList.add('show');
+    // 4. Handle back button configuration back to regions panel
+    if (currentCityBackBtn) {
+        currentCityBackBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentCityDropdown.classList.remove('show');
+            currentRegionMenu.classList.add('show');
+            currentCityBackBtn.style.display = 'none';
+        });
+    }
+
+    // 5. Global window clicking boundary cleanup to minimize menu lists
+    document.addEventListener('click', (e) => {
+        if (!container.contains(e.target)) {
+            currentRegionMenu.classList.remove('show');
+            currentCityDropdown.classList.remove('show');
+            if (currentCityBackBtn) currentCityBackBtn.style.display = 'none';
+        }
     });
 });
-
-       if (cityBackBtn) {
-    cityBackBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevents clicking the button from closing everything
-        
-        // 1. Hide the city dropdown menu
-        if (cityDropdown) cityDropdown.classList.remove('show');
-        
-        // 2. Bring back and show the region menu view
-        if (regionMenu) regionMenu.classList.add('show'); 
-        
-        // 3. Hide the back button itself since we are back on the main region screen
-        cityBackBtn.style.display = 'none';
-    });
-}
 
 function clearShelterMarkers(){
 

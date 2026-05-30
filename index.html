@@ -99,12 +99,28 @@
                 </div>
 
                 <div class="weather-input" style="display: none;">
-                    <div class="input">
-                        <input type="text" placeholder="Enter a Philippine City: Manila" class="country-input">
-                        <button class="search-btn">
-                            <img src="assets/icons/Search.png" alt="Search Icon">
-                        </button>
-                    </div>
+    <div class="input">
+        <input type="text" placeholder="Enter a Philippine City: Manila" class="country-input">
+        
+        <button class="region-dropdown-btn">
+            ▼
+        </button>
+
+        <button class="search-btn">
+            <img src="assets/icons/Search.png" alt="Search Icon">
+        </button>
+
+        <div class="region-dropdown-menu">
+            <div class="region-item" data-region="luzon">Luzon</div>
+            <div class="region-item" data-region="visayas">Visayas</div>
+            <div class="region-item" data-region="mindanao">Mindanao</div>
+        </div>
+
+        <div class="city-list-dropdown">
+            <div class="city-back-btn">← Back</div>
+            <div class="city-list-content"></div>
+        </div>
+    </div>
 
                     <div class="weather-result">
                         <div class="city-day">
