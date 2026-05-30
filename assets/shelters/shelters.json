@@ -578,7 +578,7 @@
     },
     {
       "name": "Muñoz Central School Gymnasium",
-      "city": "Science City of Muñoz",
+      "city": "Muñoz",
       "province": "Nueva Ecija",
       "image": "assets/shelters/munoz-central-gym.jpg",
       "lat": 15.7117,
@@ -586,7 +586,7 @@
     },
     {
       "name": "CLSU Multi-Purpose Gymnasium Station",
-      "city": "Science City of Muñoz",
+      "city": "Muñoz",
       "province": "Nueva Ecija",
       "image": "assets/shelters/clsu-gym.jpg",
       "lat": 15.7333,
@@ -658,7 +658,7 @@
     },
     {
       "name": "Tarlac City Sports Complex",
-      "city": "Tarlac City",
+      "city": "Tarlac",
       "province": "Tarlac",
       "image": "assets/shelters/tarlac-sports-complex.jpg",
       "lat": 15.4802,
@@ -666,7 +666,7 @@
     },
     {
       "name": "Tarlac State University Multi-Gym",
-      "city": "Tarlac City",
+      "city": "Tarlac",
       "province": "Tarlac",
       "image": "assets/shelters/tsu-gym.jpg",
       "lat": 15.4811,
@@ -914,7 +914,7 @@
     },
     {
       "name": "Batangas City Sports Coliseum",
-      "city": "Batangas City",
+      "city": "Batangas",
       "province": "Batangas",
       "image": "assets/shelters/batangas-coliseum.jpg",
       "lat": 13.7565,
@@ -922,7 +922,7 @@
     },
     {
       "name": "Batangas National High School Gymnasium",
-      "city": "Batangas City",
+      "city": "Batangas",
       "province": "Batangas",
       "image": "assets/shelters/batangas-high-gym.jpg",
       "lat": 13.7611,
@@ -1122,7 +1122,7 @@
     },
     {
       "name": "Naga City Civic Center",
-      "city": "Naga",
+      "city": "Naga (Camarines Sur)",
       "province": "Camarines Sur",
       "image": "assets/shelters/naga-civic.jpg",
       "lat": 13.6218,
@@ -1130,7 +1130,7 @@
     },
     {
       "name": "Jesse M. Robredo Coliseum Station",
-      "city": "Naga",
+      "city": "Naga (Camarines Sur)",
       "province": "Camarines Sur",
       "image": "assets/shelters/jesse-robredo-coliseum.jpg",
       "lat": 13.6214,
@@ -1138,7 +1138,7 @@
     },
     {
       "name": "Masbate Social Hall",
-      "city": "Masbate City",
+      "city": "Masbate",
       "province": "Masbate",
       "image": "assets/shelters/masbate-social-hall.jpg",
       "lat": 12.3683,
@@ -1146,7 +1146,7 @@
     },
     {
       "name": "Masbate Provincial Gymnasium Hub",
-      "city": "Masbate City",
+      "city": "Masbate",
       "province": "Masbate",
       "image": "assets/shelters/masbate-provincial-gym.jpg",
       "lat": 12.3694,
@@ -1154,7 +1154,7 @@
     },
     {
       "name": "Sorsogon Emergency Annex",
-      "city": "Sorsogon City",
+      "city": "Sorsogon",
       "province": "Sorsogon",
       "image": "assets/shelters/sorsogon-annex.jpg",
       "lat": 12.9692,
@@ -1162,7 +1162,7 @@
     },
     {
       "name": "Sorsogon Provincial Gymnasium Complex",
-      "city": "Sorsogon City",
+      "city": "Sorsogon",
       "province": "Sorsogon",
       "image": "assets/shelters/sorsogon-provincial-gym.jpg",
       "lat": 12.9694,
@@ -1509,7 +1509,7 @@
     },
     {
       "name": "Cebu City Sports Complex Arena",
-      "city": "Cebu City",
+      "city": "Cebu",
       "province": "Cebu",
       "image": "assets/shelters/cebu-sports-complex.jpg",
       "lat": 10.3011,
@@ -1517,7 +1517,7 @@
     },
     {
       "name": "Abellana National School Gym Hub",
-      "city": "Cebu City",
+      "city": "Cebu",
       "province": "Cebu",
       "image": "assets/shelters/abellana-gym.jpg",
       "lat": 10.3036,
@@ -1605,7 +1605,7 @@
     },
     {
       "name": "Naga Cebu Enclosed Stadium",
-      "city": "Naga, Cebu",
+      "city": "Naga (Cebu)",
       "province": "Cebu",
       "image": "assets/shelters/naga-cebu-stadium.jpg",
       "lat": 10.2114,
@@ -1613,7 +1613,7 @@
     },
     {
       "name": "Naga Central Elementary School Evacuation Hub",
-      "city": "Naga, Cebu",
+      "city": "Naga (Cebu)",
       "province": "Cebu",
       "image": "assets/shelters/naga-cebu-central.jpg",
       "lat": 10.2086,
@@ -1669,7 +1669,7 @@
     },
     {
       "name": "Iloilo City Sports Complex",
-      "city": "Iloilo City",
+      "city": "Iloilo",
       "province": "Iloilo",
       "image": "assets/shelters/iloilo-sports-complex.jpg",
       "lat": 10.7094,
@@ -1677,7 +1677,7 @@
     },
     {
       "name": "Iloilo National High School Gymnasium",
-      "city": "Iloilo City",
+      "city": "Iloilo",
       "province": "Iloilo",
       "image": "assets/shelters/iloilo-high-gym.jpg",
       "lat": 10.7114,
@@ -1848,7 +1848,7 @@
   "mindanao": [
     {
       "name": "Davao City Recreation Center (Almendras Gym)",
-      "city": "Davao City",
+      "city": "Davao",
       "province": "Davao del Sur",
       "image": "assets/shelters/davao-recreation-center.jpg",
       "lat": 7.0644,
@@ -1856,7 +1856,7 @@
     },
     {
       "name": "Davao City National High School Gymnasium",
-      "city": "Davao City",
+      "city": "Davao",
       "province": "Davao del Sur",
       "image": "assets/shelters/davao-high-gym.jpg",
       "lat": 7.0692,
@@ -1864,7 +1864,7 @@
     },
     {
       "name": "Zamboanga City Coliseum",
-      "city": "Zamboanga City",
+      "city": "Zamboanga",
       "province": "Zamboanga del Sur",
       "image": "assets/shelters/zamboanga-coliseum.jpg",
       "lat": 6.9214,
@@ -1872,7 +1872,7 @@
     },
     {
       "name": "Don Pablo Lorenzo Memorial High School Gym",
-      "city": "Zamboanga City",
+      "city": "Zamboanga",
       "province": "Zamboanga del Sur",
       "image": "assets/shelters/dplmhs-gym.jpg",
       "lat": 6.9136,
@@ -1944,7 +1944,7 @@
     },
     {
       "name": "Cotabato City Gymnasium",
-      "city": "Cotabato City",
+      "city": "Cotabato",
       "province": "Maguindanao del Norte",
       "image": "assets/shelters/cotabato-city-gym.jpg",
       "lat": 7.2189,
@@ -1952,7 +1952,7 @@
     },
     {
       "name": "Cotabato City Central Pilot School Evacuation Station",
-      "city": "Cotabato City",
+      "city": "Cotabato",
       "province": "Maguindanao del Norte",
       "image": "assets/shelters/cotabato-pilot-school.jpg",
       "lat": 7.2136,
@@ -2264,7 +2264,7 @@
     },
     {
       "name": "Isabela City Gymnasium Complex",
-      "city": "Isabela City",
+      "city": "Isabela",
       "province": "Basilan",
       "image": "assets/shelters/isabela-basilan-gym.jpg",
       "lat": 6.7044,
@@ -2272,7 +2272,7 @@
     },
     {
       "name": "Basilan National High School Covered Court",
-      "city": "Isabela City",
+      "city": "Isabela",
       "province": "Basilan",
       "image": "assets/shelters/basilan-high-court.jpg",
       "lat": 6.7011,
@@ -2328,7 +2328,7 @@
     },
     {
       "name": "Surigao City Provincial Gymnasium",
-      "city": "Surigao City",
+      "city": "Surigao",
       "province": "Surigao del Norte",
       "image": "assets/shelters/surigao-provincial-gym.jpg",
       "lat": 9.7894,
@@ -2336,7 +2336,7 @@
     },
     {
       "name": "Surigao National High School Covered Court",
-      "city": "Surigao City",
+      "city": "Surigao",
       "province": "Surigao del Norte",
       "image": "assets/shelters/surigao-high-court.jpg",
       "lat": 9.7856,
