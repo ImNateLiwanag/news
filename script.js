@@ -2,6 +2,8 @@ const cityInput = document.querySelector('.city-input');
 const regionBtn = document.querySelector('.region-dropdown-btn');
 const regionMenu = document.querySelector('.region-dropdown-menu');
 const cityDropdown = document.querySelector('.city-list-dropdown');
+const cityListContent = document.querySelector('.city-list-content');
+const cityBackBtn = document.querySelector('.city-back-btn');
 const welcomeSearchBtn = document.querySelector('.welcome-search-btn');
 const searchBtn = document.querySelector('.search-btn');
 const countryInput = document.querySelector('.country-input');
@@ -136,48 +138,37 @@ function buildShelterMenu() {
 
         cities.forEach(city => {
 
-            const cityBtn =
-            document.createElement('div');
-
-            cityBtn.className =
-            'shelter-city';
-
-            cityBtn.textContent =
-            city;
+            const cityBtn = document.createElement('div');
+            cityBtn.className = 'shelter-city';
+            cityBtn.textContent = city;
 
             cityBtn.addEventListener('click', () => {
                 const normalizedCity = normalizeLocationName(city);
 
+                // 1. (Optional) Keep these if you want the search input boxes to reflect what was clicked
                 countryInput.value = normalizedCity;
-            cityInput.value = normalizedCity;
+                cityInput.value = normalizedCity;
 
-    
+                const cityFallbacks = {
+                    'masbate city': 'Masbate',
+                    'masbate': 'Masbate',
+                    'sorsogon': 'Sorsogon',
+                    'cebu': 'Cebu',
+                    'iloilo': 'Iloilo',
+                    'davao': 'Davao',
+                    'cotabato': 'Cotabato',
+                    'isabela': 'Isabela City'
+                };
 
-    const cityFallbacks = {
-    'masbate city': 'Masbate',
-    'masbate': 'Masbate',
-    'sorsogon': 'Sorsogon',
-    'cebu': 'Cebu',
-    'iloilo': 'Iloilo',
-    'davao': 'Davao',
-    'cotabato': 'Cotabato',
-    'isabela': 'Isabela City'
-};
+                const normalized = city.toLowerCase().trim();
+                const finalCity = cityFallbacks[normalized] || city;
 
-        const normalized =
-        city.toLowerCase().trim();
+                // 2. FIXED: Instead of calling updateWeatherInfo(), call updateShelterMap() directly!
+                // This will ONLY render the pins and adjust the map view boundaries.
+                updateShelterMap(finalCity);
+            });
 
-        const finalCity =
-        cityFallbacks[normalized] || city;
-
-        countryInput.value = finalCity;
-
-        updateWeatherInfo(finalCity);
-    }
-);
-
-            regions[region]
-            .appendChild(cityBtn);
+            regions[region].appendChild(cityBtn);
         });
     });
 
@@ -693,10 +684,13 @@ document
 
     item.addEventListener('click', () => {
 
+        regionMenu.classList.remove('show');
+        cityBackBtn.style.display = 'block';
+
         const region =
         item.dataset.region;
 
-        cityDropdown.innerHTML = '';
+        cityListContent.innerHTML = '';
 
         const cities = [
     ...new Set(
@@ -725,13 +719,27 @@ document
                 regionMenu.classList.remove('show');
             });
 
-            cityDropdown.appendChild(div);
+            cityListContent.appendChild(div);
         });
 
         cityDropdown.classList.add('show');
     });
-
 });
+
+       if (cityBackBtn) {
+    cityBackBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevents clicking the button from closing everything
+        
+        // 1. Hide the city dropdown menu
+        if (cityDropdown) cityDropdown.classList.remove('show');
+        
+        // 2. Bring back and show the region menu view
+        if (regionMenu) regionMenu.classList.add('show'); 
+        
+        // 3. Hide the back button itself since we are back on the main region screen
+        cityBackBtn.style.display = 'none';
+    });
+}
 
 function clearShelterMarkers(){
 

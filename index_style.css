@@ -523,6 +523,44 @@ main {
         scale(1.05);
 }
 
+.city-back-btn{
+    display:none;
+
+    padding:14px 18px;
+
+    font-weight:700;
+    color:#2563EB;
+
+    cursor:pointer;
+
+    border-bottom:1px solid #E2E8F0;
+}
+
+.city-back-btn:hover{
+    background:#EFF6FF;
+}
+
+.city-list-content{
+    display:flex;
+    flex-direction:column;
+}
+
+.city-list-dropdown {
+    display: none; /* Hidden by default */
+}
+
+.city-list-dropdown.active {
+    display: block; /* Shown when active */
+}
+
+.region-dropdown-menu {
+    display: none;
+}
+
+.region-dropdown-menu.active {
+    display: block;
+}
+
 .city-input, .country-input {
     width: 100%;
     padding: 22px 80px 22px 30px;
