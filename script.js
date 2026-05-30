@@ -1,4 +1,7 @@
 const cityInput = document.querySelector('.city-input');
+const regionBtn = document.querySelector('.region-dropdown-btn');
+const regionMenu = document.querySelector('.region-dropdown-menu');
+const cityDropdown = document.querySelector('.city-list-dropdown');
 const welcomeSearchBtn = document.querySelector('.welcome-search-btn');
 const searchBtn = document.querySelector('.search-btn');
 const countryInput = document.querySelector('.country-input');
@@ -273,6 +276,7 @@ function detectRegion(city) {
 let map = null;
 let shelterMarkers = [];
 let mapInitialized = false;
+
 
 function normalizeLocationName(input) {
     if (!input) return "";
@@ -652,6 +656,82 @@ map.fitBounds([
     'tubod',
     'zamboanga city'
 ];
+
+
+const SEARCH_REGIONS = {
+    luzon: [],
+    visayas: [],
+    mindanao: []
+};
+
+VALID_PH_LOCATIONS.forEach(city => {
+
+    const normalized =
+    normalizeLocationName(city);
+
+    const region =
+    detectRegion(normalized);
+
+    if (
+        region &&
+        !SEARCH_REGIONS[region].includes(normalized)
+    ) {
+        SEARCH_REGIONS[region].push(normalized);
+    }
+});
+
+regionBtn.addEventListener('click', () => {
+
+    regionMenu.classList.toggle('show');
+
+    cityDropdown.classList.remove('show');
+});
+
+document
+.querySelectorAll('.region-item')
+.forEach(item => {
+
+    item.addEventListener('click', () => {
+
+        const region =
+        item.dataset.region;
+
+        cityDropdown.innerHTML = '';
+
+        const cities = [
+    ...new Set(
+        shelterData[region]
+            .map(shelter => shelter.city)
+            .filter(Boolean)
+    )
+        ].sort();
+
+        cities.forEach(city => {
+
+            const div =
+            document.createElement('div');
+
+            div.className =
+            'city-option';
+
+            div.textContent =
+            city;
+
+            div.addEventListener('click', () => {
+
+                cityInput.value = city;
+
+                cityDropdown.classList.remove('show');
+                regionMenu.classList.remove('show');
+            });
+
+            cityDropdown.appendChild(div);
+        });
+
+        cityDropdown.classList.add('show');
+    });
+
+});
 
 function clearShelterMarkers(){
 
@@ -2503,13 +2583,63 @@ document.addEventListener(
 
         hideAllSections();
 
-        weatherWelcome.style.display =
-        'flex';
+        weatherWelcome.style.display = 'flex';
 
         await loadShelterData();
 
         buildShelterMenu();
 
-        initializeMap();
+        const dropdownContainer = document.querySelector('.city-dropdown-container');
+        const dropdownTrigger = document.querySelector('.dropdown-trigger');
+        const dropdownMenu = document.getElementById('cityDropdownMenu');
+        const selectedCityTxt = document.querySelector('.selected-city');
+
+        function initCityDropdown() {
+            dropdownMenu.innerHTML = ''; 
+            
+            availableCities.forEach(city => {
+                const li = document.createElement('li');
+                li.textContent = city;
+                li.dataset.value = city.toLowerCase();
+                
+                li.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    handleCitySelection(city);
+                });
+                dropdownMenu.appendChild(li);
+            });
+        }
+
+        function handleCitySelection(cityName) {
+            selectedCityTxt.textContent = cityName;
+            dropdownContainer.classList.remove('active');
+
+            document.querySelectorAll('.dropdown-menu li').forEach(li => {
+                li.classList.remove('active-city');
+                if(li.textContent === cityName) li.classList.add('active-city');
+            });
+
+            // Feed inputs directly into your system variables to update tips and maps
+            const normalizedCity = normalizeLocationName(cityName);
+            if (typeof countryInput !== 'undefined') countryInput.value = normalizedCity;
+            if (typeof cityInput !== 'undefined') cityInput.value = normalizedCity;
+
+            // Trigger your system query to fetch weather parameters and plot map points
+            if (typeof updateWeatherInfo === 'function') {
+                updateWeatherInfo(normalizedCity);
+            }
+        }
+
+        dropdownTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownContainer.classList.toggle('active');
+        });
+
+        document.addEventListener('click', () => {
+            dropdownContainer.classList.remove('active');
+        });
+
+        // Initialize immediately inside context lifecycle
+        initCityDropdown();
     }
 );

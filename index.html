@@ -50,11 +50,39 @@
                         </div>
 
                         <div class="welcome-input">
-                            <input type="text" placeholder="Enter a Philippine City" class="city-input">
-                            <button class="welcome-search-btn">
-                                <img src="assets/icons/Search.png" alt="Search Icon">
-                            </button>
-                        </div>
+
+    <input
+        type="text"
+        placeholder="Enter a Philippine City"
+        class="city-input">
+
+    <button class="region-dropdown-btn">
+        ▼
+    </button>
+
+    <button class="welcome-search-btn">
+        <img src="assets/icons/Search.png" alt="Search Icon">
+    </button>
+
+    <div class="region-dropdown-menu">
+
+        <div class="region-item" data-region="luzon">
+            Luzon
+        </div>
+
+        <div class="region-item" data-region="visayas">
+            Visayas
+        </div>
+
+        <div class="region-item" data-region="mindanao">
+            Mindanao
+        </div>
+
+    </div>
+
+    <div class="city-list-dropdown"></div>
+
+</div>
 
                         <div class="error-msg">
                             <p>City not found. Please try again.</p>
