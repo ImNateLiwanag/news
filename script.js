@@ -37,6 +37,7 @@ const tipsList = document.querySelector('.tips-list');
 const mapMenuBtn = document.getElementById("mapMenuBtn");
 const shelterMenu = document.getElementById("shelterMenu");
 
+
 mapMenuBtn.addEventListener("click", () => {
     shelterMenu.classList.toggle("show");
 });
