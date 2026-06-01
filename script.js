@@ -7,18 +7,14 @@ const cityBackBtn = document.querySelector('.city-back-btn');
 const welcomeSearchBtn = document.querySelector('.welcome-search-btn');
 const searchBtn = document.querySelector('.search-btn');
 const countryInput = document.querySelector('.country-input');
-
 const sideBar = document.querySelector('.sidebar');
 const weatherWelcome = document.querySelector('.weather-welcome');
 const weatherInput = document.querySelector('.weather-input');
 const weatherText = document.querySelector('.weather-text');
-
 const tipsSection = document.getElementById('tips');
 const newsSection = document.getElementById('news');
-
 const errorMsg = document.querySelector('.error-msg');
 const weatherError = document.querySelector('.weather-error-msg');
-
 const cityTxt = document.querySelector('.city-txt');
 const weatherDay = document.querySelector('.weather-day');
 const tempTxt = document.querySelector('.temp-txt');
@@ -29,19 +25,15 @@ const weatherImg = document.querySelector('.weather-summary-img');
 const weatherQuoteTxt = document.querySelector('.weather-quote-txt');
 const futureWeather = document.querySelector('.future-weather');
 const todayTxt = document.querySelector('.today-txt');
-
 const tipsTemp = document.querySelector('.tips-temp');
 const tipsCondition = document.querySelector('.tips-condition');
 const lottieWeather = document.querySelector('.about-weather-icon');
-
 const dangerTitle = document.querySelector('.danger-title');
 const dangerDescription = document.querySelector('.danger-description');
-
 const tipsMainTitle = document.querySelector('.tips-main-title');
 const tipsList = document.querySelector('.tips-list');
 const mapMenuBtn = document.getElementById("mapMenuBtn");
 const shelterMenu = document.getElementById("shelterMenu");
-
 
 mapMenuBtn.addEventListener("click", () => {
     shelterMenu.classList.toggle("show");
@@ -124,7 +116,6 @@ function buildShelterMenu() {
 
         if (!shelterData[region]) return;
 
-        // GET UNIQUE CITIES
         const cities = [
             ...new Set(
                 shelterData[region]
@@ -133,7 +124,6 @@ function buildShelterMenu() {
             )
         ];
 
-        // SORT ALPHABETICALLY
         cities.sort((a, b) =>
             a.localeCompare(b)
         );
@@ -147,7 +137,6 @@ function buildShelterMenu() {
             cityBtn.addEventListener('click', () => {
                 const normalizedCity = normalizeLocationName(city);
 
-                // 1. (Optional) Keep these if you want the search input boxes to reflect what was clicked
                 countryInput.value = normalizedCity;
                 cityInput.value = normalizedCity;
 
@@ -165,8 +154,6 @@ function buildShelterMenu() {
                 const normalized = city.toLowerCase().trim();
                 const finalCity = cityFallbacks[normalized] || city;
 
-                // 2. FIXED: Instead of calling updateWeatherInfo(), call updateShelterMap() directly!
-                // This will ONLY render the pins and adjust the map view boundaries.
                 updateShelterMap(finalCity);
             });
 
@@ -174,7 +161,6 @@ function buildShelterMenu() {
         });
     });
 
-    // ACCORDION TOGGLES
     document
     .querySelectorAll('.region-toggle')
     .forEach(button => {
@@ -198,7 +184,6 @@ function buildShelterMenu() {
 function detectRegion(city) {
     const cleanCity = city.toLowerCase().trim();
 
-    // 1. Hard Boundaries & Priority Exclusions (Stops Cross-island Jumping)
     if (
         cleanCity.includes('basilan') || 
         cleanCity.includes('isabela city') || 
@@ -254,7 +239,6 @@ function detectRegion(city) {
         return 'luzon';
     }
 
-    // 2. Structural Keyword Fallbacks
     const luzonKeywords = ['luzon', 'ilocos', 'cagayan', 'isabela', 'tarlac', 'zambales', 'bataan', 'rizal', 'aurora', 'quirino', 'benguet', 'baguio', 'albay', 'camarines', 'catanduanes', 'marinduque', 'romblon', 'mindoro'];
     const visayasKeywords = ['visayas', 'aklan', 'boracay', 'ormoc', 'biliran', 'catbalogan'];
     const mindanaoKeywords = ['mindanao', 'misamis', 'bukidnon', 'lanao', 'sultan kudarat', 'sarangani', 'agusan', 'surigao', 'dinagat', 'sulu', 'tawi', 'marawi',];
@@ -274,10 +258,9 @@ let mapInitialized = false;
 function normalizeLocationName(input) {
     if (!input) return "";
     let clean = input.toLowerCase().trim()
-        .replace(/\s+/g, ' ') // Collapse extra whitespace
-        .replace(/,/g, '');   // Drop commas for clean checking
+        .replace(/\s+/g, ' ') 
+        .replace(/,/g, '');   
 
-    // Direct Exact-Match Mapping Enforcements
     if (clean === 'roxas' || clean === 'roxas city' || clean === 'roxas capiz') {
         return 'Roxas City';
     }
@@ -285,19 +268,17 @@ function normalizeLocationName(input) {
         return 'Masbate';
     }
     if (clean === 'isabela city' || clean.includes('isabela city basilan')) {
-        return 'Isabela City'; // OpenWeather API matches 'Isabela City' directly
+        return 'Isabela City'; 
     }
     if (clean.includes('cayan de oro') || clean.includes('cagayan de oro') || clean === 'cdo') {
         return 'Cagayan de Oro';
     }
 
-    // Advanced Multi-Region Disambiguation
-    // 1. Naga Collision
     if (clean.includes('naga')) {
         if (clean.includes('visayas') || clean.includes('cebu')) {
             return 'Naga, Cebu';
         }
-        return 'Naga City'; // Defaults to Camarines Sur (Luzon)
+        return 'Naga City'; 
     }
 
     // 2. San Carlos Collision
@@ -305,13 +286,11 @@ function normalizeLocationName(input) {
         if (clean.includes('visayas') || clean.includes('negros') || clean.includes('occidental')) {
             return 'San Carlos City'; 
         }
-        return 'San Carlos'; // Defaults to Pangasinan (Luzon)
+        return 'San Carlos'; 
     }
 
-    // 3. San Jose Multi-Island Collision
     if (clean.includes('san jose')) {
 
-    // NUEVA ECIJA
     if (
         clean.includes('nueva ecija') ||
         clean.includes('luzon')
@@ -319,14 +298,12 @@ function normalizeLocationName(input) {
         return 'San Jose City';
     }
 
-    // OCCIDENTAL MINDORO
     if (
         clean.includes('mindoro')
     ) {
         return 'San Jose';
     }
 
-    // ANTIQUE
     if (
         clean.includes('antique') ||
         clean.includes('visayas')
@@ -334,7 +311,6 @@ function normalizeLocationName(input) {
         return 'San Jose de Buenavista';
     }
 
-    // DINAGAT
     if (
         clean.includes('dinagat') ||
         clean.includes('mindanao')
@@ -342,11 +318,9 @@ function normalizeLocationName(input) {
         return 'San Jose';
     }
 
-    // DEFAULT
     return 'San Jose City';
 }
 
-    // 4. Santo Tomas / Sto. Tomas Collision
     if (
     clean.includes('santo tomas') ||
     clean.includes('sto tomas') ||
@@ -361,7 +335,6 @@ function normalizeLocationName(input) {
         return 'Santo Tomas Batangas';
     }
 
-    // DAVAO
     if (
         clean.includes('davao') ||
         clean.includes('mindanao')
@@ -369,7 +342,6 @@ function normalizeLocationName(input) {
         return 'Santo Tomas Davao';
     }
 
-    // SAMAR
     if (
         clean.includes('samar') ||
         clean.includes('visayas')
@@ -377,11 +349,9 @@ function normalizeLocationName(input) {
         return 'Santo Tomas Samar';
     }
 
-    // DEFAULT TO BATANGAS
     return 'Santo Tomas Batangas';
 }
 
-    // Fallback title casing for unmapped parameters
     return input.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
 }
 
@@ -491,7 +461,7 @@ map.fitBounds([
     'sorsogon',
     'tarlac',
     'zambales',
-    'metro manila', // Idinagdag para sa province checks ng Manila/QC/Makati
+    'metro manila', 
 
     // Luzon Cities / Municipalities
     'alaminos',
@@ -521,27 +491,27 @@ map.fitBounds([
     'iriga',
     'laoag',
     'legazpi',
-    'ligao',          // DAGDAG: Mula sa shelters.json (Ligao City, Albay)
+    'ligao',          
     'lipa',
     'lucena',
-    'mabalacat',      // DAGDAG: Para sa dynamic dropdown keywords mo
+    'mabalacat',     
     'malolos',
-    'masbate city',   // DAGDAG: Mula sa shelters.json (Masbate City, Masbate)
+    'masbate city',   
     'meycauayan',
-    'muñoz',          // DAGDAG: Science City of Muñoz sa keywords mo
+    'muñoz',        
     'naga',
     'olongapo',
     'palayan',
     'puerto princesa',
     'rosales',
     'san fernando',
-    'san jose (nueva ecija)', // DAGDAG: Katugma ng eksaktong spelling sa JSON mo
-    'san jose del monte',     // DAGDAG: Para sa Bulacan shelters mo
+    'san jose (nueva ecija)', 
+    'san jose del monte',     
     'san pablo',
     'san pedro',
     'santa cruz',
     'santa rosa',
-    'santo tomas',    // DAGDAG: Batangas keyword compatibility
+    'santo tomas',    
     'santiago',
     'sorsogon city',
     'tabaco',
@@ -602,7 +572,7 @@ map.fitBounds([
     'naval',
     'ormoc',
     'passi',
-    'roxas city',
+    'roxas',
     'sagay',
     'san carlos',
     'silay',
@@ -647,8 +617,8 @@ map.fitBounds([
 
     // Mindanao Cities / Municipalities
     'alabel',
-    'bislig',         // DAGDAG: Mula sa shelters.json (Bislig, Surigao del Sur)
-    'bongao',         // DAGDAG: Mula sa shelters.json (Bongao, Tawi-Tawi)
+    'bislig',         
+    'bongao',         
     'butuan',
     'cabadbaran',
     'cagayan de oro',
@@ -680,14 +650,14 @@ map.fitBounds([
     'pagadian',
     'prosperidad',
     'samal',
-    'surigao city',
+    'surigao',
     'tacurong',
     'tagum',
     'tandag',
     'tangub',
     'tubod',
     'valencia',
-    'zamboanga city'
+    'zamboanga'
 ];
 
 
@@ -2061,6 +2031,29 @@ async function fetchClimateNews(city = 'Philippines') {
             }
         }
 
+        const climateKeywords = [
+        'climate',
+        'climate change',
+        'weather',
+        'flood',
+        'flooding',
+        'storm',
+        'typhoon',
+        'cyclone',
+        'heatwave',
+        'drought',
+        'rainfall',
+        'extreme weather',
+        'global warming',
+        'carbon',
+        'greenhouse',
+        'renewable energy',
+        'sustainability',
+        'sdg 13',
+        'environment',
+        'disaster'
+    ];
+
         const blockedWords = [ 
             'election',
             'senate',
@@ -2087,6 +2080,11 @@ async function fetchClimateNews(city = 'Philippines') {
             'golf',
             'taxi',
             'motorcycle',
+            'gunshot',
+            'murder',
+            'scandal',
+            'school',
+            'education',
 
             
         ];
@@ -2695,12 +2693,10 @@ document.addEventListener(
                 if(li.textContent === cityName) li.classList.add('active-city');
             });
 
-            // Feed inputs directly into your system variables to update tips and maps
             const normalizedCity = normalizeLocationName(cityName);
             if (typeof countryInput !== 'undefined') countryInput.value = normalizedCity;
             if (typeof cityInput !== 'undefined') cityInput.value = normalizedCity;
 
-            // Trigger your system query to fetch weather parameters and plot map points
             if (typeof updateWeatherInfo === 'function') {
                 updateWeatherInfo(normalizedCity);
             }
@@ -2715,7 +2711,6 @@ document.addEventListener(
             dropdownContainer.classList.remove('active');
         });
 
-        // Initialize immediately inside context lifecycle
         initCityDropdown();
     }
 );

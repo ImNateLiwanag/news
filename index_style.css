@@ -5,7 +5,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: #FAF9F6; /* Changed from #f4f7fb to Off-White */
+    background: #FAF9F6; 
     font-family: "Inter", sans-serif;
     overflow-x: hidden;
     display: grid;
@@ -546,11 +546,11 @@ main {
 }
 
 .city-list-dropdown {
-    display: none; /* Hidden by default */
+    display: none; 
 }
 
 .city-list-dropdown.active {
-    display: block; /* Shown when active */
+    display: block; 
 }
 
 .region-dropdown-menu {
@@ -639,11 +639,10 @@ main {
     display: inline-block;
     font-family: "Inter", sans-serif;
     user-select: none;
-    z-index: 1100; /* Ensures it sits above maps and cards */
+    z-index: 1100; 
     margin: 10px 0;
 }
 
-/* The visible selector bar */
 .dropdown-trigger {
     display: flex;
     align-items: center;
@@ -681,12 +680,10 @@ main {
     transition: transform 0.2s;
 }
 
-/* Opened Arrow State */
 .city-dropdown-container.active .arrow-icon {
     transform: rotate(180deg);
 }
 
-/* Dropdown Menu Options List */
 .dropdown-menu {
     position: absolute;
     top: calc(100% + 6px);
@@ -700,7 +697,7 @@ main {
     padding: 6px 0;
     margin: 0;
     list-style: none;
-    display: none; /* Hidden by default */
+    display: none; 
     max-height: 250px;
     overflow-y: auto;
 }
@@ -1491,7 +1488,6 @@ main {
 
     z-index: 1000;
 
-    /* HIDDEN BY DEFAULT */
     opacity: 0;
     visibility: hidden;
 
@@ -1692,7 +1688,7 @@ main {
 .news-grid, .news-grid.two-cards {
     position: relative;
     width: 100%;
-    max-width: 1400px; /* Expanded layout bounds to accommodate a larger center card */
+    max-width: 1400px; 
     height: 650px;      
     margin: 0 auto;
     display: flex;
@@ -1720,11 +1716,9 @@ main {
     overflow: hidden;
     text-decoration: none;
     isolation: isolate;
-    background: #0F172A; /* Fallback rendering safe-space */
+    background: #0F172A; 
     box-shadow: none !important; 
 
-    /* FIX: We separate transform and opacity transitions. 
-       Removing z-index from the transition string prevents the mid-animation clipping glitch. */
     transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 opacity 0.4s ease;
                 
@@ -1772,9 +1766,9 @@ main {
 }
 
 .news-card.center, .news-grid.two-cards .news-card.center {
-    width: 820px;       /* Increased size from 700px for a more prominent focal point */
-    height: 560px;      /* Increased height proportionately */
-    z-index: 50;        /* Main structural depth priority layer */
+    width: 820px;      
+    height: 560px;      
+    z-index: 50;       
     opacity: 1;
     transform: translateX(0) scale(1);
 }
@@ -1786,7 +1780,7 @@ main {
 .news-card.left, .news-card.right, .news-card.side, .news-grid.two-cards .news-card.side {
     width: 520px;       
     height: 440px;      
-    z-index: 10;        /* Placed cleanly underneath layer 50 */
+    z-index: 10;    
     opacity: 0.55;      
     filter: none !important; 
 }
@@ -1820,7 +1814,7 @@ main {
     margin: 0;
     color: white;
     font-family: "Outfit", sans-serif;
-    font-size: 2.1rem; /* Dynamically structured for readable wrapping inside 820px */
+    font-size: 2.1rem; 
     line-height: 1.15;
     font-weight: 700;
     max-width: 90%;   
